@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Identity System - Portfolio Template</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <a href="index.html" class="logo">JOHN DOE</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <button class="nav-link contact-trigger" onclick="openContactModal()">Contact</button>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button class="menu-button" onclick="openMobileMenu()">MENU</button>
+
+      <p class="header-subtitle">Creative Director</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content project-content">
+      <h1 class="project-title">BRAND IDENTITY SYSTEM</h1>
+
+      <div class="project-details">
+        <div class="project-attributes">
+          <div class="attribute-row">
+            <span class="attribute-label">Year</span>
+            <span class="attribute-value">2024</span>
+          </div>
+          <div class="attribute-row">
+            <span class="attribute-label">Client</span>
+            <span class="attribute-value">TechVision Inc.</span>
+          </div>
+          <div class="attribute-row">
+            <span class="attribute-label">Type</span>
+            <span class="attribute-value">Branding, Identity, Strategy</span>
+          </div>
+        </div>
+        <div class="project-description">
+          <p>A comprehensive brand identity system for TechVision Inc., a forward-thinking technology company. The project encompassed logo design, typography selection, color palette development, and extensive brand guidelines.</p>
+          <p>The visual identity reflects the company's innovative spirit while maintaining a clean, professional aesthetic that appeals to both B2B and B2C audiences.</p>
+        </div>
+      </div>
+
+      <!-- Media Grid -->
+      <div class="project-media">
+        <div class="media-row two-col">
+          <div class="media-item">
+            <img src="/placeholder.svg?height=400&width=600" alt="Logo Design">
+          </div>
+          <div class="media-item">
+            <img src="/placeholder.svg?height=400&width=600" alt="Color Palette">
+          </div>
+        </div>
+        <div class="media-row three-col">
+          <div class="media-item">
+            <img src="/placeholder.svg?height=400&width=400" alt="Typography">
+          </div>
+          <div class="media-item">
+            <img src="/placeholder.svg?height=400&width=400" alt="Stationery">
+          </div>
+          <div class="media-item">
+            <img src="/placeholder.svg?height=400&width=400" alt="Business Cards">
+          </div>
+        </div>
+        <div class="media-row two-col">
+          <div class="media-item">
+            <img src="/placeholder.svg?height=400&width=600" alt="Website">
+          </div>
+          <div class="media-item">
+            <img src="/placeholder.svg?height=400&width=600" alt="App Interface">
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="project-navigation">
+        <button class="nav-btn disabled" disabled>Previous</button>
+        <a href="index.html" class="nav-btn">Back</a>
+        <a href="project.html" class="nav-btn">Next</a>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <ul class="social-links">
+        <li><a href="https://instagram.com" target="_blank">Instagram<span class="invisible-char">a</span></a></li>
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+      </ul>
+      <div class="footer-contact">
+        <div class="contact-row">
+          <span class="contact-label">Email</span>
+          <a href="mailto:hello@johndoe.com" class="contact-value">HELLO@JOHNDOE.COM</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Phone</span>
+          <a href="tel:+15551234567" class="contact-value">+1 (555) 123-4567</a>
+        </div>
+        <p class="copyright">© 2025. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contactModal" onclick="closeContactModal(event)">
+    <div class="modal-content contact-modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>JOHN DOE</h2>
+        <p>Creative Director</p>
+      </div>
+      <div class="modal-separator"></div>
+      <div class="modal-body">
+        <a href="tel:+15551234567">+1 (555) 123-4567</a>
+        <a href="https://maps.google.com/?q=New+York,+NY" target="_blank">New York, NY</a>
+        <a href="mailto:hello@johndoe.com">hello@johndoe.com</a>
+        <a href="https://instagram.com/johndoe" target="_blank">instagram.com/johndoe</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <header class="mobile-menu-header">
+      <a href="index.html" class="logo">JOHN DOE</a>
+      <button class="close-button" onclick="closeMobileMenu()">CLOSE</button>
+    </header>
+    <div class="mobile-menu-content">
+      <nav class="mobile-nav">
+        <a href="index.html" onclick="closeMobileMenu()">HOME</a>
+        <a href="about.html" onclick="closeMobileMenu()">ABOUT</a>
+        <button onclick="openContactModal(); closeMobileMenu();">CONTACT</button>
+      </nav>
+      <ul class="social-links">
+        <li><a href="https://instagram.com" target="_blank">Instagram<span class="invisible-char">a</span></a></li>
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+      </ul>
+      <p class="copyright">© 2025. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

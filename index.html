@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Template</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <a href="index.html" class="logo">JOHN DOE</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <button class="nav-link contact-trigger" onclick="openContactModal()">Contact</button>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button class="menu-button" onclick="openMobileMenu()">MENU</button>
+
+      <p class="header-subtitle">Creative Director</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero">
+        <ul class="social-links social-links-hero">
+          <li><a href="https://instagram.com" target="_blank">Instagram<span class="invisible-char">a</span></a></li>
+          <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        </ul>
+        <div class="hero-heading">
+          <h1>AWARD-WINNING CREATIVE DIRECTOR CRAFTING BOLD VISUAL IDENTITIES</h1>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section class="projects">
+        <!-- Featured Project -->
+        <a href="project.html" class="project-item featured">
+          <img src="/placeholder.svg?height=600&width=1200" alt="Brand Identity Project">
+          <div class="project-info featured-info">
+            <h3>Brand Identity System</h3>
+            <div class="project-category">
+              <span>Branding</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Grid Projects -->
+        <div class="projects-grid">
+          <a href="project.html" class="project-item grid-item">
+            <img src="/placeholder.svg?height=400&width=400" alt="Web Design Project">
+            <div class="project-info">
+              <h3>E-commerce Platform</h3>
+              <div class="project-category">
+                <span>Web Design</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="project.html" class="project-item grid-item">
+            <img src="/placeholder.svg?height=400&width=400" alt="Packaging Project">
+            <div class="project-info">
+              <h3>Artisan Coffee Packaging</h3>
+              <div class="project-category">
+                <span>Packaging</span>
+                <span class="category-more">+1</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="project.html" class="project-item grid-item">
+            <img src="/placeholder.svg?height=400&width=400" alt="Editorial Project">
+            <div class="project-info">
+              <h3>Magazine Editorial</h3>
+              <div class="project-category">
+                <span>Editorial</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="project.html" class="project-item grid-item">
+            <img src="/placeholder.svg?height=400&width=400" alt="Motion Project">
+            <div class="project-info">
+              <h3>Motion Graphics Reel</h3>
+              <div class="project-category">
+                <span>Motion</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="project.html" class="project-item grid-item">
+            <img src="/placeholder.svg?height=400&width=400" alt="App Project">
+            <div class="project-info">
+              <h3>Fitness App UI</h3>
+              <div class="project-category">
+                <span>UI/UX</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="project.html" class="project-item grid-item">
+            <img src="/placeholder.svg?height=400&width=400" alt="Poster Project">
+            <div class="project-info">
+              <h3>Event Poster Series</h3>
+              <div class="project-category">
+                <span>Print</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <ul class="social-links">
+        <li><a href="https://instagram.com" target="_blank">Instagram<span class="invisible-char">a</span></a></li>
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+      </ul>
+      <div class="footer-contact">
+        <div class="contact-row">
+          <span class="contact-label">Email</span>
+          <a href="mailto:hello@johndoe.com" class="contact-value">HELLO@JOHNDOE.COM</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Phone</span>
+          <a href="tel:+15551234567" class="contact-value">+1 (555) 123-4567</a>
+        </div>
+        <p class="copyright">© 2025. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contactModal" onclick="closeContactModal(event)">
+    <div class="modal-content contact-modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>JOHN DOE</h2>
+        <p>Creative Director</p>
+      </div>
+      <div class="modal-separator"></div>
+      <div class="modal-body">
+        <a href="tel:+15551234567">+1 (555) 123-4567</a>
+        <a href="https://maps.google.com/?q=New+York,+NY" target="_blank">New York, NY</a>
+        <a href="mailto:hello@johndoe.com">hello@johndoe.com</a>
+        <a href="https://instagram.com/johndoe" target="_blank">instagram.com/johndoe</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <header class="mobile-menu-header">
+      <a href="index.html" class="logo">JOHN DOE</a>
+      <button class="close-button" onclick="closeMobileMenu()">CLOSE</button>
+    </header>
+    <div class="mobile-menu-content">
+      <nav class="mobile-nav">
+        <a href="index.html" onclick="closeMobileMenu()">HOME</a>
+        <a href="about.html" onclick="closeMobileMenu()">ABOUT</a>
+        <button onclick="openContactModal(); closeMobileMenu();">CONTACT</button>
+      </nav>
+      <ul class="social-links">
+        <li><a href="https://instagram.com" target="_blank">Instagram<span class="invisible-char">a</span></a></li>
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+      </ul>
+      <p class="copyright">© 2025. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

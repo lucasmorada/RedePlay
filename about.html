@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Portfolio Template</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <a href="index.html" class="logo">JOHN DOE</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <button class="nav-link contact-trigger" onclick="openContactModal()">Contact</button>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button class="menu-button" onclick="openMobileMenu()">MENU</button>
+
+      <p class="header-subtitle">Creative Director</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content about-content">
+      <h1 class="about-title-mobile">ABOUT</h1>
+      
+      <div class="about-grid">
+        <div class="about-photo">
+          <img src="/placeholder.svg?height=600&width=500" alt="John Doe">
+        </div>
+        <div class="about-info">
+          <h1 class="sr-only">About</h1>
+          
+          <div class="about-section">
+            <h2>Bio</h2>
+            <div class="about-text">
+              <p>John Doe is an award-winning creative director with over 15 years of experience in brand identity, digital design, and art direction. Based in New York, he has collaborated with leading brands across fashion, technology, and lifestyle sectors.</p>
+              <p>His work is characterized by bold typography, minimal aesthetics, and a keen eye for detail. He believes in creating designs that not only look beautiful but also communicate effectively and resonate with audiences.</p>
+            </div>
+          </div>
+          
+          <div class="about-section">
+            <h2>Awards</h2>
+            <div class="about-text">
+              <p>Cannes Lions Gold - Brand Identity 2024</p>
+              <p>D&AD Pencil - Digital Design 2023</p>
+              <p>Awwwards Site of the Year 2022</p>
+              <p>Communication Arts Excellence 2021</p>
+            </div>
+          </div>
+          
+          <div class="about-section">
+            <h2>Clients</h2>
+            <div class="about-text">
+              <p>Apple, Nike, Google, Spotify, Airbnb, Netflix, Adobe, Tesla, Mercedes-Benz, Chanel</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <ul class="social-links">
+        <li><a href="https://instagram.com" target="_blank">Instagram<span class="invisible-char">a</span></a></li>
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+      </ul>
+      <div class="footer-contact">
+        <div class="contact-row">
+          <span class="contact-label">Email</span>
+          <a href="mailto:hello@johndoe.com" class="contact-value">HELLO@JOHNDOE.COM</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Phone</span>
+          <a href="tel:+15551234567" class="contact-value">+1 (555) 123-4567</a>
+        </div>
+        <p class="copyright">© 2025. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contactModal" onclick="closeContactModal(event)">
+    <div class="modal-content contact-modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>JOHN DOE</h2>
+        <p>Creative Director</p>
+      </div>
+      <div class="modal-separator"></div>
+      <div class="modal-body">
+        <a href="tel:+15551234567">+1 (555) 123-4567</a>
+        <a href="https://maps.google.com/?q=New+York,+NY" target="_blank">New York, NY</a>
+        <a href="mailto:hello@johndoe.com">hello@johndoe.com</a>
+        <a href="https://instagram.com/johndoe" target="_blank">instagram.com/johndoe</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <header class="mobile-menu-header">
+      <a href="index.html" class="logo">JOHN DOE</a>
+      <button class="close-button" onclick="closeMobileMenu()">CLOSE</button>
+    </header>
+    <div class="mobile-menu-content">
+      <nav class="mobile-nav">
+        <a href="index.html" onclick="closeMobileMenu()">HOME</a>
+        <a href="about.html" onclick="closeMobileMenu()">ABOUT</a>
+        <button onclick="openContactModal(); closeMobileMenu();">CONTACT</button>
+      </nav>
+      <ul class="social-links">
+        <li><a href="https://instagram.com" target="_blank">Instagram<span class="invisible-char">a</span></a></li>
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+      </ul>
+      <p class="copyright">© 2025. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
