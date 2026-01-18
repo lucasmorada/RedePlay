@@ -200,6 +200,92 @@
   }
 }
 
+.menu-button {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .menu-button {
+    display: none;
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background-color: var(--foreground);
+  color: var(--background);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--sides);
+  clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+  transition: clip-path 0.3s var(--quad-out);
+}
+
+.mobile-menu.active {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+@media (min-width: 768px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+}
+
+.close-button {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--background);
+}
+
+.mobile-menu-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 3rem 0;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav a,
+.mobile-nav button {
+  font-size: 3.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--background);
+  transition: opacity 0.3s var(--quad-out);
+  text-align: left;
+}
+
+.mobile-nav a:hover,
+.mobile-nav button:hover {
+  opacity: 0.7;
+}
+
+.mobile-menu .social-links a {
+  color: var(--background);
+}
+
+.mobile-menu .copyright {
+  color: var(--background);
+}
+
   </style>
 </head>
 <body>
@@ -218,6 +304,23 @@
       <i class="fab fa-tiktok"></i>
     </div>
   </nav>
+
+  <button class="menu-button" onclick="openMobileMenu()">MENU</button>
+
+  <div class="mobile-menu-content">
+      <nav class="mobile-nav">
+        <a href="index.html" onclick="closeMobileMenu()">HOME</a>
+        <a href="about.html" onclick="closeMobileMenu()">ABOUT</a>
+        <button onclick="openContactModal(); closeMobileMenu();">CONTACT</button>
+      </nav>
+      <ul class="social-links">
+        <li><a href="https://instagram.com" target="_blank">Instagram<span class="invisible-char">a</span></a></li>
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+      </ul>
+      <p class="copyright">© 2025. All rights reserved.</p>
+    </div>
+  </div>
 
   <div class="hero"></div>
 
