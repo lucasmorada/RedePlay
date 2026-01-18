@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Play Adoles</title>
+  <title>Play</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Google Fonts -->
@@ -20,8 +20,8 @@
     }
 
     body {
-      background: #fff;
-      color: #111;
+      background: #000000;
+      color: #ffffff;
       overflow-x: hidden;
     }
 
@@ -36,6 +36,7 @@
       justify-content: space-between;
       z-index: 1000;
       transition: all .4s ease;
+      color: #000;
     }
 
     nav.scrolled {
@@ -44,10 +45,15 @@
       transform: translateX(-50%);
       width: auto;
       padding: 14px 28px;
-      background: rgba(255,255,255,.6);
+      background: rgba(47, 45, 45, 0.4);
       backdrop-filter: blur(15px);
       border-radius: 999px;
       box-shadow: 0 10px 30px rgba(0,0,0,.1);
+      color: #fff;
+    }
+
+    nav.scrolled .nav-icons {
+      display: none;
     }
 
     .nav-center {
@@ -55,6 +61,17 @@
       gap: 30px;
       font-weight: 600;
     }
+
+    .logo {
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.nav-center span {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
 
     .nav-center span {
       cursor: pointer;
