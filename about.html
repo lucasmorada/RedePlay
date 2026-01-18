@@ -200,6 +200,68 @@
   }
 }
 
+/* BOTÃO HAMBURGUER */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* MENU MOBILE */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  color: #fff;
+  z-index: 2000;
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-100%);
+  transition: transform .4s ease;
+}
+
+.mobile-menu.active {
+  transform: translateY(0);
+}
+
+.mobile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-header i {
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.mobile-links {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.mobile-links span {
+  font-size: 2.4rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .nav-center,
+  .nav-icons {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -217,7 +279,25 @@
       <i class="fab fa-instagram"></i>
       <i class="fab fa-tiktok"></i>
     </div>
+
+    <div class="menu-toggle" id="menuToggle">
+  <i class="fas fa-bars"></i>
+</div>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="logo">PLAY</div>
+    <i class="fas fa-times" id="closeMenu"></i>
+  </div>
+
+  <div class="mobile-links">
+    <span>Home</span>
+    <span>Adoles</span>
+    <span>JVTD</span>
+  </div>
+</div>
+
 
   <div class="hero"></div>
 
@@ -279,6 +359,18 @@ function closeMobileMenu() {
   menu.classList.remove("active")
   document.body.style.overflow = ""
 }
+
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenu = document.getElementById('closeMenu');
+
+menuToggle.addEventListener('click', () => {
+  mobileMenu.classList.add('active');
+});
+
+closeMenu.addEventListener('click', () => {
+  mobileMenu.classList.remove('active');
+});
 
   </script>
 
