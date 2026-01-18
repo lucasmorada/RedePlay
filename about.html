@@ -370,6 +370,19 @@
       }
     });
 
+    // Mobile Menu
+function openMobileMenu() {
+  const menu = document.getElementById("mobileMenu")
+  menu.classList.add("active")
+  document.body.style.overflow = "hidden"
+}
+
+function closeMobileMenu() {
+  const menu = document.getElementById("mobileMenu")
+  menu.classList.remove("active")
+  document.body.style.overflow = ""
+}
+
   </script>
 
 </body>
