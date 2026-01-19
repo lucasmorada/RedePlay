@@ -453,6 +453,42 @@
   }
 }
 
+/* ===============================
+   HORIZONTAL VIDEO SECTION
+================================ */
+
+.horizontal-video-section {
+  height: 300vh; /* controla duração do scroll */
+  background: #000;
+}
+
+.horizontal-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.horizontal-track {
+  display: flex;
+  height: 100vh;
+  width: 300vw; 
+  will-change: transform;
+}
+
+.video-panel {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.video-panel video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
   </style>
 </head>
 <body>
@@ -553,9 +589,27 @@
   </div>
 
 </div>
+  </div>
+</section>
 
+<!-- HORIZONTAL VIDEO SECTION -->
+<section class="horizontal-video-section">
+  <div class="horizontal-sticky">
+    <div class="horizontal-track">
+      
+      <div class="video-panel">
+        <video src="SEU_VIDEO.mp4" autoplay muted loop playsinline></video>
+      </div>
 
+      <div class="video-panel">
+        <video src="SEU_VIDEO.mp4" autoplay muted loop playsinline></video>
+      </div>
 
+      <div class="video-panel">
+        <video src="SEU_VIDEO.mp4" autoplay muted loop playsinline></video>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -601,6 +655,29 @@ menuToggle.addEventListener('click', () => {
 
 closeMenu.addEventListener('click', () => {
   mobileMenu.classList.remove('active');
+});
+
+
+const horizontalSection = document.querySelector(".horizontal-video-section");
+const horizontalTrack = document.querySelector(".horizontal-track");
+
+window.addEventListener("scroll", () => {
+  const sectionTop = horizontalSection.offsetTop;
+  const sectionHeight = horizontalSection.offsetHeight;
+  const scrollY = window.scrollY;
+
+  if (
+    scrollY >= sectionTop &&
+    scrollY <= sectionTop + sectionHeight
+  ) {
+    const progress =
+      (scrollY - sectionTop) / (sectionHeight - window.innerHeight);
+
+    const translateX =
+      -progress * (horizontalTrack.scrollWidth - window.innerWidth);
+
+    horizontalTrack.style.transform = `translateX(${translateX}px)`;
+  }
 });
 
   </script>
