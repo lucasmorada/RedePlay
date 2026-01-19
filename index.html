@@ -1,185 +1,551 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rede Play</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Play</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #000000;
+      color: #000000;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      transition: all .4s ease;
+      color: #ffffff;
+    }
+
+    nav.scrolled {
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      padding: 14px 28px;
+      background: rgba(47, 45, 45, 0.4);
+      backdrop-filter: blur(15px);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.1);
+      color: #fff;
+    }
+
+    nav.scrolled .nav-icons {
+      display: none;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 30px;
+      font-weight: 600;
+    }
+
+    .logo {
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.nav-center span {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+
+    .nav-center span {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .nav-center span::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: .3s;
+    }
+
+    .nav-center span:hover::after {
+      width: 100%;
+    }
+
+    .nav-icons i {
+      margin-left: 15px;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover fixed;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.25);
+    }
+
+    /* SECTION */
+    section {
+      position: relative;
+      margin-top: -40px;
+      background: #fff;
+      padding: 140px 10%;
+      border-radius: 40px 40px 0 0;
+      z-index: 10;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all .8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.01;
+    }
+
+    .cursive {
+      font-family: 'Pacifico', cursive;
+      font-weight: 400;
+    }
+
+    .subtext {
+      margin-top: 30px;
+      font-size: 1.1rem;
+      max-width: 700px;
+      color: #555;
+      border-left: 4px solid #000;
+      padding-left: 20px;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+
+      .nav-center {
+        gap: 15px;
+        font-size: 14px;
+      }
+
+      section {
+        padding: 100px 6%;
+      }
+    }
+
+    .marquee {
+  width: 100%;
+  overflow: hidden;
+  background: #1d1c1c;
+  padding: 20px 0;
+  pointer-events: none;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 13s linear infinite;
+}
+
+.marquee span {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: #fff;
+  margin-right: 40px;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* BOTÃO HAMBURGUER */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* MENU MOBILE */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  color: #fff;
+  z-index: 2000;
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-100%);
+  transition: transform .4s ease;
+}
+
+.mobile-menu.active {
+  transform: translateY(0);
+}
+
+.mobile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-header i {
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.mobile-links {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.mobile-links span {
+  font-size: 2.4rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .nav-center,
+  .nav-icons {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
+/*section da play*/
+
+.rede-play {
+  min-height: 100vh;
+  background: #fff;
+  color: #000;
+  padding: 120px 8vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.rede-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  row-gap: 80px;
+}
+
+.rede-text h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.rede-text h2 span {
+  font-weight: 300;
+}
+
+.rede-text h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.rede-text h3 strong {
+  font-weight: 800;
+}
+
+.rede-text h3 span {
+  font-weight: 700;
+}
+
+.rede-text p {
+  margin-top: 20px;
+  max-width: 420px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.rede-text-1 {
+  grid-column: 1 / 6;
+}
+
+.rede-text-2 {
+  grid-column: 7 / 12;
+}
+
+.rede-text-3 {
+  grid-column: 2 / 7;
+}
+
+.arrow {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #aaa;
+}
+
+.arrow-1 {
+  grid-column: 6 / 7;
+  align-self: center;
+}
+
+.arrow-2 {
+  grid-column: 6 / 7;
+  align-self: center;
+}
+
+.rede-globo {
+  grid-column: 8 / 13;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.globo-placeholder {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 2px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #999;
+}
+
+.rede-text, .arrow, .rede-globo {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+  </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <header class="header">
-      <a href="index.html" class="logo">logo</a>
-      
-      <!-- Desktop Navigation -->
-      <nav class="nav-desktop">
-        <a href="index.html" class="nav-link active">home</a>
-        <a href="about.html" class="nav-link">adoles</a>
-        <a href="about.html" class="nav-link">JVTD</a>
-        <button class="nav-link contact-trigger" onclick="openContactModal()">contato</button>
-      </nav>
 
-      <!-- Mobile Menu Button -->
-      <button class="menu-button" onclick="openMobileMenu()">MENU</button>
+  <nav id="navbar">
+    <div class="logo">PLAY</div>
 
-      <p class="header-subtitle">rede play</p>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main-content">
-      <!-- Hero Section -->
-      <section class="hero">
-        <ul class="social-links social-links-hero">
-          <li><a href="https://instagram.com" target="_blank">instagram<span class="invisible-char">a</span></a></li>
-          <li><a href="https://tiktok.com" target="_blank">ttk</a></li>
-        </ul>
-        <div class="hero-heading">
-          <h1>avivando e transformando a nossa <i>GERAÇÃO</i> através do <u>relacionamento</u> com <i>Cristo</i>!!!</h1>
-        </div>
-      </section>
-
-      <!-- Projects Section -->
-      <section class="projects">
-        <!-- Featured Project -->
-        <a href="project.html" class="project-item featured">
-          <img src="imagem.jpg" alt="Brand Identity Project">
-          <div class="project-info featured-info">
-            <h3>Nossa família :D</h3>
-            <div class="project-category">
-              <span>(data da foto)</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Grid Projects -->
-        <div class="projects-grid">
-          <a href="project.html" class="project-item grid-item">
-            <img src="imagem.jpg" alt="Web Design Project">
-            <div class="project-info">
-              <h3>Célula Follow</h3>
-              <div class="project-category">
-                <span>Meninos</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="project.html" class="project-item grid-item">
-            <img src="imagem.jpg" alt="Packaging Project">
-            <div class="project-info">
-              <h3>Célula Follow</h3>
-              <div class="project-category">
-                <span>Meninos</span>
-                <span class="category-more">+1</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="project.html" class="project-item grid-item">
-            <img src="imagem.jpg" alt="Editorial Project">
-            <div class="project-info">
-              <h3>Célula Follow</h3>
-              <div class="project-category">
-                <span>Meninos</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="project.html" class="project-item grid-item">
-            <img src="imagem.jpg" alt="Motion Project">
-            <div class="project-info">
-              <h3>Célula Follow</h3>
-              <div class="project-category">
-                <span>Meninos</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="project.html" class="project-item grid-item">
-            <img src="imagem.jpg" alt="App Project">
-            <div class="project-info">
-              <h3>Célula Follow</h3>
-              <div class="project-category">
-                <span>Meninos</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="project.html" class="project-item grid-item">
-            <img src="imagem.jpg" alt="Poster Project">
-            <div class="project-info">
-              <h3>Célula Follow</h3>
-              <div class="project-category">
-                <span>Meninos</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <ul class="social-links">
-        <li><a href="https://instagram.com" target="_blank">instagram<span class="invisible-char">a</span></a></li>
-        <li><a href="https://tiktok.com" target="_blank">ttk</a></li>
-      </ul>
-      <div class="footer-contact">
-        <div class="contact-row">
-          <span class="contact-label"></span>
-          <a href="" class="contact-value">cultos todo sábado 17h</a>
-        </div>
-        <div class="contact-row">
-          <span class="contact-label"></span>
-          <a href="tel:+15551234567" class="contact-value">células ás 14:30!</a>
-        </div>
-        <p class="copyright">© 2026. Todos os Direitos Reservados.</p>
-
-      </div>
-    </footer>
-  </div>
-
-  <!-- Contact Modal -->
-  <div class="modal-overlay" id="contactModal" onclick="closeContactModal(event)">
-    <div class="modal-content contact-modal" onclick="event.stopPropagation()">
-      <div class="modal-header">
-        <h2>JOHN DOE</h2>
-        <p>Creative Director</p>
-      </div>
-      <div class="modal-separator"></div>
-      <div class="modal-body">
-        <a href="tel:+15551234567">+1 (555) 123-4567</a>
-        <a href="https://maps.google.com/?q=New+York,+NY" target="_blank">New York, NY</a>
-        <a href="mailto:hello@johndoe.com">hello@johndoe.com</a>
-        <a href="https://instagram.com/johndoe" target="_blank">instagram.com/johndoe</a>
-      </div>
+    <div class="nav-center">
+      <span>home</span>
+      <span>adoles</span>
+      <span>JVTD</span>
     </div>
-  </div>
 
-  <!-- Mobile Menu -->
+    <div class="nav-icons">
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-tiktok"></i>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+  <i class="fas fa-bars"></i>
+</div>
+  </nav>
+
   <div class="mobile-menu" id="mobileMenu">
-    <header class="mobile-menu-header">
-      <a href="index.html" class="logo">JOHN DOE</a>
-      <button class="close-button" onclick="closeMobileMenu()">CLOSE</button>
-    </header>
-    <div class="mobile-menu-content">
-      <nav class="mobile-nav">
-        <a href="index.html" onclick="closeMobileMenu()">HOME</a>
-        <a href="about.html" onclick="closeMobileMenu()">ABOUT</a>
-        <button onclick="openContactModal(); closeMobileMenu();">CONTACT</button>
-      </nav>
-      <ul class="social-links">
-        <li><a href="https://instagram.com" target="_blank">Instagram<span class="invisible-char">a</span></a></li>
-        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
-      </ul>
-      <p class="copyright">© 2025. All rights reserved.</p>
-    </div>
+  <div class="mobile-header">
+    <div class="logo">PLAY</div>
+    <i class="fas fa-times" id="closeMenu"></i>
   </div>
 
-  <script src="script.js"></script>
+  <div class="mobile-links">
+    <span>home</span>
+    <span>adoles</span>
+    <span>JVTD</span>
+  </div>
+</div>
+
+
+  <div class="hero"></div>
+
+  <section>
+    <div class="reveal">
+      <h1>
+        avivar e <i>transformar</i> a nossa
+        <span class="cursive">geração</span>
+        através do <span class="cursive">relacionamento</span> com CRISTO!
+      </h1>
+
+      <p class="subtext">
+        Não é sobre religião, é sobre vida real. Sobre pertencer, crescer <br>juntos</br>
+        e viver algo que faz sentido de verdade.
+      </p>
+    </div>
+  </section>
+
+  <div class="marquee">
+  <div class="marquee-track">
+    <span>rede play •</span>
+    <span>ʎɐld ǝpǝɹ •</span>
+    <span>rede play •</span>
+    <span>ʎɐld ǝpǝɹ •</span>
+    <span>rede play •</span>
+    <span>ʎɐpl ǝpǝɹ •</span>
+  </div>
+</div>
+
+<section class="rede-play">
+  <div class="rede-container">
+
+    <div class="rede-text rede-text-1">
+      <h2>O que é a<br><span>Rede Play?</span></h2>
+      <p>
+        Não é só um grupo.<br>
+        É um movimento que conecta jovens, fé e propósito.
+      </p>
+    </div>
+
+    <div class="arrow arrow-1">➜</div>
+
+    <div class="rede-text rede-text-2">
+      <h3>
+        Uma geração<br>
+        <strong>ativa</strong>,<br>
+        não espectadora.
+      </h3>
+      <p>
+        A Rede Play existe pra despertar, avivar e transformar.
+        Pessoas reais, vivendo uma fé real.
+      </p>
+    </div>
+
+    <div class="arrow arrow-2">➜</div>
+
+    <div class="rede-text rede-text-3">
+      <h3>
+        Conectados<br>
+        em um só<br>
+        <span>corpo</span>.
+      </h3>
+      <p>
+        Play Adoles, JVTD e tudo que Deus está construindo
+        através de uma geração disponível.
+      </p>
+    </div>
+
+    <!-- ÁREA DO GLOBO 3D -->
+    <div class="rede-globo">
+      <div class="globo-placeholder">
+        <p>Globo 3D<br>360°<br>aqui</p>
+      </div>
+    </div>
+
+    <script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.rede-text, .arrow, .rede-globo')
+    .forEach(el => observer.observe(el));
+</script>
+
+
+  </div>
+</section>
+
+
+  <script>
+    const nav = document.getElementById('navbar');
+    const reveal = document.querySelector('.reveal');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+
+      const top = reveal.getBoundingClientRect().top;
+      const screen = window.innerHeight * 0.85;
+
+      if (top < screen) {
+        reveal.classList.add('active');
+      }
+    });
+
+    // Mobile Menu
+function openMobileMenu() {
+  const menu = document.getElementById("mobileMenu")
+  menu.classList.add("active")
+  document.body.style.overflow = "hidden"
+}
+
+function closeMobileMenu() {
+  const menu = document.getElementById("mobileMenu")
+  menu.classList.remove("active")
+  document.body.style.overflow = ""
+}
+
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenu = document.getElementById('closeMenu');
+
+menuToggle.addEventListener('click', () => {
+  mobileMenu.classList.add('active');
+});
+
+closeMenu.addEventListener('click', () => {
+  mobileMenu.classList.remove('active');
+});
+
+  </script>
+
 </body>
 </html>
