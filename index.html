@@ -261,6 +261,144 @@
   }
 }
 
+/*section play*/
+
+.geo-hero {
+  position: relative;
+  min-height: 100vh;
+  background: #030303;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.geo-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(99,102,241,0.08), transparent 40%),
+              radial-gradient(circle at bottom right, rgba(244,63,94,0.08), transparent 40%);
+  filter: blur(80px);
+}
+
+.geo-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.geo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 40px;
+}
+
+.geo-badge img {
+  width: 20px;
+}
+
+.geo-badge span {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.geo-content h2 {
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.geo-script {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  background: linear-gradient(90deg, #a5b4fc, #fbcfe8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.geo-content p {
+  margin-top: 30px;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.45);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* SHAPES */
+.geo-shapes .shape {
+  position: absolute;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  border: 2px solid rgba(255,255,255,0.15);
+  animation: float 12s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 600px;
+  height: 140px;
+  top: 18%;
+  left: -10%;
+  background: linear-gradient(to right, rgba(99,102,241,0.2), transparent);
+}
+
+.shape-2 {
+  width: 500px;
+  height: 120px;
+  bottom: 15%;
+  right: -5%;
+  background: linear-gradient(to right, rgba(244,63,94,0.2), transparent);
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 300px;
+  height: 80px;
+  bottom: 10%;
+  left: 10%;
+  background: linear-gradient(to right, rgba(139,92,246,0.2), transparent);
+  animation-delay: 3s;
+}
+
+.shape-4 {
+  width: 200px;
+  height: 60px;
+  top: 12%;
+  right: 20%;
+  background: linear-gradient(to right, rgba(251,191,36,0.2), transparent);
+  animation-delay: 4s;
+}
+
+.shape-5 {
+  width: 150px;
+  height: 40px;
+  top: 8%;
+  left: 25%;
+  background: linear-gradient(to right, rgba(34,211,238,0.2), transparent);
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(20px); }
+  100% { transform: translateY(0); }
+}
+
+.geo-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #030303, transparent 40%, #030303);
+  pointer-events: none;
+}
+
+
   </style>
 </head>
 <body>
@@ -325,6 +463,38 @@
     <span>ʎɐpl ǝpǝɹ •</span>
   </div>
 </div>
+
+<section class="geo-hero">
+  <div class="geo-bg"></div>
+
+  <div class="geo-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+    <div class="shape shape-5"></div>
+  </div>
+
+  <div class="geo-content reveal">
+    <div class="geo-badge">
+      <img src="https://kokonutui.com/logo.svg" alt="logo">
+      <span>Rede Play</span>
+    </div>
+
+    <h2>
+      Avivar a<br>
+      <span class="geo-script">nossa geração</span>
+    </h2>
+
+    <p>
+      Conectando jovens através de fé, identidade e propósito.
+      Vivendo algo real, profundo e transformador.
+    </p>
+  </div>
+
+  <div class="geo-fade"></div>
+</section>
+
 
   <script>
     const nav = document.getElementById('navbar');
