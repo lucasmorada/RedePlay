@@ -354,14 +354,29 @@
   }
 }
 
-/* CELLS BUTTONS */
-.cells-actions {
+/* CELLS FOOTER (texto + botões) */
+.cells-footer {
   margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* TEXTO */
+.cells-text {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+/* AÇÕES (botões à direita) */
+.cells-actions {
   display: flex;
   gap: 40px;
 }
 
-/* BASE */
+/* BASE BOTÃO */
 .cell-btn {
   position: relative;
   padding: 26px 60px;
@@ -397,34 +412,41 @@
   transform: translateX(0);
 }
 
-/* JVTD — botão sólido + glitch slide */
+/* JVTD — variação diferente (invertida) */
 .cell-btn.jvtd {
-  color: #fff;
-  border: 2px solid #fff;
+  background: #fff;
+  color: #000;
 }
 
 .cell-btn.jvtd::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: #fff;
-  transform: translateX(-100%);
-  transition: transform .4s ease;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .35s ease;
   z-index: -1;
 }
 
 .cell-btn.jvtd:hover {
-  color: #000000;
+  color: #fff;
 }
 
 .cell-btn.jvtd:hover::after {
-  transform: translateX(0);
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 /* RESPONSIVO */
 @media (max-width: 768px) {
-  .cells-actions {
+  .cells-footer {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .cells-actions {
     gap: 25px;
   }
 
@@ -432,7 +454,6 @@
     text-align: center;
   }
 }
-
 
   </style>
 </head>
@@ -519,17 +540,22 @@
       </div>
     </div>
 
-    <div class="cells-actions">
+    <div class="cells-footer">
 
-  <a href="adoles.html" class="cell-btn adoles">
-    <span>ADOLES</span>
-  </a>
+  <p class="cells-text">conheça nossas células:</p>
 
-  <a href="jvtd.html" class="cell-btn jvtd">
-    <span>JVTD</span>
-  </a>
+  <div class="cells-actions">
+    <a href="adoles.html" class="cell-btn adoles">
+      <span>ADOLES</span>
+    </a>
+
+    <a href="jvtd.html" class="cell-btn jvtd">
+      <span>JVTD</span>
+    </a>
+  </div>
 
 </div>
+
 
 
   </div>
