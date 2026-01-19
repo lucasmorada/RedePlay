@@ -354,6 +354,88 @@
   }
 }
 
+/* CELLS BUTTONS */
+.cells-actions {
+  margin-top: 80px;
+  display: flex;
+  gap: 40px;
+}
+
+/* BASE */
+.cell-btn {
+  position: relative;
+  padding: 26px 60px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: all .4s ease;
+}
+
+/* ADOLES — outline + fill animado */
+.cell-btn.adoles {
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.cell-btn.adoles::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform: translateX(-100%);
+  transition: transform .4s ease;
+  z-index: -1;
+}
+
+.cell-btn.adoles:hover {
+  color: #000;
+}
+
+.cell-btn.adoles:hover::before {
+  transform: translateX(0);
+}
+
+/* JVTD — botão sólido + glitch slide */
+.cell-btn.jvtd {
+  background: #fff;
+  color: #000;
+}
+
+.cell-btn.jvtd::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .35s ease;
+  z-index: -1;
+}
+
+.cell-btn.jvtd:hover {
+  color: #fff;
+}
+
+.cell-btn.jvtd:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .cells-actions {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .cell-btn {
+    text-align: center;
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -438,6 +520,19 @@
         </div>
       </div>
     </div>
+
+    <div class="cells-actions">
+
+  <a href="adoles.html" class="cell-btn adoles">
+    <span>AD O L E S</span>
+  </a>
+
+  <a href="jvtd.html" class="cell-btn jvtd">
+    <span>JVTD</span>
+  </a>
+
+</div>
+
 
   </div>
 </section>
