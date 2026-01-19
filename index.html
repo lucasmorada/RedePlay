@@ -263,6 +263,89 @@
 
 /*section play*/
 
+/* PLAY SECTION */
+.play-section {
+  background: #000;
+  padding: 140px 10%;
+}
+
+.play-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}
+
+/* FOTO CENTRAL */
+.play-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.play-image img {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+/* TEXTO */
+.play-text {
+  flex: 1;
+  color: #fff;
+}
+
+.play-text h2 {
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 0.9;
+}
+
+.play-text h3 {
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: 6px;
+  margin-bottom: 40px;
+}
+
+.big-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.small-text {
+  font-size: 1rem;
+  max-width: 420px;
+  line-height: 1.7;
+  color: #cfcfcf;
+  margin-bottom: 30px;
+}
+
+.tiny-text {
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #777;
+}
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+  .play-container {
+    flex-direction: column;
+    gap: 60px;
+    text-align: center;
+  }
+
+  .play-text h2 {
+    font-size: 4rem;
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -327,6 +410,35 @@
     <span>ʎɐpl ǝpǝɹ •</span>
   </div>
 </div>
+
+<section class="play-section">
+  <div class="play-container">
+
+    <div class="play-image">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac" alt="Rede Play">
+    </div>
+
+    <div class="play-text">
+      <h2>REDE</h2>
+      <h3>PLAY</h3>
+
+      <p class="big-text">
+        mais que um grupo
+      </p>
+
+      <p class="small-text">
+        somos uma geração que escolheu viver fé de verdade,
+        sem performance, sem máscara, sem fake.
+      </p>
+
+      <p class="tiny-text">
+        vida real • gente real • Jesus real
+      </p>
+    </div>
+
+  </div>
+</section>
+
 
   <script>
     const nav = document.getElementById('navbar');
