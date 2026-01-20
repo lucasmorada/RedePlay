@@ -32,12 +32,17 @@
   --color-red-500: #ef4444;
   --color-red-600: #dc2626;
   
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
   --ease-out-expo: cubic-bezier(0.21, 0.47, 0.32, 0.98);
   
   --shadow-card: rgba(0, 0, 0, 0.1) 0px 10px 50px;
 }
+
+.cursive {
+      font-family: 'Pacifico', cursive;
+      font-weight: 400;
+    }
 
 /* Reset & Base Styles */
 *, *::before, *::after {
@@ -252,7 +257,7 @@ body {
 
 .hero-title {
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
