@@ -25,163 +25,177 @@
     }
 
     /* GRID PRINCIPAL */
-    .grid {
-      min-height: 100vh;
-      padding: 80px 6%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-    }
+    .dynamic-grid {
+  min-height: 100vh;
+  padding: 80px 6%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 220px;
+  gap: 24px;
+  background: #000;
+}
 
-    /* CARD BASE */
-    .card {
-      position: relative;
-      border-radius: 22px;
-      overflow: hidden;
-      background: #111;
-    }
+/* BASE CARD */
+.card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #111;
+}
 
-    /* CARD TEXTO (primeiro) */
-    .card-text {
-      padding: 40px;
-      background: linear-gradient(135deg, #3b3b3b, #1a1a1a);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+/* TEXTO */
+.card-text {
+  padding: 36px;
+  background: linear-gradient(135deg, #2a2a2a, #0f0f0f);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-    .card-text h1 {
-      font-size: clamp(2.5rem, 4vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1.05;
-    }
+.card-text.big {
+  grid-column: span 3;
+  grid-row: span 2;
+}
 
-    .card-text p {
-      margin-top: 20px;
-      font-size: 1rem;
-      color: #ddd;
-      max-width: 90%;
-    }
+.card-text .tag {
+  font-size: .8rem;
+  letter-spacing: 3px;
+  opacity: .6;
+}
 
-    /* CARD FOTO */
-    .photo-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(100%);
-      transition: filter .4s ease, transform .4s ease;
-    }
+.card-text h1 {
+  font-size: clamp(2.8rem, 4vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.05;
+}
 
-    .photo-card:hover img {
-      filter: grayscale(0%);
-      transform: scale(1.05);
-    }
+.card-text p {
+  font-size: .95rem;
+  color: #ccc;
+  max-width: 90%;
+}
 
-    /* OVERLAY */
-    .photo-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,.45);
-      opacity: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity .4s ease;
-    }
+/* FOTO */
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: .5s ease;
+}
 
-    .photo-card:hover .photo-overlay {
-      opacity: 1;
-    }
+.photo:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.08);
+}
 
-    /* BOTÃO WHATS */
-    .whatsapp-btn {
-      padding: 16px 26px;
-      background: #25d366;
-      color: #000;
-      font-weight: 800;
-      text-decoration: none;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1rem;
-      transition: transform .3s ease;
-    }
+/* TAMANHOS DIFERENTES */
+.photo.tall {
+  grid-row: span 2;
+}
 
-    .whatsapp-btn:hover {
-      transform: scale(1.08);
-    }
+.photo.wide {
+  grid-column: span 2;
+}
 
-    /* RESPONSIVO */
-    @media (max-width: 600px) {
-      .grid {
-        padding: 60px 5%;
-      }
-    }
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: .4s ease;
+}
+
+.photo:hover .overlay {
+  opacity: 1;
+}
+
+/* BOTÃO */
+.overlay a {
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #000;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform .3s ease;
+}
+
+.overlay a:hover {
+  transform: scale(1.1);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .dynamic-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 200px;
+  }
+
+  .card-text.big,
+  .photo.wide {
+    grid-column: span 2;
+  }
+}
+
   </style>
 </head>
 <body>
 
-  <main class="grid">
+  <main class="dynamic-grid">
 
-    <!-- CARD TEXTO -->
-    <div class="card card-text">
-      <h1>
-        Nossa<br>
-        Rede<br>
-        Play
-      </h1>
+  <!-- CARD TEXTO -->
+  <div class="card card-text big">
+    <span class="tag">PLAY</span>
+    <h1>
+      nossa<br>
+      rede<br>
+      de<br>
+      pessoas
+    </h1>
+    <p>
+      Cada rosto aqui é alguém pronto pra te ouvir e caminhar com você.
+    </p>
+  </div>
 
-      <p>
-        Pessoas reais, prontas pra te ouvir, caminhar junto e viver algo verdadeiro.
-      </p>
+  <!-- FOTO 1 -->
+  <div class="card photo tall">
+    <img src="foto1.jpg">
+    <div class="overlay">
+      <a href="https://wa.me/5541999999999" target="_blank">Conversar</a>
     </div>
+  </div>
 
-    <!-- FOTO 1 -->
-    <div class="card photo-card">
-      <img src="foto1.jpg" alt="Contato 1">
-      <div class="photo-overlay">
-        <a class="whatsapp-btn" href="https://wa.me/5541999999999" target="_blank">
-          <i class="fab fa-whatsapp"></i>
-          Conversar
-        </a>
-      </div>
+  <!-- FOTO 2 -->
+  <div class="card photo">
+    <img src="foto2.jpg">
+    <div class="overlay">
+      <a href="https://wa.me/5541988888888" target="_blank">Conversar</a>
     </div>
+  </div>
 
-    <!-- FOTO 2 -->
-    <div class="card photo-card">
-      <img src="foto2.jpg" alt="Contato 2">
-      <div class="photo-overlay">
-        <a class="whatsapp-btn" href="https://wa.me/5541988888888" target="_blank">
-          <i class="fab fa-whatsapp"></i>
-          Conversar
-        </a>
-      </div>
+  <!-- FOTO 3 -->
+  <div class="card photo wide">
+    <img src="foto3.jpg">
+    <div class="overlay">
+      <a href="https://wa.me/5541977777777" target="_blank">Conversar</a>
     </div>
+  </div>
 
-    <!-- FOTO 3 -->
-    <div class="card photo-card">
-      <img src="foto3.jpg" alt="Contato 3">
-      <div class="photo-overlay">
-        <a class="whatsapp-btn" href="https://wa.me/5541977777777" target="_blank">
-          <i class="fab fa-whatsapp"></i>
-          Conversar
-        </a>
-      </div>
+  <!-- FOTO 4 -->
+  <div class="card photo">
+    <img src="foto4.jpg">
+    <div class="overlay">
+      <a href="https://wa.me/5541966666666" target="_blank">Conversar</a>
     </div>
+  </div>
 
-    <!-- FOTO 4 -->
-    <div class="card photo-card">
-      <img src="foto4.jpg" alt="Contato 4">
-      <div class="photo-overlay">
-        <a class="whatsapp-btn" href="https://wa.me/5541966666666" target="_blank">
-          <i class="fab fa-whatsapp"></i>
-          Conversar
-        </a>
-      </div>
-    </div>
+</main>
 
-  </main>
 
 </body>
 </html>
