@@ -569,7 +569,7 @@ body {
 
 .collection-item {
   flex-shrink: 0;
-  width: 320px;
+  width: 420px;
   cursor: pointer;
   transition: transform 0.3s var(--ease-out-expo);
 }
