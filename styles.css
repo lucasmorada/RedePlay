@@ -542,7 +542,7 @@ body {
 }
 
 .section-title-large {
-  font-size: 3.75rem;
+  font-size: 4.75rem;
   font-weight: 400;
   color: var(--color-neutral-900);
   margin-bottom: 16px;
@@ -697,6 +697,7 @@ body {
 .materials-title {
   font-size: 4.5rem;
   font-weight: 700;
+  line-height: 1.05;
   margin-bottom: 24px;
   transition: opacity 0.3s ease;
 }
