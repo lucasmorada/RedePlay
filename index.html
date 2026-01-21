@@ -500,6 +500,86 @@
   border-radius: 0;  
 }
 
+.footer-uao {
+  background: #0a0a0a;
+  color: #ffffff;
+  padding: 120px 24px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* glow sutil */
+.footer-uao::before {
+  content: "";
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+  transform: translateX(-50%);
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* título UAU */
+.footer-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 96px;
+  letter-spacing: -0.02em;
+}
+
+.footer-title span {
+  opacity: 0.5;
+}
+
+/* grid */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 64px;
+  margin-bottom: 80px;
+}
+
+.footer-col h4 {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+.footer-col p,
+.footer-col a {
+  font-size: 1rem;
+  color: #ccc;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footer-col a:hover {
+  color: #fff;
+}
+
+/* bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+
   </style>
 </head>
 <body>
@@ -624,6 +704,41 @@
     </div>
   </div>
 </section>
+
+<footer class="footer-uao">
+  <div class="footer-inner">
+
+    <h2 class="footer-title">
+      bora viver algo <span>maior</span>
+    </h2>
+
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Sobre</h4>
+        <p>Uma geração que vive fé, amizade e propósito de verdade.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Conectar</h4>
+        <a href="#">Instagram</a>
+        <a href="#">WhatsApp</a>
+        <a href="#">YouTube</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Local</h4>
+        <p>Araucária — PR</p>
+        <p>Todos os sábados</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 • Play</span>
+      <span>feito com propósito ✨</span>
+    </div>
+
+  </div>
+</footer>
 
   <script>
     const nav = document.getElementById('navbar');
