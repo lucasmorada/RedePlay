@@ -394,7 +394,7 @@ body {
 
 @media (min-width: 1024px) {
   .section-title {
-    font-size: 3.75rem;
+    font-size: 4rem;
   }
 }
 
@@ -556,7 +556,7 @@ body {
 
 .collections-track {
   display: flex;
-  gap: 32px;
+  gap: 30px;
   padding: 0 24px;
   cursor: grab;
   user-select: none;
@@ -569,7 +569,7 @@ body {
 
 .collection-item {
   flex-shrink: 0;
-  width: 420px;
+  width: 460px;
   cursor: pointer;
   transition: transform 0.3s var(--ease-out-expo);
 }
@@ -580,8 +580,8 @@ body {
 
 .collection-image-wrapper {
   position: relative;
-  aspect-ratio: 3/4;
-  border-radius: 20px;
+  aspect-ratio: 2/3;
+  border-radius: 25px;
   overflow: hidden;
 }
 
