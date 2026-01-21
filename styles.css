@@ -105,6 +105,12 @@ body {
   font-weight: 300;
 }
 
+.container-full {
+  width: 100%;
+  padding: 0 48px;
+}
+
+
 /* Animations */
 @keyframes fadeInUp {
   from {
@@ -394,7 +400,7 @@ body {
 
 @media (min-width: 1024px) {
   .section-title {
-    font-size: 4rem;
+    font-size: 5rem;
   }
 }
 
