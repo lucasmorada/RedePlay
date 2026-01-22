@@ -13,19 +13,18 @@
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #0a0a0a;
-      overflow: hidden;
-      height: 100vh;
-      width: 100vw;
-    }
+  font-family: 'Poppins', sans-serif;
+  background: #0a0a0a;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
     .gallery-container {
-      position: relative;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-    }
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden; 
+}
 
     /* Animated Background */
     .ambient-background {
@@ -865,13 +864,14 @@
       // Wheel navigation
       let wheelTimeout;
       slider.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        clearTimeout(wheelTimeout);
-        wheelTimeout = setTimeout(() => {
-          if (e.deltaX > 30 || e.deltaY > 30) goToNext();
-          if (e.deltaX < -30 || e.deltaY < -30) goToPrev();
-        }, 50);
-      }, { passive: false });
+  if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+    e.preventDefault();
+    
+    if (e.deltaX > 30) goToNext();
+    if (e.deltaX < -30) goToPrev();
+  }
+}, { passive: false });
+
 
       // Window resize
       window.addEventListener('resize', updateSlider);
