@@ -40,6 +40,15 @@
   transform: translateX(-50%) translateY(0);
   transition: all 0.45s ease;
   will-change: transform;
+  mix-blend-mode: difference;
+}
+
+nav,
+nav a,
+nav span,
+nav .logo,
+.nav-icons i {
+  color: white;
 }
 
     nav.scrolled {
@@ -97,7 +106,8 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: #000;
+      background: white;
+      mix-blend-mode: difference;
       transition: .3s;
     }
 
