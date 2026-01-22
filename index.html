@@ -846,105 +846,93 @@
 </footer>
 
   <script>
-    const nav = document.getElementById('navbar')
-const reveal = document.querySelector('.reveal')
+  const nav = document.getElementById('navbar')
+  const reveal = document.querySelector('.reveal')
 
-let lastScrollY = window.scrollY
-let navVisible = true
-let hideAfter = 40 // pixels extras antes de esconder
-
-window.addEventListener('scroll', () => {
-  const currentScroll = window.scrollY
-  const scrollDiff = currentScroll - lastScrollY
+  let lastScrollY = window.scrollY
 
   /* =====================
-     DYNAMIC ISLAND
+     NAVBAR (DYNAMIC ISLAND)
   ===================== */
-  if (currentScroll > 80) {
-    nav.classList.add('scrolled')
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY
 
-    // SUBINDO → sempre mostra
-    if (scrollDiff < 0) {
-      nav.style.top = '15px'
+    // ativa modo dynamic island
+    if (currentScroll > 80) {
+      nav.classList.add('scrolled')
+
+      // DESCENDO → esconde
+      if (currentScroll > lastScrollY) {
+        nav.style.top = '-120px'
+        nav.style.opacity = '0'
+      }
+
+      // SUBINDO → mostra
+      else {
+        nav.style.top = '15px'
+        nav.style.opacity = '1'
+      }
+
+    } else {
+      // topo do site
+      nav.classList.remove('scrolled')
+      nav.style.top = '0'
       nav.style.opacity = '1'
-      navVisible = true
     }
 
-    // DESCENDO → só esconde depois de um tempo
-    if (scrollDiff > hideAfter && navVisible) {
-      nav.style.top = '-120px'
-      nav.style.opacity = '0'
-      navVisible = false
+    /* =====================
+       REVEAL TEXTO
+    ===================== */
+    const revealTop = reveal.getBoundingClientRect().top
+    if (revealTop < window.innerHeight * 0.85) {
+      reveal.classList.add('active')
     }
 
-  } else {
-    // TOPO DO SITE
-    nav.classList.remove('scrolled')
-    nav.style.top = '0'
-    nav.style.opacity = '1'
-    navVisible = true
-  }
+    lastScrollY = currentScroll
+  })
 
   /* =====================
-     REVEAL TEXTO
+     MOBILE MENU
   ===================== */
-  const revealTop = reveal.getBoundingClientRect().top
-  if (revealTop < window.innerHeight * 0.85) {
-    reveal.classList.add('active')
-  }
+  const menuToggle = document.getElementById('menuToggle')
+  const mobileMenu = document.getElementById('mobileMenu')
+  const closeMenu = document.getElementById('closeMenu')
 
-  lastScrollY = currentScroll
-})
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.add('active')
+    document.body.style.overflow = 'hidden'
+  })
 
-    // Mobile Menu
-function openMobileMenu() {
-  const menu = document.getElementById("mobileMenu")
-  menu.classList.add("active")
-  document.body.style.overflow = "hidden"
-}
+  closeMenu.addEventListener('click', () => {
+    mobileMenu.classList.remove('active')
+    document.body.style.overflow = ''
+  })
 
-function closeMobileMenu() {
-  const menu = document.getElementById("mobileMenu")
-  menu.classList.remove("active")
-  document.body.style.overflow = ""
-}
+  /* =====================
+     HORIZONTAL SCROLL VIDEO
+  ===================== */
+  const horizontalSection = document.querySelector('.horizontal-video-section')
+  const horizontalTrack = document.querySelector('.horizontal-track')
 
-const menuToggle = document.getElementById('menuToggle');
-const mobileMenu = document.getElementById('mobileMenu');
-const closeMenu = document.getElementById('closeMenu');
+  window.addEventListener('scroll', () => {
+    const sectionTop = horizontalSection.offsetTop
+    const sectionHeight = horizontalSection.offsetHeight
+    const scrollY = window.scrollY
 
-menuToggle.addEventListener('click', () => {
-  mobileMenu.classList.add('active');
-});
+    if (
+      scrollY >= sectionTop &&
+      scrollY <= sectionTop + sectionHeight
+    ) {
+      const progress =
+        (scrollY - sectionTop) / (sectionHeight - window.innerHeight)
 
-closeMenu.addEventListener('click', () => {
-  mobileMenu.classList.remove('active');
-});
+      const translateX =
+        -progress * (horizontalTrack.scrollWidth - window.innerWidth)
 
-
-const horizontalSection = document.querySelector(".horizontal-video-section");
-const horizontalTrack = document.querySelector(".horizontal-track");
-
-window.addEventListener("scroll", () => {
-  const sectionTop = horizontalSection.offsetTop;
-  const sectionHeight = horizontalSection.offsetHeight;
-  const scrollY = window.scrollY;
-
-  if (
-    scrollY >= sectionTop &&
-    scrollY <= sectionTop + sectionHeight
-  ) {
-    const progress =
-      (scrollY - sectionTop) / (sectionHeight - window.innerHeight);
-
-    const translateX =
-      -progress * (horizontalTrack.scrollWidth - window.innerWidth);
-
-    horizontalTrack.style.transform = `translateX(${translateX}px)`;
-  }
-});
-
-  </script>
+      horizontalTrack.style.transform = `translateX(${translateX}px)`
+    }
+  })
+</script>
 
 </body>
 </html>
