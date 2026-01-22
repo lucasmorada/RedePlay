@@ -1,924 +1,1056 @@
 <!DOCTYPE html>
-    <html lang="pt-BR">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Gabriela Cecchin - Portfolio 2025</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-        <style dangerouslySetInnerHTML={{ __html: `
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
-
-          body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: #F6F4F4;
-            color: #0a0a0a;
-            line-height: 1.5;
-          }
-
-          a {
-            color: inherit;
-            text-decoration: none;
-          }
-
-          /* Layout */
-          .container {
-            min-height: 100vh;
-            background-color: #F6F4F4;
-          }
-
-          /* Desktop Layout */
-          .desktop-layout {
-            display: none;
-            height: 100vh;
-          }
-
-          @media (min-width: 1024px) {
-            .desktop-layout {
-              display: flex;
-            }
-            .mobile-layout {
-              display: none !important;
-            }
-          }
-
-          /* Sidebar */
-          .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100vh;
-            width: 30%;
-            background-color: #F6F4F4;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 2rem;
-            overflow: hidden;
-          }
-
-          .sidebar-top {
-            display: flex;
-            flex-direction: column;
-          }
-
-          .sidebar-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-            margin-bottom: 42px;
-            transition: opacity 0.2s;
-          }
-
-          .sidebar-label:hover {
-            opacity: 0.8;
-          }
-
-          .sidebar-name {
-            font-size: 48px;
-            font-weight: 400;
-            line-height: 1.1;
-          }
-
-          .sidebar-bottom {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-          }
-
-          .sidebar-bio {
-            font-size: 18px;
-            font-weight: 300;
-            line-height: 1.6;
-            color: #78716c;
-          }
-
-          .sidebar-links {
-            display: flex;
-            gap: 1rem;
-          }
-
-          .sidebar-link {
-            font-size: 18px;
-            font-weight: 300;
-            transition: color 0.2s;
-          }
-
-          .sidebar-link:hover {
-            color: #525252;
-          }
-
-          /* Gallery Content */
-          .gallery-wrapper {
-            flex: 1;
-            margin-left: 30%;
-            padding: 1.5rem;
-            overflow-y: auto;
-            height: 100vh;
-          }
-
-          .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            padding: 1rem;
-          }
-
-          @media (max-width: 1280px) {
-            .gallery-grid {
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-
-          .project-card {
-            position: relative;
-            background: white;
-            border-radius: 22px;
-            overflow: hidden;
-            cursor: pointer;
-            aspect-ratio: 4 / 3;
-            display: block;
-          }
-
-          .project-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-          }
-
-          .project-card:hover img {
-            transform: scale(1.02);
-          }
-
-          .project-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 30%;
-            background: linear-gradient(to top, rgba(163, 163, 163, 0.8), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-          }
-
-          .project-card:hover .project-overlay {
-            opacity: 1;
-          }
-
-          .project-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            color: white;
-            font-size: 1.25rem;
-            font-weight: 500;
-            padding: 0.375rem 1.25rem;
-          }
-
-          /* Mobile Layout */
-          .mobile-layout {
-            display: block;
-            background-color: #F6F4F4;
-          }
-
-          @media (min-width: 1024px) {
-            .mobile-layout {
-              display: none;
-            }
-          }
-
-          .mobile-header {
-            padding: 1.5rem;
-          }
-
-          .mobile-header .sidebar-label {
-            margin-bottom: 1rem;
-          }
-
-          .mobile-header .sidebar-name {
-            font-size: 32px;
-            margin-bottom: 1rem;
-          }
-
-          @media (min-width: 768px) {
-            .mobile-header .sidebar-name {
-              font-size: 40px;
-            }
-          }
-
-          .mobile-header .sidebar-bio {
-            font-size: 16px;
-            margin-bottom: 1rem;
-          }
-
-          @media (min-width: 768px) {
-            .mobile-header .sidebar-bio {
-              font-size: 18px;
-            }
-          }
-
-          .mobile-header .sidebar-links {
-            gap: 1rem;
-          }
-
-          .mobile-header .sidebar-link {
-            font-size: 16px;
-          }
-
-          @media (min-width: 768px) {
-            .mobile-header .sidebar-link {
-              font-size: 18px;
-            }
-          }
-
-          .mobile-gallery {
-            padding: 1rem;
-          }
-
-          .mobile-gallery .gallery-grid {
-            grid-template-columns: 1fr;
-          }
-
-          @media (min-width: 640px) {
-            .mobile-gallery .gallery-grid {
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-
-          /* Page Transitions */
-          .page {
-            display: none;
-          }
-
-          .page.active {
-            display: block;
-          }
-
-          /* About Page */
-          .about-content {
-            padding: 2rem;
-          }
-
-          @media (min-width: 1024px) {
-            .about-content {
-              margin-left: 30%;
-              padding: 2rem;
-              overflow-y: auto;
-              height: 100vh;
-            }
-          }
-
-          .about-section {
-            margin-bottom: 2rem;
-          }
-
-          .about-section h1 {
-            font-size: 1.25rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-          }
-
-          .about-section h2 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-          }
-
-          .about-section h3 {
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-          }
-
-          .about-section h4 {
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-          }
-
-          .about-section p {
-            font-size: 0.875rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-          }
-
-          .about-section .muted {
-            color: #737373;
-            font-size: 0.75rem;
-          }
-
-          .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-          }
-
-          @media (min-width: 1024px) {
-            .skills-grid {
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-
-          .education-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
-            margin-top: 1rem;
-          }
-
-          @media (min-width: 768px) {
-            .education-grid {
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-
-          .about-section ul {
-            list-style: disc;
-            padding-left: 1.25rem;
-            font-size: 0.75rem;
-          }
-
-          .about-section ul li {
-            margin-bottom: 0.25rem;
-          }
-
-          /* Project Detail Page */
-          .project-detail {
-            padding: 3rem 1rem;
-          }
-
-          @media (min-width: 1024px) {
-            .project-detail {
-              margin-left: 30%;
-              padding: 4rem 2rem;
-              overflow-y: auto;
-              height: 100vh;
-            }
-          }
-
-          .project-detail-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-          }
-
-          @media (min-width: 1024px) {
-            .project-detail-container {
-              flex-direction: row;
-              gap: 4rem;
-            }
-          }
-
-          .project-detail article {
-            flex: 1;
-          }
-
-          .project-detail-image {
-            width: 100%;
-            max-width: 768px;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            border-radius: 0.5rem;
-            border: 1px solid #e5e5e5;
-            margin-bottom: 1.5rem;
-          }
-
-          .project-detail h1 {
-            font-size: 1.25rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-          }
-
-          .project-detail h2 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            margin-top: 1.5rem;
-          }
-
-          .project-detail h3 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-            margin-top: 1rem;
-          }
-
-          .project-detail p {
-            font-size: 0.875rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-          }
-
-          .project-detail blockquote {
-            border-left: 4px solid #d1d5db;
-            padding-left: 1rem;
-            font-style: italic;
-            font-size: 0.75rem;
-            margin: 1rem 0;
-            color: #525252;
-          }
-
-          .project-detail ul {
-            list-style: disc;
-            padding-left: 1.25rem;
-            font-size: 0.75rem;
-            margin-bottom: 1rem;
-          }
-
-          .project-detail ul li {
-            margin-bottom: 0.25rem;
-          }
-
-          .project-detail table {
-            width: 100%;
-            font-size: 0.75rem;
-            border-collapse: collapse;
-            margin: 1rem 0;
-          }
-
-          .project-detail th,
-          .project-detail td {
-            text-align: left;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e5e5e5;
-          }
-
-          .project-detail th {
-            font-weight: 500;
-          }
-
-          .project-detail aside {
-            width: 100%;
-          }
-
-          @media (min-width: 1024px) {
-            .project-detail aside {
-              width: 320px;
-            }
-          }
-
-          .project-info-card {
-            position: sticky;
-            top: 2rem;
-            background: white;
-            border-radius: 0.5rem;
-            border: 1px solid #e5e5e5;
-            padding: 1rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-          }
-
-          .project-info-card h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-          }
-
-          .project-info-card dl {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-          }
-
-          .project-info-card dt {
-            font-weight: 500;
-            color: #737373;
-          }
-
-          .project-info-card dd {
-            margin-bottom: 0.5rem;
-          }
-
-          .project-info-card a {
-            color: #0a0a0a;
-          }
-
-          .project-info-card a:hover {
-            text-decoration: underline;
-          }
-
-          /* Back Button */
-          .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            color: #525252;
-            margin-bottom: 1.5rem;
-            cursor: pointer;
-            transition: color 0.2s;
-          }
-
-          .back-button:hover {
-            color: #0a0a0a;
-          }
-        `}} />
-      </head>
-      <body>
-        <div className="container" id="app">
-          {/* HOME PAGE */}
-          <div className="page active" id="home-page">
-            {/* Desktop Layout */}
-            <div className="desktop-layout">
-              <div className="sidebar">
-                <div className="sidebar-top">
-                  <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
-                  <div className="sidebar-name">
-                    Gabriela<br />Cecchin
-                  </div>
-                </div>
-                <div className="sidebar-bottom">
-                  <p className="sidebar-bio">
-                    Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
-                  </p>
-                  <div className="sidebar-links">
-                    <a href="#" className="sidebar-link" data-navigate="about">About</a>
-                    <a href="#" className="sidebar-link">CV</a>
-                    <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="gallery-wrapper">
-                <div className="gallery-grid" id="desktop-gallery">
-                  {/* Projects will be inserted by JS */}
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Layout */}
-            <div className="mobile-layout">
-              <div className="mobile-header">
-                <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
-                <div className="sidebar-name">Gabriela Cecchin</div>
-                <p className="sidebar-bio">
-                  Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
-                </p>
-                <div className="sidebar-links">
-                  <a href="#" className="sidebar-link">CV</a>
-                  <a href="#" className="sidebar-link" data-navigate="about">About</a>
-                  <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                </div>
-              </div>
-              <div className="mobile-gallery">
-                <div className="gallery-grid" id="mobile-gallery">
-                  {/* Projects will be inserted by JS */}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ABOUT PAGE */}
-          <div className="page" id="about-page">
-            <div className="desktop-layout">
-              <div className="sidebar">
-                <div className="sidebar-top">
-                  <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
-                  <div className="sidebar-name">
-                    Gabriela<br />Cecchin
-                  </div>
-                </div>
-                <div className="sidebar-bottom">
-                  <p className="sidebar-bio">
-                    Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
-                  </p>
-                  <div className="sidebar-links">
-                    <a href="#" className="sidebar-link" data-navigate="about">About</a>
-                    <a href="#" className="sidebar-link">CV</a>
-                    <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                  </div>
-                </div>
-              </div>
-              <div className="about-content">
-                <section className="about-section">
-                  <h1>About Me</h1>
-                  <p>
-                    Hi there! I'm Gabriela, an internationally exhibited artist with a passion for blending art, design,
-                    and technology. My journey started with a degree in linguistics, which uniquely shapes the way I craft
-                    designs—ensuring they're not just visually striking but also resonate on a deeper, communicative level.
-                  </p>
-                  <p>
-                    With 5 years in the ever-evolving crypto landscape, I'm no stranger to fast-paced environments where
-                    innovation is key. I thrive on creating experiences that not only meet business goals but also connect
-                    with audiences in meaningful ways.
-                  </p>
-                  <p>
-                    When I'm not designing, you'll find me diving into art projects, programming, or hitting the pavement
-                    for a good run. If you're looking for someone who brings creativity, precision, and a fresh
-                    perspective to the table, let's make something amazing together!
-                  </p>
-                </section>
-
-                <section className="about-section">
-                  <h2>Education</h2>
-                  <div>
-                    <h3>BASc, Linguistics (English, Communications)</h3>
-                    <p className="muted">Parana State University (2021)</p>
-                  </div>
-                  <div className="education-grid">
-                    <div>
-                      <h4>UX Design Psychology</h4>
-                      <p className="muted">UXCEL (2024)</p>
-                    </div>
-                    <div>
-                      <h4>Design Thinking</h4>
-                      <p className="muted">UXCEL (2024)</p>
-                    </div>
-                    <div>
-                      <h4>Design Composition</h4>
-                      <p className="muted">UXCEL (2024)</p>
-                    </div>
-                    <div>
-                      <h4>Leadership and Soft Skills</h4>
-                      <p className="muted">WoMakersCode (2023)</p>
-                    </div>
-                  </div>
-                </section>
-
-                <section className="about-section">
-                  <h2>Skills</h2>
-                  <div className="skills-grid">
-                    <div>
-                      <h3>Hard Skills</h3>
-                      <ul>
-                        <li>Figma</li>
-                        <li>Next.Js</li>
-                        <li>User Testing</li>
-                        <li>Data Analysis</li>
-                        <li>Design Systems</li>
-                        <li>Prototyping</li>
-                        <li>Accessibility Design</li>
-                        <li>Adobe Suite</li>
-                        <li>Color & Typography</li>
-                        <li>Blender</li>
-                        <li>Marvelous Designer</li>
-                        <li>Garment Prototyping</li>
-                        <li>Unreal Engine</li>
-                        <li>Concept Design</li>
-                        <li>Product Design</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3>Soft Skills</h3>
-                      <ul>
-                        <li>User Advocacy</li>
-                        <li>User Research</li>
-                        <li>Critical Thinking</li>
-                        <li>Empathy</li>
-                        <li>Teamwork</li>
-                        <li>Adaptability</li>
-                      </ul>
-                    </div>
-                  </div>
-                </section>
-
-                <section className="about-section">
-                  <h2>Experience</h2>
-                  <div>
-                    <h3>Currently</h3>
-                    <p className="muted">2023 - Art Director at Delgado Agency</p>
-                  </div>
-                  <div>
-                    <h3>Previously</h3>
-                    <ul>
-                      <li>2024 - Art Director at Obinex</li>
-                      <li>2020 - Senior Designer at Veoito</li>
-                      <li>2018 - Designer at UNESPAR</li>
-                    </ul>
-                  </div>
-                </section>
-
-                <section className="about-section">
-                  <h2>Focus</h2>
-                  <ul>
-                    <li>UI/UX</li>
-                    <li>Product</li>
-                    <li>Brand Identity</li>
-                    <li>Prototyping</li>
-                    <li>Art Direction</li>
-                    <li>Web3</li>
-                    <li>Finance</li>
-                  </ul>
-                </section>
-              </div>
-            </div>
-
-            <div className="mobile-layout">
-              <div className="mobile-header">
-                <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
-                <div className="sidebar-name">Gabriela Cecchin</div>
-                <p className="sidebar-bio">
-                  Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
-                </p>
-                <div className="sidebar-links">
-                  <a href="#" className="sidebar-link">CV</a>
-                  <a href="#" className="sidebar-link" data-navigate="about">About</a>
-                  <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                </div>
-              </div>
-              <div className="about-content" style={{ marginLeft: 0 }}>
-                <section className="about-section">
-                  <h1>About Me</h1>
-                  <p>
-                    Hi there! I'm Gabriela, an internationally exhibited artist with a passion for blending art, design,
-                    and technology.
-                  </p>
-                  <p>
-                    With 5 years in the ever-evolving crypto landscape, I'm no stranger to fast-paced environments where
-                    innovation is key.
-                  </p>
-                </section>
-
-                <section className="about-section">
-                  <h2>Education</h2>
-                  <h3>BASc, Linguistics</h3>
-                  <p className="muted">Parana State University (2021)</p>
-                </section>
-
-                <section className="about-section">
-                  <h2>Experience</h2>
-                  <h3>Currently</h3>
-                  <p className="muted">2023 - Art Director at Delgado Agency</p>
-                </section>
-              </div>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #F6F4F4;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    /* Layout */
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 30%;
+      max-width: 400px;
+      min-width: 300px;
+      background-color: #fff;
+      border-right: 1px solid #e5e5e5;
+      padding: 48px 32px;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 48px;
+      letter-spacing: -0.5px;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 48px;
+    }
+
+    .nav-link {
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #666;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      background-color: #f5f5f5;
+      color: #1a1a1a;
+    }
+
+    .nav-link.active {
+      background-color: #1a1a1a;
+      color: #fff;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding-top: 32px;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .profile-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .profile-info h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .profile-info p {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background-color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .social-link:hover {
+      background-color: #1a1a1a;
+      color: #fff;
+    }
+
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      margin-left: 30%;
+      min-width: 0;
+    }
+
+    .page {
+      display: none;
+      padding: 48px;
+      max-width: 1400px;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* Home Page */
+    .page-header {
+      margin-bottom: 48px;
+    }
+
+    .page-header h1 {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .page-header p {
+      font-size: 18px;
+      color: #666;
+      max-width: 600px;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      background-color: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid #e5e5e5;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-overlay span {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-info {
+      padding: 20px;
+    }
+
+    .project-info h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .project-info p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 4px 10px;
+      background-color: #f5f5f5;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    /* About Page */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-text h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 16px;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+    }
+
+    .skills-section {
+      margin-top: 64px;
+    }
+
+    .skills-section h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .skill-card {
+      background-color: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid #e5e5e5;
+    }
+
+    .skill-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .skill-card p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Project Detail Page */
+    .project-detail {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+    }
+
+    .project-main h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .project-main > p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 32px;
+    }
+
+    .project-hero {
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 48px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    .project-section {
+      margin-bottom: 48px;
+    }
+
+    .project-section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .project-section p {
+      font-size: 16px;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    .results-table th,
+    .results-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .results-table th {
+      font-weight: 600;
+      font-size: 14px;
+      color: #666;
+      background-color: #f9f9f9;
+    }
+
+    .results-table td {
+      font-size: 15px;
+    }
+
+    .project-sidebar-card {
+      background-color: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid #e5e5e5;
+      position: sticky;
+      top: 48px;
+    }
+
+    .sidebar-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-item {
+      margin-bottom: 20px;
+    }
+
+    .meta-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-value {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background-color: #1a1a1a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      margin-bottom: 32px;
+    }
+
+    .back-button:hover {
+      background-color: #333;
+    }
+
+    /* Mobile Menu */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background-color: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 0 20px;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+
+    .mobile-logo {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .menu-toggle {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 24px;
+      height: 2px;
+      background-color: #1a1a1a;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #fff;
+      padding: 20px;
+      z-index: 99;
+    }
+
+    .mobile-nav.open {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-nav .nav-link {
+      padding: 16px;
+      font-size: 18px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-header {
+        display: flex;
+      }
+
+      .main {
+        margin-left: 0;
+        padding-top: 64px;
+      }
+
+      .page {
+        padding: 32px 20px;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .project-detail {
+        grid-template-columns: 1fr;
+      }
+
+      .project-sidebar-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 32px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-main h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+      <div class="mobile-logo">Portfolio</div>
+      <button class="menu-toggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="#" class="nav-link active" data-page="home" onclick="navigateTo('home')">Home</a>
+      <a href="#" class="nav-link" data-page="about" onclick="navigateTo('about')">About</a>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-content">
+        <div class="logo">Portfolio</div>
+        
+        <nav class="nav">
+          <a href="#" class="nav-link active" data-page="home" onclick="navigateTo('home')">Home</a>
+          <a href="#" class="nav-link" data-page="about" onclick="navigateTo('about')">About</a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="profile">
+            <div class="profile-avatar">JD</div>
+            <div class="profile-info">
+              <h3>Jane Doe</h3>
+              <p>Product Designer</p>
             </div>
           </div>
+          
+          <div class="social-links">
+            <a href="#" class="social-link" title="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="#" class="social-link" title="Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+              </svg>
+            </a>
+            <a href="#" class="social-link" title="Dribbble">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"></path>
+                <path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"></path>
+                <path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"></path>
+              </svg>
+            </a>
+            <a href="#" class="social-link" title="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
 
-          {/* PROJECT DETAIL PAGE */}
-          <div className="page" id="project-page">
-            <div className="desktop-layout">
-              <div className="sidebar">
-                <div className="sidebar-top">
-                  <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
-                  <div className="sidebar-name">
-                    Gabriela<br />Cecchin
-                  </div>
-                </div>
-                <div className="sidebar-bottom">
-                  <p className="sidebar-bio">
-                    Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
-                  </p>
-                  <div className="sidebar-links">
-                    <a href="#" className="sidebar-link" data-navigate="about">About</a>
-                    <a href="#" className="sidebar-link">CV</a>
-                    <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                  </div>
-                </div>
-              </div>
-              <div className="project-detail" id="project-detail-desktop">
-                {/* Content will be inserted by JS */}
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Home Page -->
+      <section class="page active" id="home">
+        <div class="page-header">
+          <h1>Selected Work</h1>
+          <p>A collection of projects I've worked on, spanning product design, branding, and user experience.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="project-card" onclick="navigateTo('project', 1)">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=500&fit=crop" alt="E-commerce Redesign">
+              <div class="project-overlay">
+                <span>View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
               </div>
             </div>
-
-            <div className="mobile-layout">
-              <div className="mobile-header">
-                <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
-                <div className="sidebar-name">Gabriela Cecchin</div>
-                <p className="sidebar-bio">
-                  Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
-                </p>
-                <div className="sidebar-links">
-                  <a href="#" className="sidebar-link">CV</a>
-                  <a href="#" className="sidebar-link" data-navigate="about">About</a>
-                  <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                </div>
-              </div>
-              <div className="project-detail" id="project-detail-mobile" style={{ marginLeft: 0 }}>
-                {/* Content will be inserted by JS */}
+            <div class="project-info">
+              <h3>E-commerce Redesign</h3>
+              <p>Complete redesign of a fashion e-commerce platform</p>
+              <div class="project-tags">
+                <span class="tag">UI/UX</span>
+                <span class="tag">E-commerce</span>
               </div>
             </div>
+          </article>
+
+          <article class="project-card" onclick="navigateTo('project', 2)">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=500&fit=crop" alt="Mobile Banking App">
+              <div class="project-overlay">
+                <span>View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>Mobile Banking App</h3>
+              <p>Intuitive banking experience for millennials</p>
+              <div class="project-tags">
+                <span class="tag">Mobile</span>
+                <span class="tag">Fintech</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" onclick="navigateTo('project', 3)">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=500&fit=crop" alt="Brand Identity">
+              <div class="project-overlay">
+                <span>View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>Brand Identity System</h3>
+              <p>Visual identity for a tech startup</p>
+              <div class="project-tags">
+                <span class="tag">Branding</span>
+                <span class="tag">Identity</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" onclick="navigateTo('project', 4)">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop" alt="Dashboard Design">
+              <div class="project-overlay">
+                <span>View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>Analytics Dashboard</h3>
+              <p>Data visualization for business intelligence</p>
+              <div class="project-tags">
+                <span class="tag">Dashboard</span>
+                <span class="tag">Data Viz</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" onclick="navigateTo('project', 5)">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=500&fit=crop" alt="Design System">
+              <div class="project-overlay">
+                <span>View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>Design System</h3>
+              <p>Scalable component library and guidelines</p>
+              <div class="project-tags">
+                <span class="tag">Design System</span>
+                <span class="tag">Components</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" onclick="navigateTo('project', 6)">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop" alt="SaaS Platform">
+              <div class="project-overlay">
+                <span>View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>SaaS Platform</h3>
+              <p>Project management tool for remote teams</p>
+              <div class="project-tags">
+                <span class="tag">SaaS</span>
+                <span class="tag">Web App</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- About Page -->
+      <section class="page" id="about">
+        <div class="page-header">
+          <h1>About Me</h1>
+          <p>Designer, creator, and problem solver based in San Francisco.</p>
+        </div>
+
+        <div class="about-content">
+          <div class="about-text">
+            <h2>I design digital products that people love to use.</h2>
+            <p>With over 8 years of experience in product design, I've had the privilege of working with startups and Fortune 500 companies alike. My approach combines user research, strategic thinking, and visual design to create experiences that drive business results.</p>
+            <p>I believe that great design is invisible - it gets out of the way and lets users accomplish their goals effortlessly. Every project I take on is an opportunity to simplify complexity and create something meaningful.</p>
+            <p>When I'm not designing, you can find me hiking in the Bay Area, experimenting with new recipes, or contributing to open-source design projects.</p>
+          </div>
+          <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=750&fit=crop" alt="Jane Doe">
           </div>
         </div>
 
-        <script dangerouslySetInnerHTML={{ __html: `
-          // Project Data
-          const projects = [
-            { id: "1", title: "Neuwaes", category: "UI/UX", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/Rectangle%202.png" },
-            { id: "2", title: "Miranda Labs", category: "Branding", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/Slide%2016_9%20-%209.png" },
-            { id: "3", title: "Art Portfolio | CECHK", category: "UI/UX", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/MacBook-Pro-16%20%281%29%201.png" },
-            { id: "4", title: "Eidos - art app", category: "Campaign", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/original-ea1362184570d64698251999a7470a76.webp" },
-            { id: "5", title: "Caffio", category: "UI/UX", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/image%202.png" },
-            { id: "6", title: "Nebula", category: "Print", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/original-1523529fe6f7f6dd98523021caac4a09.webp" },
-            { id: "7", title: "Anima Labs", category: "UI/UX", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/Rectangle%208.png" },
-            { id: "8", title: "Logo Collection", category: "Branding", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/logos.png" },
-            { id: "9", title: "Art Direction Collection", category: "Campaign", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/ART%20DIRECTION.png" },
-          ];
+        <div class="skills-section">
+          <h3>What I Do</h3>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <h4>Product Design</h4>
+              <p>End-to-end design of digital products, from research to final implementation.</p>
+            </div>
+            <div class="skill-card">
+              <h4>User Experience</h4>
+              <p>Research, wireframing, and prototyping to create intuitive user journeys.</p>
+            </div>
+            <div class="skill-card">
+              <h4>Visual Design</h4>
+              <p>Creating beautiful interfaces with attention to typography, color, and spacing.</p>
+            </div>
+            <div class="skill-card">
+              <h4>Design Systems</h4>
+              <p>Building scalable component libraries that ensure consistency across products.</p>
+            </div>
+            <div class="skill-card">
+              <h4>Brand Identity</h4>
+              <p>Developing visual identities that communicate brand values effectively.</p>
+            </div>
+            <div class="skill-card">
+              <h4>Prototyping</h4>
+              <p>Interactive prototypes for user testing and stakeholder presentations.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          // Navigation
-          function navigateTo(page, projectId = null) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      <!-- Project Detail Page -->
+      <section class="page" id="project">
+        <button class="back-button" onclick="navigateTo('home')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Projects
+        </button>
+
+        <div class="project-detail">
+          <div class="project-main">
+            <h1 id="projectTitle">E-commerce Redesign</h1>
+            <p id="projectDescription">Complete redesign of a fashion e-commerce platform to improve user experience and increase conversion rates.</p>
             
-            if (page === 'home') {
-              document.getElementById('home-page').classList.add('active');
-            } else if (page === 'about') {
-              document.getElementById('about-page').classList.add('active');
-            } else if (page === 'project' && projectId) {
-              document.getElementById('project-page').classList.add('active');
-              renderProjectDetail(projectId);
-            }
-            
-            window.scrollTo(0, 0);
-          }
+            <img id="projectHero" class="project-hero" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop" alt="Project Hero">
 
-          // Render Gallery
-          function renderGallery(containerId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = projects.map(project => 
-              '<a href="#" class="project-card" data-project="' + project.id + '">' +
-                '<img src="' + project.image + '" alt="' + project.title + '" />' +
-                '<div class="project-overlay">' +
-                  '<h3 class="project-title">' + project.title + '</h3>' +
-                '</div>' +
-              '</a>'
-            ).join('');
-          }
+            <div class="project-section">
+              <h2>Overview</h2>
+              <p>The client, a leading fashion retailer, approached us to completely reimagine their online shopping experience. Their existing platform was outdated, difficult to navigate, and had a cart abandonment rate of over 75%. Our goal was to create a modern, intuitive shopping experience that would delight customers and drive sales.</p>
+            </div>
 
-          // Render Project Detail
-          function renderProjectDetail(projectId) {
-            const project = projects.find(p => p.id === projectId);
-            if (!project) return;
+            <div class="project-section">
+              <h2>Challenge</h2>
+              <p>The main challenges we faced included a complex product catalog with over 10,000 SKUs, the need to support multiple languages and currencies, integration with legacy inventory systems, and maintaining brand consistency across all touchpoints. We also needed to ensure the new design would work seamlessly across all devices.</p>
+            </div>
 
-            const content = 
-              '<div class="project-detail-container">' +
-                '<article>' +
-                  '<a href="#" class="back-button" data-navigate="home">' +
-                    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">' +
-                      '<path d="M19 12H5M12 19l-7-7 7-7"/>' +
-                    '</svg>' +
-                    'Back to Projects' +
-                  '</a>' +
-                  '<img src="' + project.image + '" alt="' + project.title + '" class="project-detail-image" />' +
-                  '<h1>' + project.title + '</h1>' +
-                  '<p>A comprehensive design project showcasing innovative ' + project.category + ' work with attention to detail and user-centric approach.</p>' +
-                  '<h2>The Challenge</h2>' +
-                  '<p>This project required a complete rethinking of the user experience, focusing on creating an intuitive and engaging interface that would drive user engagement and satisfaction.</p>' +
-                  '<blockquote>"We needed a design that not only looked great but also delivered measurable results."</blockquote>' +
-                  '<h3>Research & Discovery</h3>' +
-                  '<p>Our team conducted extensive user research to understand the pain points:</p>' +
-                  '<ul>' +
-                    '<li>Complex navigation structure</li>' +
-                    '<li>Poor visual hierarchy</li>' +
-                    '<li>Inconsistent design patterns</li>' +
-                    '<li>Performance optimization needs</li>' +
-                  '</ul>' +
-                  '<h3>Results</h3>' +
-                  '<table>' +
-                    '<thead>' +
-                      '<tr><th>Metric</th><th>Before</th><th>After</th><th>Change</th></tr>' +
-                    '</thead>' +
-                    '<tbody>' +
-                      '<tr><td>User Engagement</td><td>2.3 min</td><td>9.2 min</td><td>+300%</td></tr>' +
-                      '<tr><td>Bounce Rate</td><td>68%</td><td>23%</td><td>-66%</td></tr>' +
-                      '<tr><td>User Retention</td><td>34%</td><td>78%</td><td>+129%</td></tr>' +
-                    '</tbody>' +
-                  '</table>' +
-                '</article>' +
-                '<aside>' +
-                  '<div class="project-info-card">' +
-                    '<h3>Project Details</h3>' +
-                    '<dl>' +
-                      '<div><dt>Category</dt><dd>' + project.category + '</dd></div>' +
-                      '<div><dt>Year</dt><dd>2024</dd></div>' +
-                      '<div><dt>Role</dt><dd>Lead Designer</dd></div>' +
-                      '<div><dt>Tools</dt><dd>Figma, Adobe Suite</dd></div>' +
-                    '</dl>' +
-                  '</div>' +
-                '</aside>' +
-              '</div>';
+            <div class="project-section">
+              <h2>Solution</h2>
+              <p>We developed a clean, minimalist design that puts products front and center. The new navigation system uses AI-powered search and smart filters to help customers find exactly what they're looking for. We implemented a streamlined checkout process that reduced steps from 5 to 3, and added features like save-for-later and quick buy to reduce friction.</p>
+            </div>
 
-            document.getElementById('project-detail-desktop').innerHTML = content;
-            document.getElementById('project-detail-mobile').innerHTML = content;
-          }
+            <div class="project-section">
+              <h2>Results</h2>
+              <table class="results-table">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Before</th>
+                    <th>After</th>
+                    <th>Change</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Conversion Rate</td>
+                    <td>1.8%</td>
+                    <td>3.2%</td>
+                    <td style="color: #16a34a;">+78%</td>
+                  </tr>
+                  <tr>
+                    <td>Cart Abandonment</td>
+                    <td>76%</td>
+                    <td>58%</td>
+                    <td style="color: #16a34a;">-24%</td>
+                  </tr>
+                  <tr>
+                    <td>Avg. Session Duration</td>
+                    <td>2:30</td>
+                    <td>4:15</td>
+                    <td style="color: #16a34a;">+70%</td>
+                  </tr>
+                  <tr>
+                    <td>Mobile Traffic</td>
+                    <td>45%</td>
+                    <td>68%</td>
+                    <td style="color: #16a34a;">+51%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-          // Initialize
-          document.addEventListener('DOMContentLoaded', function() {
-            renderGallery('desktop-gallery');
-            renderGallery('mobile-gallery');
+          <aside>
+            <div class="project-sidebar-card">
+              <div class="sidebar-card-title">Project Details</div>
+              
+              <div class="meta-item">
+                <div class="meta-label">Client</div>
+                <div class="meta-value" id="projectClient">Fashion Retailer</div>
+              </div>
+              
+              <div class="meta-item">
+                <div class="meta-label">Year</div>
+                <div class="meta-value" id="projectYear">2024</div>
+              </div>
+              
+              <div class="meta-item">
+                <div class="meta-label">Duration</div>
+                <div class="meta-value" id="projectDuration">4 months</div>
+              </div>
+              
+              <div class="meta-item">
+                <div class="meta-label">Role</div>
+                <div class="meta-value" id="projectRole">Lead Designer</div>
+              </div>
+              
+              <div class="meta-item">
+                <div class="meta-label">Tools</div>
+                <div class="meta-value" id="projectTools">Figma, Principle, Maze</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
 
-            // Navigation click handlers
-            document.addEventListener('click', function(e) {
-              const navLink = e.target.closest('[data-navigate]');
-              if (navLink) {
-                e.preventDefault();
-                navigateTo(navLink.dataset.navigate);
-              }
+  <script>
+    // Project Data
+    const projects = {
+      1: {
+        title: "E-commerce Redesign",
+        description: "Complete redesign of a fashion e-commerce platform to improve user experience and increase conversion rates.",
+        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=675&fit=crop",
+        client: "Fashion Retailer",
+        year: "2024",
+        duration: "4 months",
+        role: "Lead Designer",
+        tools: "Figma, Principle, Maze"
+      },
+      2: {
+        title: "Mobile Banking App",
+        description: "Intuitive banking experience designed for millennials and Gen-Z users who prefer mobile-first interactions.",
+        image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1200&h=675&fit=crop",
+        client: "Digital Bank",
+        year: "2024",
+        duration: "6 months",
+        role: "Product Designer",
+        tools: "Figma, ProtoPie, UserTesting"
+      },
+      3: {
+        title: "Brand Identity System",
+        description: "Visual identity for a tech startup focusing on sustainability and environmental impact.",
+        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=675&fit=crop",
+        client: "GreenTech Startup",
+        year: "2023",
+        duration: "2 months",
+        role: "Brand Designer",
+        tools: "Illustrator, Figma"
+      },
+      4: {
+        title: "Analytics Dashboard",
+        description: "Data visualization platform for business intelligence and real-time metrics monitoring.",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop",
+        client: "Enterprise Client",
+        year: "2024",
+        duration: "3 months",
+        role: "UX Designer",
+        tools: "Figma, D3.js, Looker"
+      },
+      5: {
+        title: "Design System",
+        description: "Scalable component library and design guidelines for a multi-product organization.",
+        image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=1200&h=675&fit=crop",
+        client: "SaaS Company",
+        year: "2023",
+        duration: "8 months",
+        role: "Design System Lead",
+        tools: "Figma, Storybook, Zeroheight"
+      },
+      6: {
+        title: "SaaS Platform",
+        description: "Project management tool designed for distributed teams and async collaboration.",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop",
+        client: "Productivity Startup",
+        year: "2024",
+        duration: "5 months",
+        role: "Senior Product Designer",
+        tools: "Figma, Framer, Notion"
+      }
+    };
 
-              const projectCard = e.target.closest('[data-project]');
-              if (projectCard) {
-                e.preventDefault();
-                navigateTo('project', projectCard.dataset.project);
-              }
-            });
-          });
-        `}} />
-      </body>
-    </html>
-  )
-}
+    // Navigation
+    function navigateTo(page, projectId) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      
+      // Update nav links
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.page === page) {
+          link.classList.add('active');
+        }
+      });
+
+      // Show target page
+      if (page === 'project' && projectId) {
+        const project = projects[projectId];
+        if (project) {
+          document.getElementById('projectTitle').textContent = project.title;
+          document.getElementById('projectDescription').textContent = project.description;
+          document.getElementById('projectHero').src = project.image;
+          document.getElementById('projectClient').textContent = project.client;
+          document.getElementById('projectYear').textContent = project.year;
+          document.getElementById('projectDuration').textContent = project.duration;
+          document.getElementById('projectRole').textContent = project.role;
+          document.getElementById('projectTools').textContent = project.tools;
+        }
+        document.getElementById('project').classList.add('active');
+      } else {
+        document.getElementById(page).classList.add('active');
+      }
+
+      // Close mobile menu
+      document.getElementById('mobileNav').classList.remove('open');
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+
+      return false;
+    }
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      document.getElementById('mobileNav').classList.toggle('open');
+    }
+
+    // Close mobile menu on resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 992) {
+        document.getElementById('mobileNav').classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
