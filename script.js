@@ -341,4 +341,14 @@ window.addEventListener('scroll', () => {
   lastScroll = currentScroll;
 });
 
+function initHeroParallax() {
+  // futuramente tu anima o hero aqui
+}
+
+function initNewsletterForm() {
+  // validação do form depois
+}
+
+
+
 
