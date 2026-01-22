@@ -1,745 +1,226 @@
-export default function Home() {
-  return (
-    <html lang="pt-BR">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Art Gallery Slider</title>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Art Gallery Slider</title>
 
-          body {
-            font-family: 'Poppins', sans-serif;
-            background: #0a0a0a;
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-          }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-          .gallery-container {
-            position: relative;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-          }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-          /* Animated Background */
-          .ambient-background {
-            position: absolute;
-            inset: 0;
-            transition: opacity 0.6s ease, transform 0.6s ease;
-          }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0a0a0a;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
 
-          .blur-overlay {
-            position: absolute;
-            inset: 0;
-            backdrop-filter: blur(60px);
-            -webkit-backdrop-filter: blur(60px);
-          }
+    .gallery-container {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
 
-          /* Header */
-          .header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 2rem;
-            animation: fadeInDown 0.6s ease 0.2s both;
-          }
+    .ambient-background {
+      position: absolute;
+      inset: 0;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
 
-          @keyframes fadeInDown {
-            from {
-              opacity: 0;
-              transform: translateY(-20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
+    .blur-overlay {
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(60px);
+      -webkit-backdrop-filter: blur(60px);
+    }
 
-          .header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            color: rgba(255, 255, 255, 0.9);
-          }
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+    }
 
-          .slide-counter {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-radius: 9999px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.5rem 1rem;
-            backdrop-filter: blur(12px);
-            animation: fadeInDown 0.6s ease 0.3s both;
-          }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+    }
 
-          .slide-counter .current {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
-          }
+    .slide-counter {
+      display: flex;
+      gap: .5rem;
+      padding: .5rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(12px);
+    }
 
-          .slide-counter .separator {
-            color: rgba(255, 255, 255, 0.3);
-          }
+    .slider {
+      position: relative;
+      display: flex;
+      height: 100%;
+      align-items: center;
+      cursor: grab;
+    }
 
-          .slide-counter .total {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.4);
-          }
+    .slider-track {
+      display: flex;
+      gap: 4rem;
+      padding-left: calc(50vw - 250px);
+      transition: transform .6s cubic-bezier(.32,.72,0,1);
+    }
 
-          /* Slider */
-          .slider {
-            position: relative;
-            display: flex;
-            height: 100%;
-            width: 100%;
-            cursor: grab;
-            align-items: center;
-          }
+    .artwork-card {
+      flex-shrink: 0;
+      transition: .4s;
+      opacity: .5;
+      transform: scale(.85);
+    }
 
-          .slider:active {
-            cursor: grabbing;
-          }
+    .artwork-card.active {
+      opacity: 1;
+      transform: scale(1);
+    }
 
-          .slider-track {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            padding-left: calc(50vw - 250px);
-            transition: transform 0.6s cubic-bezier(0.32, 0.72, 0, 1);
-          }
+    .card-content {
+      width: 500px;
+      height: 500px;
+      padding: .75rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+    }
 
-          .slider-track.dragging {
-            transition: none;
-          }
+    .card-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: .75rem;
+    }
 
-          /* Artwork Card */
-          .artwork-card {
-            position: relative;
-            flex-shrink: 0;
-            transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1);
-            transform-style: preserve-3d;
-          }
+    .navigation-dots {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: .5rem;
+      padding: .75rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(12px);
+    }
 
-          .artwork-card:not(.active) {
-            transform: scale(0.85);
-            opacity: 0.5;
-          }
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.3);
+      cursor: pointer;
+      transition: .3s;
+    }
 
-          .artwork-card.active {
-            transform: scale(1);
-            opacity: 1;
-          }
+    .nav-dot.active {
+      width: 24px;
+      background: #fff;
+    }
 
-          .card-inner {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
-          }
+    @media (max-width: 768px) {
+      .card-content {
+        width: 360px;
+        height: 360px;
+      }
+    }
+  </style>
+</head>
 
-          .artwork-card.active .card-inner:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
-          }
+<body>
+  <div class="gallery-container">
+    <div class="ambient-background" id="ambientBg"></div>
+    <div class="blur-overlay"></div>
 
-          .card-frame {
-            position: absolute;
-            inset: 0;
-            border-radius: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(4px);
-          }
+    <header class="header">
+      <h1>Gallery</h1>
+      <div class="slide-counter">
+        <span id="currentSlide">01</span>/<span id="totalSlides">07</span>
+      </div>
+    </header>
 
-          .card-content {
-            position: relative;
-            width: 500px;
-            height: 500px;
-            overflow: hidden;
-            border-radius: 1rem;
-            padding: 0.75rem;
-          }
+    <div class="slider" id="slider">
+      <div class="slider-track" id="sliderTrack"></div>
+    </div>
 
-          .card-content img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 0.75rem;
-            transition: transform 0.4s ease;
-            user-select: none;
-            pointer-events: none;
-          }
+    <div class="navigation-dots" id="navigationDots"></div>
+  </div>
 
-          .artwork-card.active .card-inner:hover img {
-            transform: scale(1.05);
-          }
+  <script>
+    const artworks = [
+      { title: "Ethereal Dreams", image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80" },
+      { title: "Urban Fragments", image: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=800&q=80" },
+      { title: "Coastal Serenity", image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&q=80" },
+      { title: "Abstract Reverie", image: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=800&q=80" },
+      { title: "Digital Landscapes", image: "https://images.unsplash.com/photo-1550859492-d5da9d8e45f3?w=800&q=80" },
+      { title: "Whispers of Color", image: "https://images.unsplash.com/photo-1482160549825-59d1b23cb208?w=800&q=80" },
+      { title: "Metropolis", image: "https://images.unsplash.com/photo-1501472312651-726afe119ff1?w=800&q=80" },
+    ];
 
-          .card-gradient {
-            position: absolute;
-            inset: 0.75rem;
-            bottom: 0.75rem;
-            border-radius: 0 0 0.75rem 0.75rem;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4) 50%, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease, height 0.3s ease;
-            pointer-events: none;
-          }
+    let currentIndex = 0;
 
-          .artwork-card.active .card-gradient {
-            opacity: 1;
-          }
+    const track = document.getElementById("sliderTrack");
+    const dots = document.getElementById("navigationDots");
+    const current = document.getElementById("currentSlide");
+    const total = document.getElementById("totalSlides");
 
-          .artwork-info {
-            position: absolute;
-            left: 0.75rem;
-            right: 0.75rem;
-            bottom: 0.75rem;
-            padding: 1.5rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            user-select: none;
-          }
+    total.textContent = artworks.length.toString().padStart(2, "0");
 
-          .artwork-card.active .artwork-info {
-            opacity: 1;
-            transform: translateY(0);
-          }
-
-          .artwork-year {
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.25rem;
-            transition: transform 0.3s ease;
-          }
-
-          .artwork-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.875rem;
-            font-weight: 700;
-            color: white;
-            transition: transform 0.3s ease;
-          }
-
-          .artwork-artist {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 0.5rem;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
-          }
-
-          .artwork-card.active .card-inner:hover .artwork-year,
-          .artwork-card.active .card-inner:hover .artwork-title {
-            transform: translateY(-5px);
-          }
-
-          .artwork-card.active .card-inner:hover .artwork-artist {
-            opacity: 1;
-            transform: translateY(0);
-          }
-
-          /* Reflection */
-          .card-reflection {
-            position: absolute;
-            bottom: -80px;
-            left: 0.75rem;
-            right: 0.75rem;
-            height: 80px;
-            overflow: hidden;
-            border-radius: 1rem;
-            opacity: 0.05;
-            filter: blur(4px);
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
-            transform: scaleY(-1);
-            transition: opacity 0.3s ease;
-          }
-
-          .artwork-card.active .card-reflection {
-            opacity: 0.15;
-          }
-
-          /* Navigation Dots */
-          .navigation-dots {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-radius: 9999px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.75rem 1rem;
-            backdrop-filter: blur(12px);
-            animation: fadeInUp 0.6s ease 0.5s both;
-          }
-
-          @keyframes fadeInUp {
-            from {
-              opacity: 0;
-              transform: translateX(-50%) translateY(20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateX(-50%) translateY(0);
-            }
-          }
-
-          .nav-dot {
-            position: relative;
-            padding: 0.25rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            outline: none;
-          }
-
-          .nav-dot .dot {
-            height: 8px;
-            border-radius: 9999px;
-            transition: width 0.3s ease, background-color 0.3s ease;
-            width: 8px;
-            background-color: rgba(255, 255, 255, 0.3);
-          }
-
-          .nav-dot.active .dot {
-            width: 24px;
-            background-color: #fff;
-          }
-
-          .nav-dot .dot-hover {
-            position: absolute;
-            inset: 0;
-            border-radius: 9999px;
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(0);
-            opacity: 0;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-          }
-
-          .nav-dot:hover .dot-hover {
-            transform: scale(2);
-            opacity: 1;
-          }
-
-          /* Keyboard Hint */
-          .keyboard-hint {
-            position: absolute;
-            bottom: 2rem;
-            left: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: rgba(255, 255, 255, 0.3);
-            animation: fadeIn 0.6s ease 1s both;
-          }
-
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-            }
-            to {
-              opacity: 1;
-            }
-          }
-
-          .keyboard-hint kbd {
-            border-radius: 0.25rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.25rem 0.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.75rem;
-          }
-
-          .keyboard-hint span {
-            font-size: 0.75rem;
-          }
-
-          /* Responsive */
-          @media (max-width: 768px) {
-            .card-content {
-              width: 400px;
-              height: 400px;
-            }
-
-            .slider-track {
-              gap: 2rem;
-              padding-left: calc(50vw - 200px);
-            }
-
-            .keyboard-hint {
-              display: none;
-            }
-
-            .artwork-title {
-              font-size: 1.5rem;
-            }
-          }
-
-          @media (max-width: 480px) {
-            .card-content {
-              width: 320px;
-              height: 320px;
-            }
-
-            .slider-track {
-              padding-left: calc(50vw - 160px);
-            }
-
-            .header {
-              padding: 1rem;
-            }
-          }
-
-          /* Hide scrollbar */
-          ::-webkit-scrollbar {
-            display: none;
-          }
-        `,
-          }}
-        />
-      </head>
-      <body>
-        <div className="gallery-container">
-          <div className="ambient-background" id="ambientBg"></div>
-          <div className="blur-overlay"></div>
-
-          <header className="header">
-            <h1>Gallery</h1>
-            <div className="slide-counter">
-              <span className="current" id="currentSlide">01</span>
-              <span className="separator">/</span>
-              <span className="total" id="totalSlides">07</span>
-            </div>
-          </header>
-
-          <div className="slider" id="slider">
-            <div className="slider-track" id="sliderTrack"></div>
-          </div>
-
-          <div className="navigation-dots" id="navigationDots"></div>
-
-          <div className="keyboard-hint">
-            <kbd>&larr;</kbd>
-            <kbd>&rarr;</kbd>
-            <span>navigate</span>
+    function render() {
+      track.innerHTML = artworks.map((art, i) => `
+        <div class="artwork-card ${i === currentIndex ? "active" : ""}">
+          <div class="card-content">
+            <img src="${art.image}" alt="${art.title}">
           </div>
         </div>
+      `).join("");
 
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-          const artworks = [
-            {
-              id: 1,
-              title: "Ethereal Dreams",
-              artist: "Marina Solace",
-              year: 2023,
-              image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80",
-            },
-            {
-              id: 2,
-              title: "Urban Fragments",
-              artist: "Chen Wei",
-              year: 2024,
-              image: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=800&q=80",
-            },
-            {
-              id: 3,
-              title: "Coastal Serenity",
-              artist: "Elise Beaumont",
-              year: 2022,
-              image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&q=80",
-            },
-            {
-              id: 4,
-              title: "Abstract Reverie",
-              artist: "Yuki Tanaka",
-              year: 2024,
-              image: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=800&q=80",
-            },
-            {
-              id: 6,
-              title: "Digital Landscapes",
-              artist: "Alex Reiner",
-              year: 2024,
-              image: "https://images.unsplash.com/photo-1550859492-d5da9d8e45f3?w=800&q=80",
-            },
-            {
-              id: 7,
-              title: "Whispers of Color",
-              artist: "Lila Fontaine",
-              year: 2023,
-              image: "https://images.unsplash.com/photo-1482160549825-59d1b23cb208?w=800&q=80",
-            },
-            {
-              id: 8,
-              title: "Metropolis",
-              artist: "David Kross",
-              year: 2022,
-              image: "https://images.unsplash.com/photo-1501472312651-726afe119ff1?w=800&q=80",
-            },
-          ];
+      dots.innerHTML = artworks.map((_, i) => `
+        <div class="nav-dot ${i === currentIndex ? "active" : ""}" onclick="goTo(${i})"></div>
+      `).join("");
 
-          let currentIndex = 0;
-          let isDragging = false;
-          let startX = 0;
-          let dragX = 0;
-          let colorCache = {};
+      track.style.transform = `translateX(${-currentIndex * 564}px)`;
+      current.textContent = String(currentIndex + 1).padStart(2, "0");
+    }
 
-          const slider = document.getElementById('slider');
-          const sliderTrack = document.getElementById('sliderTrack');
-          const navigationDots = document.getElementById('navigationDots');
-          const ambientBg = document.getElementById('ambientBg');
-          const currentSlideEl = document.getElementById('currentSlide');
-          const totalSlidesEl = document.getElementById('totalSlides');
+    function goTo(i) {
+      currentIndex = i;
+      render();
+    }
 
-          // Initialize
-          function init() {
-            totalSlidesEl.textContent = String(artworks.length).padStart(2, '0');
-            renderArtworks();
-            renderDots();
-            updateSlider();
-            extractAllColors();
-            setupEventListeners();
-          }
+    document.addEventListener("keydown", e => {
+      if (e.key === "ArrowRight" && currentIndex < artworks.length - 1) currentIndex++;
+      if (e.key === "ArrowLeft" && currentIndex > 0) currentIndex--;
+      render();
+    });
 
-          // Render artwork cards
-          function renderArtworks() {
-            sliderTrack.innerHTML = artworks.map((artwork, index) => \`
-              <div class="artwork-card" data-index="\${index}">
-                <div class="card-inner">
-                  <div class="card-frame"></div>
-                  <div class="card-content">
-                    <img src="\${artwork.image}" alt="\${artwork.title}" crossorigin="anonymous" draggable="false" />
-                    <div class="card-gradient"></div>
-                    <div class="artwork-info">
-                      <p class="artwork-year">\${artwork.year}</p>
-                      <h2 class="artwork-title">\${artwork.title}</h2>
-                      <p class="artwork-artist">by \${artwork.artist}</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-reflection"></div>
-              </div>
-            \`).join('');
-          }
-
-          // Render navigation dots
-          function renderDots() {
-            navigationDots.innerHTML = artworks.map((_, index) => \`
-              <button class="nav-dot" data-index="\${index}" aria-label="Go to slide \${index + 1}">
-                <div class="dot"></div>
-                <div class="dot-hover"></div>
-              </button>
-            \`).join('');
-
-            navigationDots.querySelectorAll('.nav-dot').forEach(dot => {
-              dot.addEventListener('click', () => {
-                goToSlide(parseInt(dot.dataset.index));
-              });
-            });
-          }
-
-          // Update slider position and states
-          function updateSlider() {
-            const cardWidth = window.innerWidth > 768 ? 564 : window.innerWidth > 480 ? 432 : 352;
-            const offset = -currentIndex * cardWidth + dragX;
-            sliderTrack.style.transform = \`translateX(\${offset}px)\`;
-
-            // Update card states
-            document.querySelectorAll('.artwork-card').forEach((card, index) => {
-              card.classList.toggle('active', index === currentIndex);
-            });
-
-            // Update dots
-            document.querySelectorAll('.nav-dot').forEach((dot, index) => {
-              dot.classList.toggle('active', index === currentIndex);
-              if (index === currentIndex && colorCache[artworks[currentIndex].id]) {
-                dot.querySelector('.dot').style.backgroundColor = colorCache[artworks[currentIndex].id][0];
-              }
-            });
-
-            // Update counter
-            currentSlideEl.textContent = String(currentIndex + 1).padStart(2, '0');
-
-            // Update background
-            updateBackground();
-          }
-
-          // Extract colors from images
-          function extractAllColors() {
-            artworks.forEach(artwork => {
-              const img = new Image();
-              img.crossOrigin = 'anonymous';
-              img.onload = () => {
-                const colors = extractColors(img);
-                colorCache[artwork.id] = colors;
-                if (artwork.id === artworks[currentIndex].id) {
-                  updateBackground();
-                }
-              };
-              img.src = artwork.image;
-            });
-          }
-
-          function extractColors(img) {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            const size = 50;
-            canvas.width = size;
-            canvas.height = size;
-            ctx.drawImage(img, 0, 0, size, size);
-            
-            try {
-              const imageData = ctx.getImageData(0, 0, size, size).data;
-              const colorCounts = {};
-              
-              for (let i = 0; i < imageData.length; i += 16) {
-                const r = Math.round(imageData[i] / 32) * 32;
-                const g = Math.round(imageData[i + 1] / 32) * 32;
-                const b = Math.round(imageData[i + 2] / 32) * 32;
-                const key = \`\${r},\${g},\${b}\`;
-                colorCounts[key] = (colorCounts[key] || 0) + 1;
-              }
-
-              const sortedColors = Object.entries(colorCounts)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 5)
-                .map(([color]) => {
-                  const [r, g, b] = color.split(',').map(Number);
-                  return \`rgb(\${r}, \${g}, \${b})\`;
-                });
-
-              return sortedColors.length >= 3 ? sortedColors : ['#667788', '#445566', '#334455'];
-            } catch (e) {
-              return ['#667788', '#445566', '#334455'];
-            }
-          }
-
-          // Update ambient background
-          function updateBackground() {
-            const colors = colorCache[artworks[currentIndex].id] || ['#667788', '#445566', '#334455'];
-            ambientBg.style.background = \`
-              radial-gradient(ellipse at 30% 20%, \${colors[0]}66 0%, transparent 50%),
-              radial-gradient(ellipse at 70% 80%, \${colors[1] || colors[0]}66 0%, transparent 50%),
-              radial-gradient(ellipse at 50% 50%, \${colors[2] || colors[0]}44 0%, transparent 70%),
-              linear-gradient(180deg, #0a0a0a 0%, #111111 100%)
-            \`;
-          }
-
-          // Navigation functions
-          function goToSlide(index) {
-            currentIndex = Math.max(0, Math.min(index, artworks.length - 1));
-            updateSlider();
-          }
-
-          function goToNext() {
-            if (currentIndex < artworks.length - 1) {
-              goToSlide(currentIndex + 1);
-            }
-          }
-
-          function goToPrev() {
-            if (currentIndex > 0) {
-              goToSlide(currentIndex - 1);
-            }
-          }
-
-          // Event listeners
-          function setupEventListeners() {
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-              if (e.key === 'ArrowLeft') goToPrev();
-              if (e.key === 'ArrowRight') goToNext();
-            });
-
-            // Mouse drag
-            slider.addEventListener('mousedown', handleDragStart);
-            document.addEventListener('mousemove', handleDragMove);
-            document.addEventListener('mouseup', handleDragEnd);
-
-            // Touch drag
-            slider.addEventListener('touchstart', handleDragStart, { passive: true });
-            document.addEventListener('touchmove', handleDragMove, { passive: true });
-            document.addEventListener('touchend', handleDragEnd);
-
-            // Wheel navigation
-            let wheelTimeout;
-            slider.addEventListener('wheel', (e) => {
-              e.preventDefault();
-              clearTimeout(wheelTimeout);
-              wheelTimeout = setTimeout(() => {
-                if (e.deltaX > 30 || e.deltaY > 30) goToNext();
-                if (e.deltaX < -30 || e.deltaY < -30) goToPrev();
-              }, 50);
-            }, { passive: false });
-
-            // Window resize
-            window.addEventListener('resize', updateSlider);
-          }
-
-          function handleDragStart(e) {
-            isDragging = true;
-            startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-            sliderTrack.classList.add('dragging');
-          }
-
-          function handleDragMove(e) {
-            if (!isDragging) return;
-            const currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-            dragX = currentX - startX;
-            updateSlider();
-          }
-
-          function handleDragEnd() {
-            if (!isDragging) return;
-            isDragging = false;
-            sliderTrack.classList.remove('dragging');
-
-            const threshold = 100;
-            if (dragX < -threshold) goToNext();
-            else if (dragX > threshold) goToPrev();
-
-            dragX = 0;
-            updateSlider();
-          }
-
-          // Start
-          init();
-        `,
-          }}
-        />
-      </body>
-    </html>
-  )
-}
+    render();
+  </script>
+</body>
+</html>
