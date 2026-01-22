@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+    <html lang="pt-BR">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gabriela Cecchin - Portfolio 2025</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+        <style dangerouslySetInnerHTML={{ __html: `
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+
+          body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #F6F4F4;
+            color: #0a0a0a;
+            line-height: 1.5;
+          }
+
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+
+          /* Layout */
+          .container {
+            min-height: 100vh;
+            background-color: #F6F4F4;
+          }
+
+          /* Desktop Layout */
+          .desktop-layout {
+            display: none;
+            height: 100vh;
+          }
+
+          @media (min-width: 1024px) {
+            .desktop-layout {
+              display: flex;
+            }
+            .mobile-layout {
+              display: none !important;
+            }
+          }
+
+          /* Sidebar */
+          .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 30%;
+            background-color: #F6F4F4;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2rem;
+            overflow: hidden;
+          }
+
+          .sidebar-top {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .sidebar-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 42px;
+            transition: opacity 0.2s;
+          }
+
+          .sidebar-label:hover {
+            opacity: 0.8;
+          }
+
+          .sidebar-name {
+            font-size: 48px;
+            font-weight: 400;
+            line-height: 1.1;
+          }
+
+          .sidebar-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+          }
+
+          .sidebar-bio {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: #78716c;
+          }
+
+          .sidebar-links {
+            display: flex;
+            gap: 1rem;
+          }
+
+          .sidebar-link {
+            font-size: 18px;
+            font-weight: 300;
+            transition: color 0.2s;
+          }
+
+          .sidebar-link:hover {
+            color: #525252;
+          }
+
+          /* Gallery Content */
+          .gallery-wrapper {
+            flex: 1;
+            margin-left: 30%;
+            padding: 1.5rem;
+            overflow-y: auto;
+            height: 100vh;
+          }
+
+          .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 1rem;
+          }
+
+          @media (max-width: 1280px) {
+            .gallery-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+
+          .project-card {
+            position: relative;
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4 / 3;
+            display: block;
+          }
+
+          .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+          }
+
+          .project-card:hover img {
+            transform: scale(1.02);
+          }
+
+          .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: linear-gradient(to top, rgba(163, 163, 163, 0.8), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+          }
+
+          .project-card:hover .project-overlay {
+            opacity: 1;
+          }
+
+          .project-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 0.375rem 1.25rem;
+          }
+
+          /* Mobile Layout */
+          .mobile-layout {
+            display: block;
+            background-color: #F6F4F4;
+          }
+
+          @media (min-width: 1024px) {
+            .mobile-layout {
+              display: none;
+            }
+          }
+
+          .mobile-header {
+            padding: 1.5rem;
+          }
+
+          .mobile-header .sidebar-label {
+            margin-bottom: 1rem;
+          }
+
+          .mobile-header .sidebar-name {
+            font-size: 32px;
+            margin-bottom: 1rem;
+          }
+
+          @media (min-width: 768px) {
+            .mobile-header .sidebar-name {
+              font-size: 40px;
+            }
+          }
+
+          .mobile-header .sidebar-bio {
+            font-size: 16px;
+            margin-bottom: 1rem;
+          }
+
+          @media (min-width: 768px) {
+            .mobile-header .sidebar-bio {
+              font-size: 18px;
+            }
+          }
+
+          .mobile-header .sidebar-links {
+            gap: 1rem;
+          }
+
+          .mobile-header .sidebar-link {
+            font-size: 16px;
+          }
+
+          @media (min-width: 768px) {
+            .mobile-header .sidebar-link {
+              font-size: 18px;
+            }
+          }
+
+          .mobile-gallery {
+            padding: 1rem;
+          }
+
+          .mobile-gallery .gallery-grid {
+            grid-template-columns: 1fr;
+          }
+
+          @media (min-width: 640px) {
+            .mobile-gallery .gallery-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+
+          /* Page Transitions */
+          .page {
+            display: none;
+          }
+
+          .page.active {
+            display: block;
+          }
+
+          /* About Page */
+          .about-content {
+            padding: 2rem;
+          }
+
+          @media (min-width: 1024px) {
+            .about-content {
+              margin-left: 30%;
+              padding: 2rem;
+              overflow-y: auto;
+              height: 100vh;
+            }
+          }
+
+          .about-section {
+            margin-bottom: 2rem;
+          }
+
+          .about-section h1 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+          }
+
+          .about-section h2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+          }
+
+          .about-section h3 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+          }
+
+          .about-section h4 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+          }
+
+          .about-section p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+          }
+
+          .about-section .muted {
+            color: #737373;
+            font-size: 0.75rem;
+          }
+
+          .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
+
+          @media (min-width: 1024px) {
+            .skills-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+
+          .education-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            margin-top: 1rem;
+          }
+
+          @media (min-width: 768px) {
+            .education-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+
+          .about-section ul {
+            list-style: disc;
+            padding-left: 1.25rem;
+            font-size: 0.75rem;
+          }
+
+          .about-section ul li {
+            margin-bottom: 0.25rem;
+          }
+
+          /* Project Detail Page */
+          .project-detail {
+            padding: 3rem 1rem;
+          }
+
+          @media (min-width: 1024px) {
+            .project-detail {
+              margin-left: 30%;
+              padding: 4rem 2rem;
+              overflow-y: auto;
+              height: 100vh;
+            }
+          }
+
+          .project-detail-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+          }
+
+          @media (min-width: 1024px) {
+            .project-detail-container {
+              flex-direction: row;
+              gap: 4rem;
+            }
+          }
+
+          .project-detail article {
+            flex: 1;
+          }
+
+          .project-detail-image {
+            width: 100%;
+            max-width: 768px;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e5e5;
+            margin-bottom: 1.5rem;
+          }
+
+          .project-detail h1 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+          }
+
+          .project-detail h2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+          }
+
+          .project-detail h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            margin-top: 1rem;
+          }
+
+          .project-detail p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+          }
+
+          .project-detail blockquote {
+            border-left: 4px solid #d1d5db;
+            padding-left: 1rem;
+            font-style: italic;
+            font-size: 0.75rem;
+            margin: 1rem 0;
+            color: #525252;
+          }
+
+          .project-detail ul {
+            list-style: disc;
+            padding-left: 1.25rem;
+            font-size: 0.75rem;
+            margin-bottom: 1rem;
+          }
+
+          .project-detail ul li {
+            margin-bottom: 0.25rem;
+          }
+
+          .project-detail table {
+            width: 100%;
+            font-size: 0.75rem;
+            border-collapse: collapse;
+            margin: 1rem 0;
+          }
+
+          .project-detail th,
+          .project-detail td {
+            text-align: left;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e5e5;
+          }
+
+          .project-detail th {
+            font-weight: 500;
+          }
+
+          .project-detail aside {
+            width: 100%;
+          }
+
+          @media (min-width: 1024px) {
+            .project-detail aside {
+              width: 320px;
+            }
+          }
+
+          .project-info-card {
+            position: sticky;
+            top: 2rem;
+            background: white;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e5e5;
+            padding: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          }
+
+          .project-info-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+          }
+
+          .project-info-card dl {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+          }
+
+          .project-info-card dt {
+            font-weight: 500;
+            color: #737373;
+          }
+
+          .project-info-card dd {
+            margin-bottom: 0.5rem;
+          }
+
+          .project-info-card a {
+            color: #0a0a0a;
+          }
+
+          .project-info-card a:hover {
+            text-decoration: underline;
+          }
+
+          /* Back Button */
+          .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #525252;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+          }
+
+          .back-button:hover {
+            color: #0a0a0a;
+          }
+        `}} />
+      </head>
+      <body>
+        <div className="container" id="app">
+          {/* HOME PAGE */}
+          <div className="page active" id="home-page">
+            {/* Desktop Layout */}
+            <div className="desktop-layout">
+              <div className="sidebar">
+                <div className="sidebar-top">
+                  <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
+                  <div className="sidebar-name">
+                    Gabriela<br />Cecchin
+                  </div>
+                </div>
+                <div className="sidebar-bottom">
+                  <p className="sidebar-bio">
+                    Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
+                  </p>
+                  <div className="sidebar-links">
+                    <a href="#" className="sidebar-link" data-navigate="about">About</a>
+                    <a href="#" className="sidebar-link">CV</a>
+                    <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="gallery-wrapper">
+                <div className="gallery-grid" id="desktop-gallery">
+                  {/* Projects will be inserted by JS */}
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Layout */}
+            <div className="mobile-layout">
+              <div className="mobile-header">
+                <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
+                <div className="sidebar-name">Gabriela Cecchin</div>
+                <p className="sidebar-bio">
+                  Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
+                </p>
+                <div className="sidebar-links">
+                  <a href="#" className="sidebar-link">CV</a>
+                  <a href="#" className="sidebar-link" data-navigate="about">About</a>
+                  <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+              </div>
+              <div className="mobile-gallery">
+                <div className="gallery-grid" id="mobile-gallery">
+                  {/* Projects will be inserted by JS */}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ABOUT PAGE */}
+          <div className="page" id="about-page">
+            <div className="desktop-layout">
+              <div className="sidebar">
+                <div className="sidebar-top">
+                  <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
+                  <div className="sidebar-name">
+                    Gabriela<br />Cecchin
+                  </div>
+                </div>
+                <div className="sidebar-bottom">
+                  <p className="sidebar-bio">
+                    Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
+                  </p>
+                  <div className="sidebar-links">
+                    <a href="#" className="sidebar-link" data-navigate="about">About</a>
+                    <a href="#" className="sidebar-link">CV</a>
+                    <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                  </div>
+                </div>
+              </div>
+              <div className="about-content">
+                <section className="about-section">
+                  <h1>About Me</h1>
+                  <p>
+                    Hi there! I'm Gabriela, an internationally exhibited artist with a passion for blending art, design,
+                    and technology. My journey started with a degree in linguistics, which uniquely shapes the way I craft
+                    designs—ensuring they're not just visually striking but also resonate on a deeper, communicative level.
+                  </p>
+                  <p>
+                    With 5 years in the ever-evolving crypto landscape, I'm no stranger to fast-paced environments where
+                    innovation is key. I thrive on creating experiences that not only meet business goals but also connect
+                    with audiences in meaningful ways.
+                  </p>
+                  <p>
+                    When I'm not designing, you'll find me diving into art projects, programming, or hitting the pavement
+                    for a good run. If you're looking for someone who brings creativity, precision, and a fresh
+                    perspective to the table, let's make something amazing together!
+                  </p>
+                </section>
+
+                <section className="about-section">
+                  <h2>Education</h2>
+                  <div>
+                    <h3>BASc, Linguistics (English, Communications)</h3>
+                    <p className="muted">Parana State University (2021)</p>
+                  </div>
+                  <div className="education-grid">
+                    <div>
+                      <h4>UX Design Psychology</h4>
+                      <p className="muted">UXCEL (2024)</p>
+                    </div>
+                    <div>
+                      <h4>Design Thinking</h4>
+                      <p className="muted">UXCEL (2024)</p>
+                    </div>
+                    <div>
+                      <h4>Design Composition</h4>
+                      <p className="muted">UXCEL (2024)</p>
+                    </div>
+                    <div>
+                      <h4>Leadership and Soft Skills</h4>
+                      <p className="muted">WoMakersCode (2023)</p>
+                    </div>
+                  </div>
+                </section>
+
+                <section className="about-section">
+                  <h2>Skills</h2>
+                  <div className="skills-grid">
+                    <div>
+                      <h3>Hard Skills</h3>
+                      <ul>
+                        <li>Figma</li>
+                        <li>Next.Js</li>
+                        <li>User Testing</li>
+                        <li>Data Analysis</li>
+                        <li>Design Systems</li>
+                        <li>Prototyping</li>
+                        <li>Accessibility Design</li>
+                        <li>Adobe Suite</li>
+                        <li>Color & Typography</li>
+                        <li>Blender</li>
+                        <li>Marvelous Designer</li>
+                        <li>Garment Prototyping</li>
+                        <li>Unreal Engine</li>
+                        <li>Concept Design</li>
+                        <li>Product Design</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h3>Soft Skills</h3>
+                      <ul>
+                        <li>User Advocacy</li>
+                        <li>User Research</li>
+                        <li>Critical Thinking</li>
+                        <li>Empathy</li>
+                        <li>Teamwork</li>
+                        <li>Adaptability</li>
+                      </ul>
+                    </div>
+                  </div>
+                </section>
+
+                <section className="about-section">
+                  <h2>Experience</h2>
+                  <div>
+                    <h3>Currently</h3>
+                    <p className="muted">2023 - Art Director at Delgado Agency</p>
+                  </div>
+                  <div>
+                    <h3>Previously</h3>
+                    <ul>
+                      <li>2024 - Art Director at Obinex</li>
+                      <li>2020 - Senior Designer at Veoito</li>
+                      <li>2018 - Designer at UNESPAR</li>
+                    </ul>
+                  </div>
+                </section>
+
+                <section className="about-section">
+                  <h2>Focus</h2>
+                  <ul>
+                    <li>UI/UX</li>
+                    <li>Product</li>
+                    <li>Brand Identity</li>
+                    <li>Prototyping</li>
+                    <li>Art Direction</li>
+                    <li>Web3</li>
+                    <li>Finance</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+
+            <div className="mobile-layout">
+              <div className="mobile-header">
+                <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
+                <div className="sidebar-name">Gabriela Cecchin</div>
+                <p className="sidebar-bio">
+                  Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
+                </p>
+                <div className="sidebar-links">
+                  <a href="#" className="sidebar-link">CV</a>
+                  <a href="#" className="sidebar-link" data-navigate="about">About</a>
+                  <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+              </div>
+              <div className="about-content" style={{ marginLeft: 0 }}>
+                <section className="about-section">
+                  <h1>About Me</h1>
+                  <p>
+                    Hi there! I'm Gabriela, an internationally exhibited artist with a passion for blending art, design,
+                    and technology.
+                  </p>
+                  <p>
+                    With 5 years in the ever-evolving crypto landscape, I'm no stranger to fast-paced environments where
+                    innovation is key.
+                  </p>
+                </section>
+
+                <section className="about-section">
+                  <h2>Education</h2>
+                  <h3>BASc, Linguistics</h3>
+                  <p className="muted">Parana State University (2021)</p>
+                </section>
+
+                <section className="about-section">
+                  <h2>Experience</h2>
+                  <h3>Currently</h3>
+                  <p className="muted">2023 - Art Director at Delgado Agency</p>
+                </section>
+              </div>
+            </div>
+          </div>
+
+          {/* PROJECT DETAIL PAGE */}
+          <div className="page" id="project-page">
+            <div className="desktop-layout">
+              <div className="sidebar">
+                <div className="sidebar-top">
+                  <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
+                  <div className="sidebar-name">
+                    Gabriela<br />Cecchin
+                  </div>
+                </div>
+                <div className="sidebar-bottom">
+                  <p className="sidebar-bio">
+                    Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
+                  </p>
+                  <div className="sidebar-links">
+                    <a href="#" className="sidebar-link" data-navigate="about">About</a>
+                    <a href="#" className="sidebar-link">CV</a>
+                    <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                  </div>
+                </div>
+              </div>
+              <div className="project-detail" id="project-detail-desktop">
+                {/* Content will be inserted by JS */}
+              </div>
+            </div>
+
+            <div className="mobile-layout">
+              <div className="mobile-header">
+                <a href="#" className="sidebar-label" data-navigate="home">PORTFOLIO // 2025</a>
+                <div className="sidebar-name">Gabriela Cecchin</div>
+                <p className="sidebar-bio">
+                  Hello, I am Gabriela - a multidisciplinar designer with passion for tech, language and everything in between.
+                </p>
+                <div className="sidebar-links">
+                  <a href="#" className="sidebar-link">CV</a>
+                  <a href="#" className="sidebar-link" data-navigate="about">About</a>
+                  <a href="https://www.linkedin.com/in/gabriela-cecchin-b2933a120/" className="sidebar-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+              </div>
+              <div className="project-detail" id="project-detail-mobile" style={{ marginLeft: 0 }}>
+                {/* Content will be inserted by JS */}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script dangerouslySetInnerHTML={{ __html: `
+          // Project Data
+          const projects = [
+            { id: "1", title: "Neuwaes", category: "UI/UX", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/Rectangle%202.png" },
+            { id: "2", title: "Miranda Labs", category: "Branding", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/Slide%2016_9%20-%209.png" },
+            { id: "3", title: "Art Portfolio | CECHK", category: "UI/UX", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/MacBook-Pro-16%20%281%29%201.png" },
+            { id: "4", title: "Eidos - art app", category: "Campaign", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/original-ea1362184570d64698251999a7470a76.webp" },
+            { id: "5", title: "Caffio", category: "UI/UX", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/image%202.png" },
+            { id: "6", title: "Nebula", category: "Print", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/original-1523529fe6f7f6dd98523021caac4a09.webp" },
+            { id: "7", title: "Anima Labs", category: "UI/UX", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/Rectangle%208.png" },
+            { id: "8", title: "Logo Collection", category: "Branding", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/logos.png" },
+            { id: "9", title: "Art Direction Collection", category: "Campaign", image: "https://zvp33vils3mcd4rj.public.blob.vercel-storage.com/ART%20DIRECTION.png" },
+          ];
+
+          // Navigation
+          function navigateTo(page, projectId = null) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            
+            if (page === 'home') {
+              document.getElementById('home-page').classList.add('active');
+            } else if (page === 'about') {
+              document.getElementById('about-page').classList.add('active');
+            } else if (page === 'project' && projectId) {
+              document.getElementById('project-page').classList.add('active');
+              renderProjectDetail(projectId);
+            }
+            
+            window.scrollTo(0, 0);
+          }
+
+          // Render Gallery
+          function renderGallery(containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = projects.map(project => 
+              '<a href="#" class="project-card" data-project="' + project.id + '">' +
+                '<img src="' + project.image + '" alt="' + project.title + '" />' +
+                '<div class="project-overlay">' +
+                  '<h3 class="project-title">' + project.title + '</h3>' +
+                '</div>' +
+              '</a>'
+            ).join('');
+          }
+
+          // Render Project Detail
+          function renderProjectDetail(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+
+            const content = 
+              '<div class="project-detail-container">' +
+                '<article>' +
+                  '<a href="#" class="back-button" data-navigate="home">' +
+                    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">' +
+                      '<path d="M19 12H5M12 19l-7-7 7-7"/>' +
+                    '</svg>' +
+                    'Back to Projects' +
+                  '</a>' +
+                  '<img src="' + project.image + '" alt="' + project.title + '" class="project-detail-image" />' +
+                  '<h1>' + project.title + '</h1>' +
+                  '<p>A comprehensive design project showcasing innovative ' + project.category + ' work with attention to detail and user-centric approach.</p>' +
+                  '<h2>The Challenge</h2>' +
+                  '<p>This project required a complete rethinking of the user experience, focusing on creating an intuitive and engaging interface that would drive user engagement and satisfaction.</p>' +
+                  '<blockquote>"We needed a design that not only looked great but also delivered measurable results."</blockquote>' +
+                  '<h3>Research & Discovery</h3>' +
+                  '<p>Our team conducted extensive user research to understand the pain points:</p>' +
+                  '<ul>' +
+                    '<li>Complex navigation structure</li>' +
+                    '<li>Poor visual hierarchy</li>' +
+                    '<li>Inconsistent design patterns</li>' +
+                    '<li>Performance optimization needs</li>' +
+                  '</ul>' +
+                  '<h3>Results</h3>' +
+                  '<table>' +
+                    '<thead>' +
+                      '<tr><th>Metric</th><th>Before</th><th>After</th><th>Change</th></tr>' +
+                    '</thead>' +
+                    '<tbody>' +
+                      '<tr><td>User Engagement</td><td>2.3 min</td><td>9.2 min</td><td>+300%</td></tr>' +
+                      '<tr><td>Bounce Rate</td><td>68%</td><td>23%</td><td>-66%</td></tr>' +
+                      '<tr><td>User Retention</td><td>34%</td><td>78%</td><td>+129%</td></tr>' +
+                    '</tbody>' +
+                  '</table>' +
+                '</article>' +
+                '<aside>' +
+                  '<div class="project-info-card">' +
+                    '<h3>Project Details</h3>' +
+                    '<dl>' +
+                      '<div><dt>Category</dt><dd>' + project.category + '</dd></div>' +
+                      '<div><dt>Year</dt><dd>2024</dd></div>' +
+                      '<div><dt>Role</dt><dd>Lead Designer</dd></div>' +
+                      '<div><dt>Tools</dt><dd>Figma, Adobe Suite</dd></div>' +
+                    '</dl>' +
+                  '</div>' +
+                '</aside>' +
+              '</div>';
+
+            document.getElementById('project-detail-desktop').innerHTML = content;
+            document.getElementById('project-detail-mobile').innerHTML = content;
+          }
+
+          // Initialize
+          document.addEventListener('DOMContentLoaded', function() {
+            renderGallery('desktop-gallery');
+            renderGallery('mobile-gallery');
+
+            // Navigation click handlers
+            document.addEventListener('click', function(e) {
+              const navLink = e.target.closest('[data-navigate]');
+              if (navLink) {
+                e.preventDefault();
+                navigateTo(navLink.dataset.navigate);
+              }
+
+              const projectCard = e.target.closest('[data-project]');
+              if (projectCard) {
+                e.preventDefault();
+                navigateTo('project', projectCard.dataset.project);
+              }
+            });
+          });
+        `}} />
+      </body>
+    </html>
+  )
+}
