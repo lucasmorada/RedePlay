@@ -65,6 +65,92 @@ body {
   overflow-x: hidden;
 }
 
+/* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      color: #ffffff;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  transition: all 0.45s ease;
+  will-change: transform;
+}
+
+    nav.scrolled {
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      width: auto;
+      padding: 14px 28px;
+      background: rgba(47, 45, 45, 0.3);
+      backdrop-filter: blur(15px);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.1);
+      color: #fff;
+    }
+
+    nav.scrolled .nav-icons {
+      display: none;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 30px;
+      font-weight: 600;
+    }
+
+     .nav-center a {
+  text-decoration: none;   
+  color: inherit;         
+  font: inherit;          
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+    .logo {
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.nav-center span {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+
+    .nav-center span {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .nav-center span::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: .3s;
+    }
+
+    .nav-center span:hover::after {
+      width: 100%;
+    }
+
+    .nav-icons i {
+      margin-left: 15px;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -170,62 +256,6 @@ body {
   transform: translateY(0);
 }
 
-/* ========================================
-   HEADER
-   ======================================== */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.02);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-  animation: slideDown 0.6s var(--ease-out-expo);
-}
-
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 48px;
-}
-
-@media (min-width: 1024px) {
-  .header-content {
-    height: 64px;
-  }
-}
-
-.logo {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--color-white);
-  text-decoration: none;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-@media (min-width: 1024px) {
-  .logo {
-    font-size: 1.5rem;
-  }
-}
-
-.logo:hover {
-  color: rgba(255, 255, 255, 0.8);
-  transform: scale(1.02);
-}
-
-.header.scrolled .logo {
-  color: var(--color-neutral-900);
-}
-
-.header.scrolled .logo:hover {
-  color: var(--color-neutral-700);
-}
 
 /* ========================================
    HERO SECTION

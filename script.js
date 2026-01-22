@@ -1,67 +1,3 @@
-/* ========================================
-   KATACHI Studio - JavaScript
-   ======================================== */
-
-// Product Data
-const productsData = [
-  {
-    id: "1",
-    name: "Verde Modular Chair",
-    price: "€4,890",
-    image: "/green-velvet-modular-chair.png",
-    badge: "New",
-    materials: ["Copper Frame", "Premium Velvet"],
-    swatches: [
-      { name: "Forest Green", color: "#355E3B" },
-      { name: "Sage Green", color: "#9CAF88" },
-      { name: "Copper", color: "#B87333" },
-    ],
-    quickLookImages: [
-      "/green-velvet-modular-chair.png",
-      "/green-velvet-modular-chair.png",
-      "/green-velvet-modular-chair.png",
-    ],
-    dimensions: "W: 180cm × D: 90cm × H: 75cm",
-  },
-  {
-    id: "2",
-    name: "Terracotta Cloud Chair",
-    price: "€5,250",
-    image: "/terracotta-cloud-chair.png",
-    badge: "New",
-    materials: ["Copper Frame", "Terracotta Velvet"],
-    swatches: [
-      { name: "Terracotta", color: "#E2725B" },
-      { name: "Burnt Orange", color: "#CC5500" },
-      { name: "Copper", color: "#B87333" },
-    ],
-    quickLookImages: [
-      "/terracotta-cloud-chair.png",
-      "/terracotta-cloud-chair.png",
-      "/terracotta-cloud-chair.png",
-    ],
-    dimensions: "W: 95cm × D: 85cm × H: 80cm",
-  },
-  {
-    id: "3",
-    name: "Sage Copper Lounge",
-    price: "€4,675",
-    image: "/sage-copper-lounge-chair.png",
-    badge: "Limited",
-    materials: ["Copper Frame", "Sage Velvet"],
-    swatches: [
-      { name: "Sage Green", color: "#9CAF88" },
-      { name: "Forest Green", color: "#355E3B" },
-      { name: "Copper", color: "#B87333" },
-    ],
-    quickLookImages: [
-      "/sage-copper-lounge-chair.png",
-      "/sage-copper-lounge-chair.png",
-      "/sage-copper-lounge-chair.png",
-    ],
-    dimensions: "W: 85cm × D: 90cm × H: 75cm",
-  },
-];
 
 // DOM Elements
 const header = document.getElementById("header");
@@ -109,32 +45,6 @@ function initHeader() {
       header.classList.add("scrolled");
     } else {
       header.classList.remove("scrolled");
-    }
-  });
-}
-
-// Hero parallax effect
-function initHeroParallax() {
-  const heroBackground = document.querySelector(".hero-background");
-  const heroContent = document.querySelector(".hero-content");
-
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
-    const heroHeight = heroSection.offsetHeight;
-
-    if (scrollY < heroHeight) {
-      const progress = scrollY / heroHeight;
-
-      // Scale and translate background
-      const scale = 1 + progress * 0.05;
-      const translateY = -scrollY * 0.05;
-      heroBackground.style.transform = `scale(${scale}) translateY(${translateY}px)`;
-
-      // Fade and move content
-      const contentOpacity = 1 - progress * 2;
-      const contentTranslateY = scrollY * 0.3;
-      heroContent.style.opacity = Math.max(0, contentOpacity);
-      heroContent.style.transform = `translateY(${contentTranslateY}px)`;
     }
   });
 }
@@ -282,32 +192,6 @@ function initMaterialsSection() {
   });
 }
 
-// Newsletter form validation
-function initNewsletterForm() {
-  newsletterForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const email = emailInput.value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (emailRegex.test(email)) {
-      // Success
-      newsletterForm.style.display = "none";
-      newsletterSuccess.classList.add("visible");
-      errorMessage.classList.remove("visible");
-    } else {
-      // Error
-      emailInput.classList.add("error");
-      errorMessage.classList.add("visible");
-    }
-  });
-
-  emailInput.addEventListener("input", () => {
-    emailInput.classList.remove("error");
-    errorMessage.classList.remove("visible");
-  });
-}
-
 // Product cards click handler
 function initProductCards() {
   productCards.forEach((card) => {
@@ -448,3 +332,29 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     }
   });
 });
+
+const nav = document.getElementById('navbar')
+
+  let lastScroll = window.scrollY
+  let mode = 'full'
+  const trigger = 80
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY
+    const diff = currentScroll - lastScroll
+
+    // DESCENDO → dynamic island
+    if (diff > 5 && currentScroll > trigger && mode !== 'island') {
+      nav.classList.add('scrolled')
+      mode = 'island'
+    }
+
+    // SUBINDO → navbar normal
+    if (diff < -5 && mode !== 'full') {
+      nav.classList.remove('scrolled')
+      mode = 'full'
+    }
+
+    lastScroll = currentScroll
+  })
+
