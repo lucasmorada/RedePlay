@@ -1,12 +1,9 @@
 
 // DOM Elements
-const header = document.getElementById("header");
+const header = document.getElementById("navbar");
 const heroSection = document.getElementById("hero");
 const collectionsTrack = document.getElementById("collectionsTrack");
 const newsletterForm = document.getElementById("newsletterForm");
-const emailInput = document.getElementById("emailInput");
-const errorMessage = document.getElementById("errorMessage");
-const newsletterSuccess = document.getElementById("newsletterSuccess");
 const materialBtns = document.querySelectorAll(".material-btn");
 const materialBgs = document.querySelectorAll(".material-bg");
 const materialTitle = document.getElementById("materialTitle");
@@ -26,7 +23,6 @@ let scrollLeft = 0;
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
-  initHeader();
   initHeroParallax();
   initRevealAnimations();
   initCollectionsCarousel();
@@ -37,17 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initCurrentYear();
   animateHeroText();
 });
-
-// Header scroll effect
-function initHeader() {
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 20) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
-  });
-}
 
 // Animate hero text character by character
 function animateHeroText() {
@@ -325,36 +310,35 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-        });
+        target.scrollIntoView({ behavior: "smooth" });
       }
     }
   });
 });
 
-const nav = document.getElementById('navbar')
+  let lastScroll = window.scrollY;
+let mode = 'full';
+const trigger = 80;
 
-  let lastScroll = window.scrollY
-  let mode = 'full'
-  const trigger = 80
+window.addEventListener('scroll', () => {
+  const currentScroll = window.scrollY;
+  const diff = currentScroll - lastScroll;
 
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY
-    const diff = currentScroll - lastScroll
+  if (!header) return;
 
-    // DESCENDO → dynamic island
-    if (diff > 5 && currentScroll > trigger && mode !== 'island') {
-      nav.classList.add('scrolled')
-      mode = 'island'
-    }
+  // DESCENDO → dynamic island
+  if (diff > 5 && currentScroll > trigger && mode !== 'island') {
+    header.classList.add('scrolled');
+    mode = 'island';
+  }
 
-    // SUBINDO → navbar normal
-    if (diff < -5 && mode !== 'full') {
-      nav.classList.remove('scrolled')
-      mode = 'full'
-    }
+  // SUBINDO → navbar normal
+  if (diff < -5 && mode !== 'full') {
+    header.classList.remove('scrolled');
+    mode = 'full';
+  }
 
-    lastScroll = currentScroll
-  })
+  lastScroll = currentScroll;
+});
+
 
