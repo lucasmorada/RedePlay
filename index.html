@@ -35,9 +35,8 @@
       align-items: center;
       justify-content: space-between;
       z-index: 1000;
-      transition: all .4s ease;
       color: #ffffff;
-      transition: transform .4s ease, opacity .3s ease;
+      transition: top .4s ease, opacity .3s ease;
     }
 
     nav.scrolled {
@@ -847,10 +846,10 @@
 </footer>
 
   <script>
-    const nav = document.getElementById('navbar');
-    const reveal = document.querySelector('.reveal');
+    const nav = document.getElementById('navbar')
+const reveal = document.querySelector('.reveal')
 
-    let lastScrollY = window.scrollY
+let lastScrollY = window.scrollY
 
 window.addEventListener('scroll', () => {
   const currentScroll = window.scrollY
@@ -860,19 +859,27 @@ window.addEventListener('scroll', () => {
     nav.classList.add('scrolled')
   } else {
     nav.classList.remove('scrolled')
-    nav.style.transform = ''
+    nav.style.top = '0'
     nav.style.opacity = '1'
   }
 
   // mostrar ao subir
   if (currentScroll < lastScrollY) {
-    nav.style.transform = 'translateY(0)'
+    nav.style.top = '15px'
     nav.style.opacity = '1'
   }
   // esconder ao descer
   else if (currentScroll > lastScrollY && currentScroll > 120) {
-    nav.style.transform = 'translateY(-120%)'
+    nav.style.top = '-120px'
     nav.style.opacity = '0'
+  }
+
+  // reveal do texto
+  const revealTop = reveal.getBoundingClientRect().top
+  const revealPoint = window.innerHeight * 0.85
+
+  if (revealTop < revealPoint) {
+    reveal.classList.add('active')
   }
 
   lastScrollY = currentScroll
