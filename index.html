@@ -36,13 +36,16 @@
       justify-content: space-between;
       z-index: 1000;
       color: #ffffff;
-      transition: top .4s ease, opacity .3s ease;
-    }
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  transition: all 0.45s ease;
+  will-change: transform;
+}
 
     nav.scrolled {
       top: 15px;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) translateY(0);
       width: auto;
       padding: 14px 28px;
       background: rgba(47, 45, 45, 0.3);
@@ -847,50 +850,30 @@
 
   <script>
   const nav = document.getElementById('navbar')
-  const reveal = document.querySelector('.reveal')
 
-  let lastScrollY = window.scrollY
+  let lastScroll = window.scrollY
+  let mode = 'full'
+  const trigger = 80
 
-  /* =====================
-     NAVBAR (DYNAMIC ISLAND)
-  ===================== */
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY
+    const diff = currentScroll - lastScroll
 
-    // ativa modo dynamic island
-    if (currentScroll > 80) {
+    // DESCENDO → dynamic island
+    if (diff > 5 && currentScroll > trigger && mode !== 'island') {
       nav.classList.add('scrolled')
+      mode = 'island'
+    }
 
-      // DESCENDO → esconde
-      if (currentScroll > lastScrollY) {
-        nav.style.top = '-120px'
-        nav.style.opacity = '0'
-      }
-
-      // SUBINDO → mostra
-      else {
-        nav.style.top = '15px'
-        nav.style.opacity = '1'
-      }
-
-    } else {
-      // topo do site
+    // SUBINDO → navbar normal
+    if (diff < -5 && mode !== 'full') {
       nav.classList.remove('scrolled')
-      nav.style.top = '0'
-      nav.style.opacity = '1'
+      mode = 'full'
     }
 
-    /* =====================
-       REVEAL TEXTO
-    ===================== */
-    const revealTop = reveal.getBoundingClientRect().top
-    if (revealTop < window.innerHeight * 0.85) {
-      reveal.classList.add('active')
-    }
-
-    lastScrollY = currentScroll
+    lastScroll = currentScroll
   })
-
+  
   /* =====================
      MOBILE MENU
   ===================== */
