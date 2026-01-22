@@ -530,35 +530,6 @@ nav .logo,
   }
 }
 
-/* ===============================
-   HORIZONTAL VIDEO SECTION
-================================ */
-.horizontal-sticky {
-   position: sticky; 
-   top: 0; height: 100vh; 
-   overflow: hidden; 
-  } 
-  .horizontal-track { 
-    display: flex; 
-    height: 100vh; 
-    width: 300vw; 
-    will-change: transform; 
-    transition: transform 0.15s ease-out; 
-  } 
-  .video-panel { 
-    width: 100vw;
-     height: 100vh; 
-     display: flex;
-     align-items: center; 
-     justify-content: center; 
-    } 
-    .video-panel img { 
-      width: 92vw; 
-      height: 88vh; 
-      object-fit: cover; 
-      border-radius: 0; 
-    }
-
 /*footer*/
 
 .footer-uao {
@@ -728,19 +699,6 @@ nav .logo,
   </div>
 </div>
 
-<script>
-  const marquee = document.querySelector('.image-marquee-track')
-
-  marquee.addEventListener('mouseenter', () => {
-    marquee.style.animationPlayState = 'paused'
-  })
-
-  marquee.addEventListener('mouseleave', () => {
-    marquee.style.animationPlayState = 'running'
-  })
-</script>
-
-
 <section class="blog-section">
   <div class="blog-wrapper">
 
@@ -789,26 +747,6 @@ nav .logo,
   </div>
 </section>
 
-<!-- HORIZONTAL VIDEO SECTION -->
-<section class="horizontal-video-section">
-  <div class="horizontal-sticky">
-    <div class="horizontal-track">
-      
-      <div class="video-panel">
-        <img src="imagem.jpg" alt="Play">
-      </div>
-
-      <div class="video-panel">
-        <img src="imagem.jpg" alt="Play">
-      </div>
-
-      <div class="video-panel">
-        <img src="imagem.jpg" alt="Play">
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <footer class="footer-uao">
   <div class="footer-inner">
