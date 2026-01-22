@@ -558,6 +558,8 @@
   border-radius: 0;  
 }
 
+/*footer*/
+
 .footer-uao {
   background: #0a0a0a;
   color: #ffffff;
@@ -587,7 +589,7 @@
 
 /* título UAU */
 .footer-title {
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(4rem, 7vw, 6rem);
   font-weight: 800;
   text-align: center;
   margin-bottom: 96px;
@@ -844,7 +846,6 @@
   </a>
 </div>
 
-
   </div>
 </footer>
 
@@ -873,7 +874,7 @@
 
     lastScroll = currentScroll
   })
-  
+
   /* =====================
      MOBILE MENU
   ===================== */
@@ -915,6 +916,27 @@
       horizontalTrack.style.transform = `translateX(${translateX}px)`
     }
   })
+
+  /* =====================
+   REVEAL HERO TEXT
+===================== */
+const reveal = document.querySelector('.reveal')
+
+const revealOnScroll = () => {
+  const top = reveal.getBoundingClientRect().top
+  const triggerPoint = window.innerHeight * 0.85
+
+  if (top < triggerPoint) {
+    reveal.classList.add('active')
+  }
+}
+
+// ativa ao carregar
+revealOnScroll()
+
+// ativa ao scrollar
+window.addEventListener('scroll', revealOnScroll)
+
 </script>
 
 </body>

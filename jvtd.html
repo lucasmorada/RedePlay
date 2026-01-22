@@ -68,7 +68,7 @@
 
     .header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 3rem;
       font-weight: 700;
       letter-spacing: -0.025em;
       color: rgba(255, 255, 255, 0.9);
@@ -418,15 +418,194 @@
     ::-webkit-scrollbar {
       display: none;
     }
+
+    /*teste*/
+    .hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  transform-origin: center;
+  transition: transform 0.1s linear;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeIn 1.2s var(--ease-out-expo);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  transition: opacity 0.1s linear, transform 0.1s linear;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-title {
+    font-size: 6rem;
+  }
+}
+
+.title-line {
+  display: inline-block;
+}
+
+.title-line span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s var(--ease-out-expo) forwards;
+}
+
+.hero-subtitle {
+  font-size: 2.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeInUp 0.8s var(--ease-out-expo) 0.7s forwards;
+}
+
+@media (min-width: 768px) {
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* Hero Info Strip */
+.hero-info-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  padding: 0 24px 24px;
+  opacity: 0;
+  animation: fadeInUp 0.8s var(--ease-out-expo) 1.2s forwards;
+}
+
+.blur-panel {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.info-panel {
+  padding: 16px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  color: rgba(255, 255, 255, 0.9);
+  flex-wrap: wrap;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+}
+
+.info-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.info-icon.green {
+  color: var(--color-green-400);
+}
+
+.info-icon.amber {
+  color: var(--color-amber-400);
+}
+
+.info-icon.blue {
+  color: var(--color-blue-400);
+}
+
   </style>
 </head>
 <body>
+
+    <main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-background">
+        <img 
+          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" 
+          alt="KATACHI Studio - Elegant interior with sage green walls and terracotta furniture overlooking surreal landscape"
+          class="hero-image"
+        >
+        <div class="hero-overlay"></div>
+      </div>
+      
+      <div class="hero-content">
+        <div class="container text-center">
+          <h1 class="hero-title">
+            <span class="title-line" data-animate="title">célula é muito mais que </span>
+            <br>
+            <span class="cursive" data-animate="title">um encontro semanal</span>
+          </h1>
+          <p class="hero-subtitle" data-animate="fade">
+            venha conhecer nossas células, todo sábado as 14:30!.
+          </p>
+        </div>
+      </div>
+    </section>
+
   <div class="gallery-container">
     <div class="ambient-background" id="ambientBg"></div>
     <div class="blur-overlay"></div>
 
     <header class="header">
-      <h1>Gallery</h1>
+      <h1>Células</h1>
       <div class="slide-counter">
         <span class="current" id="currentSlide">01</span>
         <span class="separator">/</span>
