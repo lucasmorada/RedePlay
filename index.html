@@ -209,6 +209,61 @@
   }
 }
 
+/* IMAGE MARQUEE */
+.image-marquee {
+  width: 100%;
+  overflow: hidden;
+  background: #0f0f0f;
+  padding: 32px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.image-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: image-marquee 25s linear infinite;
+}
+
+.marquee-group {
+  display: flex;
+}
+
+.marquee-group img {
+  width: 280px;
+  height: 180px;
+  object-fit: cover;
+  margin-right: 32px;
+  filter: grayscale(100%);
+  opacity: 0.85;
+  transition: all .4s ease;
+}
+
+.marquee-group img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* animação infinita real */
+@keyframes image-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .marquee-group img {
+    width: 220px;
+    height: 140px;
+  }
+}
+
+
 /* BOTÃO HAMBURGUER */
 .menu-toggle {
   display: none;
@@ -644,6 +699,40 @@
       </p>
     </div>
   </section>
+
+  <!-- IMAGE MARQUEE -->
+<div class="image-marquee">
+  <div class="image-marquee-track">
+    <!-- bloco duplicado (IMPORTANTE pro infinito) -->
+    <div class="marquee-group">
+      <img src="imagem1.jpg" alt="">
+      <img src="imagem2.jpg" alt="">
+      <img src="imagem3.jpg" alt="">
+      <img src="imagem4.jpg" alt="">
+      <img src="imagem5.jpg" alt="">
+    </div>
+
+    <div class="marquee-group">
+      <img src="imagem1.jpg" alt="">
+      <img src="imagem2.jpg" alt="">
+      <img src="imagem3.jpg" alt="">
+      <img src="imagem4.jpg" alt="">
+      <img src="imagem5.jpg" alt="">
+    </div>
+  </div>
+</div>
+
+<script>
+  const marquee = document.querySelector('.image-marquee-track')
+
+  marquee.addEventListener('mouseenter', () => {
+    marquee.style.animationPlayState = 'paused'
+  })
+
+  marquee.addEventListener('mouseleave', () => {
+    marquee.style.animationPlayState = 'running'
+  })
+</script>
 
 
 <section class="blog-section">
