@@ -126,10 +126,17 @@ nav .logo,
     }
 
     .hero {
-  position: relative;
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  z-index: 1;
+}
+
+.hero-spacer {
+  height: 120vh; 
+  background: transparent;
 }
 
 /* vídeo como background */
@@ -696,6 +703,8 @@ nav .logo,
     <a href="jvtd.html">JVTD</a>
   </div>
 </div>
+
+<div class="hero-spacer"></div>
 
   <div class="hero">
   <video autoplay muted loop playsinline>
