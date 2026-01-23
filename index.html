@@ -230,7 +230,7 @@ section:first-of-type {
     .marquee {
   width: 100%;
   overflow: hidden;
-  background: #1d1c1c;
+  background: #8bbb1b;
   padding: 20px 0;
   pointer-events: none;
 }
@@ -262,10 +262,10 @@ section:first-of-type {
 .image-marquee {
   width: 100%;
   overflow: hidden;
-  background: #0f0f0f;
-  padding: 16px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: #151515; 
+  padding: 8px 0;     
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 .image-marquee-track {
@@ -279,19 +279,19 @@ section:first-of-type {
 }
 
 .marquee-group img {
-  width: 200px;
-  height: 120px;
-  object-fit: cover;
-  margin-right: 32px;
+  width: 140px;
+  height: 80px;
+  object-fit: contain; 
+  margin-right: 28px;
   filter: grayscale(100%);
-  opacity: 0.85;
-  transition: all .4s ease;
+  opacity: 0.7;
+  transition: all .35s ease;
 }
 
 .marquee-group img:hover {
   filter: grayscale(0%);
   opacity: 1;
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 /* animação infinita real */
@@ -304,14 +304,13 @@ section:first-of-type {
   }
 }
 
-/* mobile */
+/*mobile*/
 @media (max-width: 768px) {
   .marquee-group img {
-    width: 220px;
-    height: 140px;
+    width: 120px;
+    height: 70px;
   }
 }
-
 
 /* BOTÃO HAMBURGUER */
 .menu-toggle {
@@ -377,7 +376,7 @@ section:first-of-type {
 /*section play*/
 /* BLOG SECTION */
 .blog-section {
-  background: #000;
+  background: #da2a2a;
   padding: 160px 8%;
   color: #fff;
   border-radius: 0 !important;
@@ -591,7 +590,7 @@ section:first-of-type {
 /*footer*/
 
 .footer-uao {
-  background: #0a0a0a;
+  background: #273bd2;
   color: #ffffff;
   padding: 120px 24px 48px;
   position: relative;
@@ -628,6 +627,7 @@ section:first-of-type {
 
 .footer-title span {
   opacity: 0.5;
+  color: #8bbb1b;
 }
 
 /* grid */
@@ -743,6 +743,30 @@ section:first-of-type {
 <div class="image-marquee">
   <div class="image-marquee-track">
     <!-- bloco duplicado (IMPORTANTE pro infinito) -->
+    <div class="marquee-group">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+    </div>
+
+    <div class="marquee-group">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+    </div>
+
+    <div class="marquee-group">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+    </div>
+
     <div class="marquee-group">
       <img src="PLaybege.png" alt="">
       <img src="PLaybege.png" alt="">
