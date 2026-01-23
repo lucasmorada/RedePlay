@@ -4,12 +4,16 @@
   <meta charset="UTF-8" />
   <title>Play</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="PLaybege.png">
+<link rel="icon" type="image/png" sizes="32x32" href="PLaybege.png">
+<link rel="icon" type="image/png" sizes="16x16" href="PLaybege.png">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet">
 
   <!-- Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  
 
   <style>
     * {
@@ -121,19 +125,31 @@ nav .logo,
       cursor: pointer;
     }
 
-    /* HERO */
     .hero {
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover fixed;
-      position: relative;
-    }
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* vídeo como background */
+.hero video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+}
 
     .hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,.25);
+      background: rgba(0,0,0,.4);
     }
+
 
     /* SECTION */
     section {
@@ -530,6 +546,28 @@ nav .logo,
   }
 }
 
+.full-image-section {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.full-image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.full-image-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+}
+
+
 /*footer*/
 
 .footer-uao {
@@ -659,8 +697,12 @@ nav .logo,
   </div>
 </div>
 
+  <div class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="seu-video.mp4" type="video/mp4">
+  </video>
+</div>
 
-  <div class="hero"></div>
 
   <section>
     <div class="reveal">
@@ -682,19 +724,19 @@ nav .logo,
   <div class="image-marquee-track">
     <!-- bloco duplicado (IMPORTANTE pro infinito) -->
     <div class="marquee-group">
-      <img src="imagem1.jpg" alt="">
-      <img src="imagem2.jpg" alt="">
-      <img src="imagem3.jpg" alt="">
-      <img src="imagem4.jpg" alt="">
-      <img src="imagem5.jpg" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
     </div>
 
     <div class="marquee-group">
-      <img src="imagem1.jpg" alt="">
-      <img src="imagem2.jpg" alt="">
-      <img src="imagem3.jpg" alt="">
-      <img src="imagem4.jpg" alt="">
-      <img src="imagem5.jpg" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
     </div>
   </div>
 </div>
@@ -706,7 +748,7 @@ nav .logo,
 
     <div class="blog-card">
       <div class="blog-image">
-        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Post">
+        <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Post">
       </div>
 
       <div class="blog-content">
@@ -747,6 +789,9 @@ nav .logo,
   </div>
 </section>
 
+<section class="full-image-section">
+  <img src="sua-imagem.jpg" alt="">
+</section>
 
 <footer class="footer-uao">
   <div class="footer-inner">
