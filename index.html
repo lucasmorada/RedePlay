@@ -595,96 +595,102 @@ html, body {
   overflow-x: hidden;
 }
 
-/*footer*/
-.footer-uao {
-  background: #19191a;
-  color: #ffffff;
-  padding: 120px 24px 48px;
+.footer {
   position: relative;
+  background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
+  color: #e5e5e5;
   overflow: hidden;
 }
 
-/* glow sutil */
-.footer-uao::before {
-  content: "";
-  position: absolute;
-  top: -200px;
-  left: 50%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
-  transform: translateX(-50%);
-}
-
-.footer-inner {
-  max-width: 1400px;
-  margin: 0 auto;
+.footer-content {
   position: relative;
   z-index: 2;
+  padding: 80px 8vw 40px;
 }
 
-/* título UAU */
-.footer-title {
-  font-size: clamp(4rem, 7vw, 6rem);
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 96px;
-  letter-spacing: -0.02em;
-}
-
-.footer-title span {
-  opacity: 0.5;
-}
-
-/* grid */
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 64px;
-  margin-bottom: 80px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 60px;
 }
 
 .footer-col h4 {
-  font-size: 1.2rem;
-  margin-bottom: 16px;
+  font-size: 14px;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.7;
+  margin-bottom: 12px;
+  color: #ffffff;
 }
 
 .footer-col p,
 .footer-col a {
-  font-size: 1rem;
-  color: #ccc;
+  font-size: 14px;
+  color: #b5b5b5;
+  line-height: 1.6;
   text-decoration: none;
   display: block;
-  margin-bottom: 8px;
 }
 
 .footer-col a:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
-/* bottom */
+.footer-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.footer-image img {
+  max-width: 180px;
+  opacity: 0.9;
+}
+
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 24px;
+  padding-top: 20px;
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
-  opacity: 0.6;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 13px;
+  color: #999;
 }
 
 .footer-link {
-  color: inherit;
+  color: #999;
   text-decoration: none;
-  transition: opacity 0.3s ease;
 }
 
 .footer-link:hover {
-  opacity: 1;
-  text-decoration: underline;
+  color: #fff;
 }
+
+/* ===== GRANULADO ===== */
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.08;
+  z-index: 1;
+  animation: grainMove 6s steps(10) infinite;
+}
+
+@keyframes grainMove {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+  100% { transform: translate(0, 0); }
+}
+
 
   </style>
 </head>
@@ -843,13 +849,11 @@ html, body {
   <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="imagem">
 </section>
 
-<footer class="footer-uao">
-  <div class="footer-inner">
+<footer class="footer">
+  <!-- camada do grão -->
+  <div class="grain"></div>
 
-    <h2 class="footer-title">
-      Venha dar um <span>PLAY</span> na sua vida!
-    </h2>
-
+  <div class="footer-content">
     <div class="footer-grid">
       <div class="footer-col">
         <h4>Sobre</h4>
@@ -870,18 +874,23 @@ html, body {
       </div>
     </div>
 
-    <div class="footer-bottom">
-  <span>© 2026 RedePlay. Todos os direitos reservados</span>
-  <a href="https://www.instagram.com/diaswzj" 
-     target="_blank" 
-     rel="noopener noreferrer"
-     class="footer-link">
-    @diaswzj | web dev.
-  </a>
-</div>
+    <!-- imagem centralizada -->
+    <div class="footer-image">
+      <img src="imagem-footer.png" alt="Footer Image">
+    </div>
 
+    <div class="footer-bottom">
+      <span>© 2026 RedePlay. Todos os direitos reservados</span>
+      <a href="https://www.instagram.com/diaswzj" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         class="footer-link">
+        @diaswzj | web dev.
+      </a>
+    </div>
   </div>
 </footer>
+
 
   <script>
   const nav = document.getElementById('navbar')
