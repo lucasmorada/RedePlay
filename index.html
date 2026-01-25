@@ -87,9 +87,20 @@ nav .logo,
   font-weight: 800;
 }
 
-    .logo {
-  font-weight: 800;
-  font-size: 1.4rem;
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 34px;   
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+nav.scrolled .logo img {
+  height: 26px;
 }
 
 .nav-center span {
@@ -596,86 +607,15 @@ html, body {
 }
 
 /* FOOTER */
-.footer-ridealso {
-  background: #0a0a0a;
-  color: #ddd;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 60px 20px 30px;
-}
-
-.footer-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* grid central */
-.footer-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 50px;
-  margin-bottom: 40px;
-}
-
-.footer-col h4 {
-  font-size: 15px;
-  text-transform: uppercase;
-  color: #fff;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-}
-
-.footer-col p,
-.footer-col a {
-  font-size: 14px;
-  color: #bbb;
-  margin: 4px 0;
-  text-decoration: none;
-}
-
-.footer-col a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-
-/* imagem central */
-.footer-img-wrap {
-  margin: 30px auto;
-}
-
-.footer-img-wrap img {
-  max-width: 180px;
-  opacity: 0.9;
-}
-
-/* bottom dark text */
-.footer-bottom {
-  border-top: 1px solid #222;
-  padding-top: 18px;
-  font-size: 13px;
-  color: #777;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.footer-credits {
-  color: #777;
-  text-decoration: none;
-}
-
-.footer-credits:hover {
-  color: #fff;
-}
 
   </style>
 </head>
 <body>
 
   <nav id="navbar">
-    <div class="logo">PLAY</div>
+    <div class="logo">
+  <img src="PLaybege.png" alt="Play logo">
+</div>
 
     <div class="nav-center">
   <a href="index.html">home</a>
@@ -696,7 +636,9 @@ html, body {
 
   <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-header">
-    <div class="logo">PLAY</div>
+    <div class="logo">
+  <img src="PLaybege.png" alt="Play logo">
+</div>
     <i class="fas fa-times" id="closeMenu"></i>
   </div>
 
@@ -827,46 +769,7 @@ html, body {
   <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="imagem">
 </section>
 
-<footer class="footer-ridealso">
-  <div class="footer-inner">
 
-    <!-- conteúdo centralizado -->
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Sobre</h4>
-        <p>textinho aqui</p>
-      </div>
-
-      <div class="footer-col">
-        <h4>Conectar</h4>
-        <a href="#">Instagram</a>
-        <a href="#">WhatsApp</a>
-        <a href="#">YouTube</a>
-      </div>
-
-      <div class="footer-col">
-        <h4>Local</h4>
-        <p>Araucária — PR</p>
-        <p>Todos os sábados</p>
-      </div>
-    </div>
-
-    <!-- imagem centralizada (qualquer imagem que tu quiser) -->
-    <div class="footer-img-wrap">
-      <img src="PLaybege.png" alt="Logo footer">
-    </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 RedePlay. Todos os direitos reservados</span>
-      <a class="footer-credits" 
-         href="https://www.instagram.com/diaswzj" 
-         target="_blank" rel="noopener noreferrer">
-        @diaswzj | web dev.
-      </a>
-    </div>
-
-  </div>
-</footer>
 
   <script>
   const nav = document.getElementById('navbar')
