@@ -85,7 +85,15 @@ nav .logo,
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: 800;
+  display: inline-block;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
+
+.nav-center a:hover {
+  transform: scale(1.12) translateY(-1px);
+  opacity: 0.85;
+}
+
 
 .logo {
   display: flex;
@@ -103,11 +111,14 @@ nav.scrolled .logo img {
   height: 26px;
 }
 
+nav.scrolled .logo {
+  margin-right: 24px;
+}
+
 .nav-center span {
   font-size: 1.8rem;
   font-weight: 800;
 }
-
 
     .nav-center span {
       cursor: pointer;
