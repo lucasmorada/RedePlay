@@ -94,13 +94,14 @@
 .navbar {
   position: fixed;
   top: 0;
-  left: 0;
-  transform: none;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
   padding: 20px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 40px;
   z-index: 1000;
   transition: all 0.45s ease;
   mix-blend-mode: difference;
@@ -348,11 +349,11 @@ nav.scrolled .logo {
 
     .article-title {
       font-family: 'Poppins';
-      font-size: 1.7rem;
+      font-size: 2rem;
       font-weight: 700;
       line-height: 1.4;
       letter-spacing: -0.02em;
-      margin-top: 0.1875rem;
+      margin-top: 0.1rem;
     }
 
     .article-title a {
