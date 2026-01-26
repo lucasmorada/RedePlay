@@ -105,22 +105,71 @@
   object-fit: contain;
 }
 
-    .nav-desktop {
-      display: none;
-      align-items: center;
-      gap: 2rem;
-    }
+    /* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  transition: all 0.45s ease;
+  mix-blend-mode: difference;
+}
 
-    .nav-link {
-      font-size: 1.125rem;
-      font-weight: 500;
-      color: hsl(var(--muted-foreground));
-      transition: color 0.2s;
-    }
+.navbar,
+.navbar a,
+.navbar i {
+  color: #fff;
+}
 
-    .nav-link:hover {
-      color: hsl(var(--foreground));
-    }
+/* DYNAMIC ISLAND MODE */
+.navbar.scrolled {
+  top: 15px;
+  width: auto;
+  padding: 14px 28px;
+  background: rgba(47, 45, 45, 0.35);
+  backdrop-filter: blur(16px);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+.navbar.scrolled .nav-icons {
+  display: none;
+}
+
+.navbar.scrolled .logo img {
+  height: 26px;
+}
+
+/* LINKS */
+.nav-center {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-center a {
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 800;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+.nav-center a:hover {
+  transform: scale(1.12);
+  opacity: .85;
+}
+
+/* ICONS */
+.nav-icons i {
+  font-size: 24px;
+  margin-left: 16px;
+  cursor: pointer;
+}
 
     .menu-button {
       display: flex;
@@ -217,7 +266,7 @@
 
     .hero-title {
       font-family: var(--font-display);
-      font-weight: 600;
+      font-weight: 800;
       font-size: clamp(4rem, 15vw, 12rem);
       line-height: 1;
       margin-bottom: 3rem;
@@ -375,12 +424,27 @@
        <img src="PLaybege.png" alt="Play logo">
       </div>
       
-      <!-- Desktop Nav -->
-      <nav class="nav-desktop">
-        <a href="#" class="nav-link">About the Author</a>
-        <a href="#" class="nav-link">Get in touch</a>
-        <button class="nav-link" onclick="alert('Newsletter coming soon!')">Newsletter</button>
-      </nav>
+      <!-- NAVBAR -->
+<nav id="navbar" class="navbar">
+  <div class="logo">
+    <img src="PLaybege.png" alt="Logo">
+  </div>
+
+  <div class="nav-center">
+    <a href="index.html">home</a>
+    <a href="adoles.html">adoles</a>
+    <a href="jvtd.html">JVTD</a>
+  </div>
+
+  <div class="nav-icons">
+    <i class="fab fa-instagram"></i>
+    <i class="fab fa-tiktok"></i>
+  </div>
+
+  <div class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+</nav>
 
       <!-- Mobile Menu Button -->
       <button class="menu-button" onclick="openMenu()" aria-label="Open menu">
@@ -524,6 +588,33 @@
       card.style.animationPlayState = 'paused';
       observer.observe(card);
     });
+
+    
+const nav = document.getElementById('navbar')
+
+let lastScroll = window.scrollY
+let mode = 'full'
+const trigger = 80
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.scrollY
+  const diff = currentScroll - lastScroll
+
+  // DESCENDO → vira island
+  if (diff > 5 && currentScroll > trigger && mode !== 'island') {
+    nav.classList.add('scrolled')
+    mode = 'island'
+  }
+
+  // SUBINDO → volta normal
+  if (diff < -5 && mode !== 'full') {
+    nav.classList.remove('scrolled')
+    mode = 'full'
+  }
+
+  lastScroll = currentScroll
+})
+
   </script>
 </body>
 </html>
