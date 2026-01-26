@@ -91,19 +91,20 @@
 }
 
     /* NAVBAR */
-.navbar {
+nav {
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: max-content;
+  width: 100%;
   padding: 20px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
   z-index: 1000;
+  color: #ffffff;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
   transition: all 0.45s ease;
+  will-change: transform;
   mix-blend-mode: difference;
 }
 
@@ -149,14 +150,6 @@ nav.scrolled .logo {
   font-size: 1.8rem;
   font-weight: 800;
   transition: transform .25s ease, opacity .25s ease;
-}
-
-.nav-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 30px;
 }
 
 .nav-center a:hover {
