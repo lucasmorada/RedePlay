@@ -122,6 +122,10 @@ nav .logo,
   object-fit: contain;
 }
 
+.logo a {
+  display: inline-block;
+}
+
 nav.scrolled .logo img {
   height: 26px;
 }
@@ -699,13 +703,22 @@ html, body {
   opacity: 0.9;
 }
 
+.footer-logo img:hover {
+  opacity: 1;
+  filter: grayscale(0%) brightness(1.15);
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.25));
+}
+
   </style>
 </head>
 <body>
 
   <nav id="navbar">
     <div class="logo">
-  <img src="PLaybege.png" alt="Play logo">
+  <a href="index.html">
+    <img src="PLaybege.png" alt="Play logo">
+  </a>
 </div>
 
     <div class="nav-center">
@@ -744,8 +757,6 @@ html, body {
       <source src="RECAP-MARCHA-PARA-JESUS-2-_1_-_1_-_1_-_1_.mp4" type="video/mp4">
     </video>
   </div>
-
-  <div class="hero-spacer"></div>
 
   <section>
     <div class="reveal">
