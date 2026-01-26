@@ -94,19 +94,18 @@
 .navbar {
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: max-content;
-  padding: 20px 40px;
-  display: flex;
+  left: 0;
+  width: 100%;
+  padding: 20px 48px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 40px;
+
   z-index: 1000;
   transition: all 0.45s ease;
   mix-blend-mode: difference;
 }
-
 
 .navbar,
 .navbar a,
