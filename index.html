@@ -634,10 +634,16 @@ html, body {
 
 /* FOOTER */
 .footer {
-  background: #000;
+  position: relative;
+  background: linear-gradient(
+    to top,
+    #000000 0%,
+    #0a0a0a 40%,
+    #111111 100%
+  );
   color: #bdbdbd;
-  padding: 80px 8vw 60px;
-  font-family: 'Poppins', sans-serif;
+  padding: 120px 8vw 80px;
+  overflow: hidden;
 }
 
 .footer-content {
