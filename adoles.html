@@ -7,7 +7,7 @@
   <meta name="description" content="A modern travel and lifestyle newsroom featuring inspiring stories and destination features">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet">
   
   <style>
@@ -25,8 +25,8 @@
       --muted-foreground: 45 10% 45%;
       --primary: 25 80% 50%;
       --border: 45 20% 88%;
-      --font-sans: 'Archivo', system-ui, sans-serif;
-      --font-display: 'Clash Display', 'Playfair Display', serif;
+      --font-sans: 'Poppins', system-ui, sans-serif;
+      --font-display: 'Poppins', 'Playfair Display', serif;
     }
 
     html {
@@ -94,11 +94,16 @@
     }
 
     .logo {
-      font-family: var(--font-sans);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: hsl(var(--foreground));
-    }
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 34px;   
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
 
     .nav-desktop {
       display: none;
@@ -366,7 +371,9 @@
   <!-- Header -->
   <header class="header">
     <div class="header-inner">
-      <a href="#" class="logo">play</a>
+      <div class="logo">
+       <img src="PLaybege.png" alt="Play logo">
+      </div>
       
       <!-- Desktop Nav -->
       <nav class="nav-desktop">
@@ -419,7 +426,7 @@
     <ul class="articles-grid">
       <li class="article-card">
         <a href="#" class="article-image-wrapper">
-          <img src="/images/pexels-brianasarejr-12417686.jpg" alt="Exploring the Nordic Wilderness" class="article-image">
+          <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Exploring the Nordic Wilderness" class="article-image">
         </a>
         <div class="article-meta">
           <time class="article-date">R. Antônio Panek, 73</time>
@@ -431,7 +438,7 @@
 
       <li class="article-card">
         <a href="#" class="article-image-wrapper">
-          <img src="/images/pexels-jameshausley-3328337.jpg" alt="The Art of Slow Travel" class="article-image">
+          <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="The Art of Slow Travel" class="article-image">
         </a>
         <div class="article-meta">
           <time class="article-date">R. Antônio Panek, 73</time>
@@ -443,7 +450,7 @@
 
       <li class="article-card">
         <a href="#" class="article-image-wrapper">
-          <img src="/images/amina-atar-tPM3nd4J8xs-unsplash.jpg" alt="Mediterranean Mornings" class="article-image">
+          <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Mediterranean Mornings" class="article-image">
         </a>
         <div class="article-meta">
           <time class="article-date">R. Antônio Panek, 73</time>
@@ -455,7 +462,7 @@
 
       <li class="article-card">
         <a href="#" class="article-image-wrapper">
-          <img src="/images/pexels-adrienne-andersen-1174503-2661255.jpg" alt="Desert Dreams" class="article-image">
+          <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Desert Dreams" class="article-image">
         </a>
         <div class="article-meta">
           <time class="article-date">R. Antônio Panek, 73</time>
