@@ -633,6 +633,60 @@ html, body {
 }
 
 /* FOOTER */
+/* CSS base (clean like RideAlso) */
+.footer {
+  background: #fff;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  color: #111;
+  text-align: left;
+}
+
+.footer-container {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-col h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col a {
+  text-decoration: none;
+  color: #111;
+  font-size: 14px;
+  display: block;
+  margin: 6px 0;
+}
+
+.footer-social {
+  margin: 20px 0;
+  display: flex;
+  gap: 15px;
+}
+
+.footer-social img {
+  width: 24px;
+}
+
+.footer-legal {
+  font-size: 12px;
+  color: #555;
+}
+
+.footer-legal a {
+  text-decoration: none;
+  color: #555;
+}
 
   </style>
 </head>
@@ -648,7 +702,6 @@ html, body {
   <a href="adoles.html">adoles</a>
   <a href="jvtd.html">JVTD</a>
 </div>
-
 
     <div class="nav-icons">
       <i class="fab fa-instagram"></i>
@@ -841,7 +894,63 @@ html, body {
   <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="imagem">
 </section>
 
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
 
+    <div class="footer-col">
+      <h4>Bike</h4>
+      <ul>
+        <li><a href="#">TM-B Discover</a></li>
+        <li><a href="#">Alpha Wave</a></li>
+        <li><a href="#">TM-Q</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Partnerships</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Customer Support</a></li>
+        <li><a href="#">Service</a></li>
+        <li><a href="#">Corporate Sales</a></li>
+        <li><a href="#">Financing</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Account</h4>
+      <ul>
+        <li><a href="#">Log-In</a></li>
+        <li><a href="#">Orders</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-social">
+    <a href="#"><img src="linkedin-icon.svg" alt="LinkedIn"></a>
+    <a href="#"><img src="instagram-icon.svg" alt="Instagram"></a>
+    <a href="#"><img src="tiktok-icon.svg" alt="TikTok"></a>
+    <a href="#"><img src="youtube-icon.svg" alt="YouTube"></a>
+  </div>
+
+  <div class="footer-legal">
+    <a href="#">Media Inquiries</a> •
+    <a href="#">Terms</a> •
+    <a href="#">Privacy</a> •
+    <a href="#">Supplier Terms</a>
+  </div>
+</footer>
 
   <script>
   const nav = document.getElementById('navbar')
