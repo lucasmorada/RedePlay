@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="PLaybege.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="PLaybege.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="PLaybege.png">
   <title>Células adoles</title>
-  <meta name="description" content="A modern travel and lifestyle newsroom featuring inspiring stories and destination features">
+  <meta name="description" content="venha fazer parte das nossas células!">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet">
@@ -75,24 +78,6 @@
       width: 100%;
     }
 
-    /* Header */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background-color: hsl(var(--background));
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 72px;
-      padding: 1rem 1.5rem;
-      max-width: 90rem;
-      margin: 0 auto;
-    }
-
     .logo {
   display: flex;
   align-items: center;
@@ -109,8 +94,8 @@
 .navbar {
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  transform: none;
   width: 100%;
   padding: 20px 40px;
   display: flex;
@@ -131,6 +116,8 @@
 .navbar.scrolled {
   top: 15px;
   width: auto;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 14px 28px;
   background: rgba(47, 45, 45, 0.35);
   backdrop-filter: blur(16px);
@@ -144,6 +131,10 @@
 
 .navbar.scrolled .logo img {
   height: 26px;
+}
+
+nav.scrolled .logo {
+  margin-right: 24px;
 }
 
 /* LINKS */
@@ -267,7 +258,7 @@
     .hero-title {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(4rem, 15vw, 12rem);
+      font-size: clamp(4rem, 14vw, 11rem);
       line-height: 1;
       margin-bottom: 3rem;
     }
@@ -351,14 +342,14 @@
     .article-date {
       text-transform: uppercase;
       color: hsl(var(--muted-foreground));
-      font-size: 0.75rem;
+      font-size: 1rem;
       font-family: var(--font-sans);
     }
 
     .article-title {
-      font-family: var(--font-display);
-      font-size: 1.375rem;
-      font-weight: 600;
+      font-family: 'Poppins';
+      font-size: 1.7rem;
+      font-weight: 700;
       line-height: 1.4;
       letter-spacing: -0.02em;
       margin-top: 0.1875rem;
@@ -417,12 +408,6 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="header-inner">
-      <div class="logo">
-       <img src="PLaybege.png" alt="Play logo">
-      </div>
       
       <!-- NAVBAR -->
 <nav id="navbar" class="navbar">
@@ -466,10 +451,9 @@
       </svg>
     </button>
     <nav class="mobile-nav">
-      <a href="#" class="mobile-nav-link">Home</a>
-      <a href="#" class="mobile-nav-link">About the Author</a>
-      <a href="#" class="mobile-nav-link">Get in touch</a>
-      <button class="mobile-nav-link" onclick="alert('Newsletter coming soon!')">Newsletter</button>
+      <a href="index.html" class="mobile-nav-link">home</a>
+      <a href="adoles.html" class="mobile-nav-link">adoles</a>
+      <a href="jvtd.html" class="mobile-nav-link">JVTD</a>
     </nav>
   </div>
 
