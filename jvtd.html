@@ -363,7 +363,7 @@
     }
 
     .hero-tagline {
-      padding: 128px 24px 112px;
+      padding: 160px 24px 112px;
       text-align: center;
     }
 
@@ -1130,151 +1130,6 @@
       background: linear-gradient(to top, var(--background), rgba(255, 255, 255, 0.6), transparent);
     }
 
-    /* Footer */
-    .footer {
-      background: var(--background);
-    }
-
-    .footer-main {
-      border-top: 1px solid var(--border);
-      padding: 64px 24px;
-    }
-
-    @media (min-width: 768px) {
-      .footer-main {
-        padding: 80px 48px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .footer-main {
-        padding: 80px;
-      }
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 48px;
-    }
-
-    @media (min-width: 768px) {
-      .footer-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .footer-grid {
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-      }
-    }
-
-    .footer-brand {
-      grid-column: span 2;
-    }
-
-    @media (min-width: 768px) {
-      .footer-brand {
-        grid-column: span 1;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .footer-brand {
-        grid-column: span 2;
-      }
-    }
-
-    .footer-logo {
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--foreground);
-    }
-
-    .footer-brand p {
-      margin-top: 16px;
-      max-width: 320px;
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--muted-foreground);
-    }
-
-    .footer-column h4 {
-      margin-bottom: 16px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--foreground);
-    }
-
-    .footer-column ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .footer-column ul li a {
-      font-size: 14px;
-      color: var(--muted-foreground);
-      transition: color 0.2s ease;
-    }
-
-    .footer-column ul li a:hover {
-      color: var(--foreground);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid var(--border);
-      padding: 24px;
-    }
-
-    @media (min-width: 768px) {
-      .footer-bottom {
-        padding: 24px 48px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .footer-bottom {
-        padding: 24px 80px;
-      }
-    }
-
-    .footer-bottom-inner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    @media (min-width: 768px) {
-      .footer-bottom-inner {
-        flex-direction: row;
-      }
-    }
-
-    .footer-bottom p {
-      font-size: 12px;
-      color: var(--muted-foreground);
-    }
-
-    .footer-social {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .footer-social a {
-      font-size: 12px;
-      color: var(--muted-foreground);
-      transition: color 0.2s ease;
-    }
-
-    .footer-social a:hover {
-      color: var(--foreground);
-    }
 
     /* Icon SVG styles */
     .icon {
@@ -1287,19 +1142,16 @@
   <main>
     <!-- Header -->
     <header class="header" id="header">
-      <div class="header-inner">
-        <a href="#" class="header-logo">Play</a>
-        
+      <div class="header-inner">                
+  <a href="#" class="header-logo">
+    <img src="PLaybege.png" alt="Play">
+  </a>
         <nav class="header-nav">
-          <a href="#products">Products</a>
-          <a href="#technology">Technology</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#accessories">Accessories</a>
+          <a href="#products">section</a>
+          <a href="#technology">section</a>
+          <a href="#gallery">section</a>
+          <a href="#accessories">section</a>
         </nav>
-        
-        <div class="header-cta">
-          <a href="#reserve">Buy the product</a>
-        </div>
         
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
           <svg class="icon" id="menuIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1537,111 +1389,6 @@
       </div>
     </section>
 
-    <!-- Collection Section -->
-    <section class="collection-section" id="accessories">
-      <div class="collection-header">
-        <h2>células</h2>
-      </div>
-      
-      <!-- Mobile Carousel -->
-      <div class="collection-carousel">
-        <div class="collection-carousel-item">
-          <div class="collection-card">
-            <div class="collection-card-image">
-              <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Wireless Charging Stand" class="fade-image">
-            </div>
-            <div class="collection-card-content">
-              <div class="collection-card-info">
-                <div>
-                  <h3 class="collection-card-title">Wireless Charging Stand</h3>
-                  <p class="collection-card-desc">Induction charging dock for effortless power</p>
-                </div>
-                <span class="collection-card-price">$89</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="collection-carousel-item">
-          <div class="collection-card">
-            <div class="collection-card-image">
-              <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Protective Silicone Sleeve" class="fade-image">
-            </div>
-            <div class="collection-card-content">
-              <div class="collection-card-info">
-                <div>
-                  <h3 class="collection-card-title">Protective Silicone Sleeve</h3>
-                  <p class="collection-card-desc">Textured grip sleeve for enhanced durability</p>
-                </div>
-                <span class="collection-card-price">$45</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="collection-carousel-item">
-          <div class="collection-card">
-            <div class="collection-card-image">
-              <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Carbon Fiber Bike Mount" class="fade-image">
-            </div>
-            <div class="collection-card-content">
-              <div class="collection-card-info">
-                <div>
-                  <h3 class="collection-card-title">Carbon Fiber Bike Mount</h3>
-                  <p class="collection-card-desc">Ultra-light mounting system for cycling</p>
-                </div>
-                <span class="collection-card-price">$129</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="collection-carousel-item">
-          <div class="collection-card">
-            <div class="collection-card-image">
-              <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Premium Carry Strap" class="fade-image">
-            </div>
-            <div class="collection-card-content">
-              <div class="collection-card-info">
-                <div>
-                  <h3 class="collection-card-title">Premium Carry Strap</h3>
-                  <p class="collection-card-desc">Adjustable strap with quick-release clips</p>
-                </div>
-                <span class="collection-card-price">$39</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="collection-carousel-item">
-          <div class="collection-card">
-            <div class="collection-card-image">
-              <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Carabiner Clip System" class="fade-image">
-            </div>
-            <div class="collection-card-content">
-              <div class="collection-card-info">
-                <div>
-                  <h3 class="collection-card-title">Carabiner Clip System</h3>
-                  <p class="collection-card-desc">Secure attachment for hands-free carrying</p>
-                </div>
-                <span class="collection-card-price">$29</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="collection-carousel-item">
-          <div class="collection-card">
-            <div class="collection-card-image">
-              <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Bluetooth Speaker Base" class="fade-image">
-            </div>
-            <div class="collection-card-content">
-              <div class="collection-card-info">
-                <div>
-                  <h3 class="collection-card-title">Bluetooth Speaker Base</h3>
-                  <p class="collection-card-desc">High-fidelity audio dock with grip stabilizers</p>
-                </div>
-                <span class="collection-card-price">$149</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       
       <!-- Desktop Grid -->
       <div class="collection-grid">
@@ -1733,25 +1480,6 @@
     </section>
 
     <!-- Editorial Section -->
-    <section class="editorial-section">
-      <div class="specs-grid">
-        <div class="specs-item">
-          <p class="specs-label">Weight</p>
-          <p class="specs-value">400g</p>
-        </div>
-        <div class="specs-item">
-          <p class="specs-label">Capacity</p>
-          <p class="specs-value">0.5L - 2L</p>
-        </div>
-        <div class="specs-item">
-          <p class="specs-label">Setup</p>
-          <p class="specs-value">2 min</p>
-        </div>
-        <div class="specs-item">
-          <p class="specs-label">Packed size</p>
-          <p class="specs-value">30 x 15 cm</p>
-        </div>
-      </div>
       <div class="editorial-video">
         <video autoplay loop muted playsinline src="RECAP-MARCHA-PARA-JESUS-2-_1_-_1_-_1_-_1_.mp4"></video>
       </div>
@@ -1760,7 +1488,7 @@
     <!-- Testimonials Section -->
     <section class="testimonials-section" id="about">
       <div class="testimonials-text">
-        <p>Alpine & Forest accessories combine aerospace-grade materials with cutting-edge technology - designed for explorers who refuse to compromise on quality or performance in the wild.</p>
+        <p>"Porque Deus amou o mundo de tal maneira que deu o seu Filho Unigênito, para que todo o que nele crer não pereça, mas tenha a vida eterna"</p>
       </div>
       <div class="testimonials-image">
         <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Mountain peaks at sunrise">
@@ -1768,54 +1496,6 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-main">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <a href="/" class="footer-logo">EVASION</a>
-            <p>Premium smart bottles engineered for adventure. GPS tracking, LED flashlight, and self-heating technology.</p>
-          </div>
-          <div class="footer-column">
-            <h4>Explore</h4>
-            <ul>
-              <li><a href="#products">Products</a></li>
-              <li><a href="#technology">Technology</a></li>
-              <li><a href="#gallery">Gallery</a></li>
-              <li><a href="#accessories">Accessories</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h4>About</h4>
-            <ul>
-              <li><a href="#">Our Story</a></li>
-              <li><a href="#">Team</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h4>Service</h4>
-            <ul>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Shipping</a></li>
-              <li><a href="#">Returns</a></li>
-              <li><a href="#">Warranty</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-bottom-inner">
-          <p>2026 EVASION. All rights reserved.</p>
-          <div class="footer-social">
-            <a href="#">Instagram</a>
-            <a href="#">Twitter</a>
-            <a href="#">YouTube</a>
-          </div>
-        </div>
-      </div>
-    </footer>
   </main>
 
   <script>
