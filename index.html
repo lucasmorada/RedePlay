@@ -715,9 +715,29 @@ html, body {
           drop-shadow(0 0 25px rgba(255, 255, 255, 0.35));
 }
 
+.image-overlay-text {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+  z-index: 5;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
 
+.image-overlay-text h2 {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1;
+}
 
-
+.image-overlay-text p {
+  margin-top: 14px;
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.85);
+}
 
   </style>
 </head>
@@ -924,6 +944,11 @@ html, body {
 
 <section class="full-image-section">
   <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="imagem">
+
+  <div class="image-overlay-text" id="fadeText">
+    <h2>isso é mais que um evento.</h2>
+    <p>é sobre viver algo real juntos.</p>
+  </div>
 </section>
 
 <footer class="footer">
@@ -1040,6 +1065,28 @@ revealOnScroll()
 
 // ativa ao scrollar
 window.addEventListener('scroll', revealOnScroll)
+
+
+
+
+const fadeText = document.getElementById('fadeText')
+const imageSection = document.querySelector('.full-image-section')
+
+window.addEventListener('scroll', () => {
+  const rect = imageSection.getBoundingClientRect()
+  const windowHeight = window.innerHeight
+
+  // progresso do scroll dentro da seção
+  const progress = 1 - rect.bottom / windowHeight
+
+  // clamp entre 0 e 1
+  const clamped = Math.max(0, Math.min(1, progress))
+
+  fadeText.style.opacity = 1 - clamped
+  fadeText.style.transform = `
+    translateX(-50%) translateY(${clamped * 40}px)
+  `
+})
 
 </script>
 
