@@ -715,29 +715,49 @@ html, body {
           drop-shadow(0 0 25px rgba(255, 255, 255, 0.35));
 }
 
+
+
+.lock-section {
+  height: 200vh; /* controla o "tempo" travado */
+  background: #000;
+}
+
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sticky-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .image-overlay-text {
   position: absolute;
-  bottom: 12%;
+  bottom: 14%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   color: #fff;
   z-index: 5;
-  transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
 }
 
 .image-overlay-text h2 {
   font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 900;
-  line-height: 1;
 }
 
 .image-overlay-text p {
-  margin-top: 14px;
+  margin-top: 16px;
   font-size: 1.2rem;
-  color: rgba(255,255,255,0.85);
+  opacity: 0.85;
 }
+
 
   </style>
 </head>
@@ -942,12 +962,14 @@ html, body {
   </div>
 </div>
 
-<section class="full-image-section">
-  <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="imagem">
+<section class="full-image-section lock-section">
+  <div class="sticky-wrapper">
+    <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="imagem">
 
-  <div class="image-overlay-text" id="fadeText">
-    <h2>isso é mais que um evento.</h2>
-    <p>é sobre viver algo real juntos.</p>
+    <div class="image-overlay-text" id="lockText">
+      <h2>isso é mais que um evento.</h2>
+      <p>é sobre viver algo real juntos.</p>
+    </div>
   </div>
 </section>
 
@@ -1069,22 +1091,18 @@ window.addEventListener('scroll', revealOnScroll)
 
 
 
-const fadeText = document.getElementById('fadeText')
-const imageSection = document.querySelector('.full-image-section')
+const lockSection = document.querySelector('.lock-section')
+const lockText = document.getElementById('lockText')
 
 window.addEventListener('scroll', () => {
-  const rect = imageSection.getBoundingClientRect()
-  const windowHeight = window.innerHeight
+  const rect = lockSection.getBoundingClientRect()
+  const progress = 1 - rect.bottom / window.innerHeight
 
-  // progresso do scroll dentro da seção
-  const progress = 1 - rect.bottom / windowHeight
-
-  // clamp entre 0 e 1
   const clamped = Math.max(0, Math.min(1, progress))
 
-  fadeText.style.opacity = 1 - clamped
-  fadeText.style.transform = `
-    translateX(-50%) translateY(${clamped * 40}px)
+  lockText.style.opacity = 1 - clamped
+  lockText.style.transform = `
+    translateX(-50%) translateY(${clamped * 50}px)
   `
 })
 
