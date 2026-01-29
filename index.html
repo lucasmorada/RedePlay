@@ -715,163 +715,6 @@ html, body {
           drop-shadow(0 0 25px rgba(255, 255, 255, 0.35));
 }
 
-
-
-.technology-section {
-      position: relative;
-      background: var(--foreground);
-    }
-
-    .technology-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .technology-container {
-      display: flex;
-      height: 100%;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .technology-bento {
-      position: relative;
-      display: flex;
-      height: 100%;
-      width: 100%;
-      align-items: stretch;
-      justify-content: center;
-    }
-
-    .technology-side-column {
-      display: flex;
-      flex-direction: column;
-      will-change: transform;
-    }
-
-    .technology-side-image {
-      position: relative;
-      overflow: hidden;
-      will-change: transform;
-    }
-
-    .technology-side-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .technology-main {
-      position: relative;
-      overflow: hidden;
-      will-change: transform;
-    }
-
-    .technology-main img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .technology-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(10, 10, 10, 0.4);
-    }
-
-    .technology-text {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0 24px;
-      text-align: center;
-    }
-
-    .technology-title {
-      max-width: 768px;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      color: white;
-      font-size: 58px;
-    }
-
-    @media (min-width: 768px) {
-      .technology-title {
-        font-size: 48px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .technology-title {
-        font-size: 72px;
-      }
-    }
-
-    .technology-title span {
-      display: inline-block;
-      transition: opacity 0.1s linear, filter 0.1s linear;
-    }
-
-    .technology-scroll-space {
-      height: 200vh;
-    }
-
-    .technology-description {
-      position: relative;
-      overflow: hidden;
-      background: var(--background);
-      padding: 96px 24px;
-    }
-
-    @media (min-width: 768px) {
-      .technology-description {
-        padding: 128px 48px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .technology-description {
-        padding: 160px 80px;
-      }
-    }
-
-    .technology-description-text {
-      position: relative;
-      z-index: 10;
-      max-width: 896px;
-      margin: 0 auto;
-    }
-
-    .technology-description p {
-      font-size: 40px;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
-    @media (min-width: 768px) {
-      .technology-description p {
-        font-size: 36px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .technology-description p {
-        font-size: 48px;
-      }
-    }
-
-    .technology-description p span {
-      transition: color 0.15s ease;
-    }
-
-
   </style>
 </head>
 <body>
@@ -1072,57 +915,36 @@ html, body {
       <img src="PLaybege.png" alt="">
       <img src="PLaybege.png" alt="">
     </div>
+
+    <div class="marquee-group">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+    </div>
+
+    <div class="marquee-group">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+    </div>
+
+    <div class="marquee-group">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+      <img src="PLaybege.png" alt="">
+    </div>
   </div>
 </div>
 
-<!-- Technology Section -->
-    <section class="technology-section" id="technologySection">
-      <div class="technology-sticky">
-        <div class="technology-container">
-          <div class="technology-bento" id="technologyBento">
-            <!-- Left Column -->
-            <div class="technology-side-column" id="techLeftColumn">
-              <div class="technology-side-image">
-                <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Forest trail">
-              </div>
-              <div class="technology-side-image">
-                <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Mountain peak">
-              </div>
-            </div>
-
-            <!-- Main Center Image -->
-            <div class="technology-main" id="technologyMain">
-              <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Aerial view of camping expedition in wilderness">
-              <div class="technology-overlay"></div>
-              <div class="technology-text">
-                <h2 class="technology-title" id="technologyTitle">
-                  <span>Rede</span>
-                  <span>Play</span>
-                  <br>
-                  <span>IEQ Costeira</span>
-                </h2>
-              </div>
-            </div>
-
-            <!-- Right Column -->
-            <div class="technology-side-column" id="techRightColumn">
-              <div class="technology-side-image">
-                <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Alpine landscape">
-              </div>
-              <div class="technology-side-image">
-                <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="Snow mountain">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="technology-scroll-space"></div>
-      <div class="technology-description" id="techDescription">
-        <div class="technology-description-text">
-          <p id="scrollRevealText"></p>
-        </div>
-      </div>
-    </section>
+<section class="full-image-section"> 
+  <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="imagem">
+ </section>
 
 <footer class="footer">
   <div class="footer-content">
@@ -1242,78 +1064,6 @@ window.addEventListener('scroll', revealOnScroll)
 
 
 
-
-//teste
-
-// ===== TECHNOLOGY SECTION ANIMATION =====
-    const technologySection = document.getElementById('technologySection');
-    const technologyBento = document.getElementById('technologyBento');
-    const technologyMain = document.getElementById('technologyMain');
-    const techLeftColumn = document.getElementById('techLeftColumn');
-    const techRightColumn = document.getElementById('techRightColumn');
-    const technologyTitle = document.getElementById('technologyTitle');
-
-    function updateTechnologyAnimation() {
-      if (!technologySection) return;
-      
-      const rect = technologySection.getBoundingClientRect();
-      const scrollableHeight = window.innerHeight * 2;
-      const scrolled = -rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
-
-      // Image transforms start after title fades (0.2 to 1)
-      const imageProgress = Math.max(0, Math.min(1, (progress - 0.2) / 0.8));
-      
-      // Smooth interpolations
-      const centerWidth = 100 - (imageProgress * 58);
-      const sideWidth = imageProgress * 22;
-      const sideOpacity = imageProgress;
-      const sideTranslateLeft = -100 + (imageProgress * 100);
-      const sideTranslateRight = 100 - (imageProgress * 100);
-      const borderRadius = imageProgress * 24;
-      const gap = imageProgress * 16;
-
-      // Apply styles
-      technologyBento.style.gap = `${gap}px`;
-      technologyBento.style.padding = `${imageProgress * 16}px`;
-
-      technologyMain.style.width = `${centerWidth}%`;
-      technologyMain.style.height = '100%';
-      technologyMain.style.borderRadius = `${borderRadius}px`;
-
-      techLeftColumn.style.width = `${sideWidth}%`;
-      techLeftColumn.style.gap = `${gap}px`;
-      techLeftColumn.style.transform = `translateX(${sideTranslateLeft}%)`;
-      techLeftColumn.style.opacity = sideOpacity;
-
-      techRightColumn.style.width = `${sideWidth}%`;
-      techRightColumn.style.gap = `${gap}px`;
-      techRightColumn.style.transform = `translateX(${sideTranslateRight}%)`;
-      techRightColumn.style.opacity = sideOpacity;
-
-      // Update side images border radius
-      techLeftColumn.querySelectorAll('.technology-side-image').forEach(img => {
-        img.style.flex = 1;
-        img.style.borderRadius = `${borderRadius}px`;
-      });
-      techRightColumn.querySelectorAll('.technology-side-image').forEach(img => {
-        img.style.flex = 1;
-        img.style.borderRadius = `${borderRadius}px`;
-      });
-
-      // Title word-by-word fade
-      const titleWords = technologyTitle.querySelectorAll('span');
-      titleWords.forEach((word, index) => {
-        const wordFadeStart = index * 0.07;
-        const wordFadeEnd = wordFadeStart + 0.07;
-        const wordProgress = Math.max(0, Math.min(1, (progress - wordFadeStart) / (wordFadeEnd - wordFadeStart)));
-        const wordOpacity = 1 - wordProgress;
-        const wordBlur = wordProgress * 10;
-        
-        word.style.opacity = wordOpacity;
-        word.style.filter = `blur(${wordBlur}px)`;
-      });
-    }
 </script>
 
 </body>
