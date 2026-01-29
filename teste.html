@@ -322,6 +322,7 @@
       animation: fadeInUp 0.3s ease forwards;
     }
 
+
     /* Articles Grid */
     .articles-section {
       padding: 2rem 1.5rem;
@@ -409,6 +410,49 @@
 
     .article-title a:hover {
       color: hsl(var(--primary));
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid hsl(var(--border));
+      margin-top: 6rem;
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    /* Responsive */
+    @media (min-width: 768px) {
+      .nav-desktop {
+        display: flex;
+      }
+
+      .menu-button {
+        display: none;
+      }
+
+      .hero-description {
+        font-size: 1.5rem;
+      }
+
+      .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem 1.5rem;
+      }
+
+      .article-title {
+        font-size: 1.6875rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .articles-section {
+        padding: 2rem 3rem;
+      }
     }
 
     /* Footer */
@@ -855,6 +899,27 @@
     // Initialize Scramble Text
     document.querySelectorAll('.scramble-text').forEach(el => {
       new ScrambleText(el);
+    });
+    
+
+    // Mobile Menu Functions
+    function openMenu() {
+      document.getElementById('mobileMenu').classList.add('open');
+      document.getElementById('menuOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('menuOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeMenu();
+      }
     });
 
     // Intersection Observer for scroll animations
