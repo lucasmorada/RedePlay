@@ -181,6 +181,7 @@ nav.scrolled .logo {
 }
 
 section,
+.text-marquee,
 .image-marquee,
 .blog-section,
 .full-image-section,
@@ -394,11 +395,6 @@ section:first-of-type {
   opacity: 0.4;
 }
 
-.text-marquee-group span:not(.separator) {
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.8);
-}
-
 .text-marquee-track:hover {
   animation-play-state: paused;
 }
@@ -420,7 +416,6 @@ section:first-of-type {
     margin-right: 20px;
   }
 }
-
 
 /* BOTÃO HAMBURGUER */
 .menu-toggle {
@@ -678,6 +673,90 @@ section:first-of-type {
     text-align: center;
   }
 }
+
+
+/* =========================
+   PARALLAX TILT SECTION
+========================= */
+.parallax-tilt-section {
+  position: relative;
+  height: 120vh;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+/* imagem de fundo */
+.parallax-bg {
+  position: absolute;
+  inset: -10%;
+  background-image: url("4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg");
+  background-size: cover;
+  background-position: center;
+  transform: translateZ(-200px) scale(1.2);
+  will-change: transform;
+}
+
+/* overlay */
+.parallax-tilt-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.75)
+  );
+}
+
+/* conteúdo */
+.parallax-content {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease;
+  z-index: 2;
+}
+
+.parallax-content h2 {
+  font-size: clamp(4rem, 9vw, 7rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.parallax-content h2 span {
+  display: inline-block;
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  transform: translateZ(80px);
+}
+
+.parallax-content p {
+  margin-top: 30px;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  transform: translateZ(60px);
+}
+
+/* MOBILE — desliga 3D */
+@media (max-width: 768px) {
+  .parallax-tilt-section {
+    perspective: none;
+  }
+
+  .parallax-content {
+    transform: none !important;
+  }
+}
+
+
+
 
 
 .full-image-section {
@@ -991,6 +1070,26 @@ html, body {
 
 
 
+
+<section class="parallax-tilt-section">
+  <div class="parallax-bg"></div>
+
+  <div class="parallax-content">
+    <h2>
+      UMA GERAÇÃO <br>
+      <span>VIVA</span>
+    </h2>
+
+    <p>
+      não é sobre aparência.<br>
+      é sobre profundidade.
+    </p>
+  </div>
+</section>
+
+
+
+
 <section class="full-image-section"> 
   <img src="4DAD7D35-D9C6-4CA0-BBF9-9002DC120159.JPG.jpeg" alt="imagem">
  </section>
@@ -1109,6 +1208,43 @@ revealOnScroll()
 
 // ativa ao scrollar
 window.addEventListener('scroll', revealOnScroll)
+
+
+
+
+/* =========================
+   PARALLAX + MOUSE TILT
+========================= */
+const parallaxSection = document.querySelector('.parallax-tilt-section')
+const parallaxBg = document.querySelector('.parallax-bg')
+const parallaxContent = document.querySelector('.parallax-content')
+
+// mouse tilt
+parallaxSection.addEventListener('mousemove', (e) => {
+  const { width, height, left, top } = parallaxSection.getBoundingClientRect()
+  const x = e.clientX - left
+  const y = e.clientY - top
+
+  const rotateY = ((x / width) - 0.5) * 16
+  const rotateX = ((y / height) - 0.5) * -16
+
+  parallaxContent.style.transform =
+    `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+})
+
+parallaxSection.addEventListener('mouseleave', () => {
+  parallaxContent.style.transform = `rotateX(0) rotateY(0)`
+})
+
+// parallax scroll da imagem
+window.addEventListener('scroll', () => {
+  const rect = parallaxSection.getBoundingClientRect()
+  const scrollProgress = rect.top / window.innerHeight
+
+  parallaxBg.style.transform =
+    `translateY(${scrollProgress * 60}px) scale(1.2)`
+})
+
 
 </script>
 
