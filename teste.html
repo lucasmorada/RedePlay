@@ -199,6 +199,22 @@ nav.scrolled .logo {
       color: hsl(var(--primary));
     }
 
+    .logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;   
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.logo a {
+  display: inline-block;
+}
+
     /* Noise Canvas */
     #noise-canvas {
       position: absolute;
@@ -1132,8 +1148,7 @@ nav.scrolled .logo {
       observer.observe(card);
     });
 
-
-    const nav = document.getElementById('navbar')
+const nav = document.getElementById('navbar')
 
 let lastScroll = window.scrollY
 let mode = 'full'
