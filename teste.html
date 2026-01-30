@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>INTERFACE - Hero Section</title>
+  <title>Play adoles</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,11 +19,11 @@
     }
 
     :root {
-      --background: #141414;
-      --foreground: #f0f0f0;
+      --background: #ffffff;
+      --foreground: #1d1c1c;
       --muted-foreground: #888888;
       --accent: #f97316;
-      --border: #3d3d3d;
+      --border: #1d1d1d;
     }
 
     html, body {
@@ -209,8 +209,8 @@
     /* Subtitle */
     .subtitle {
       font-family: 'Bebas Neue', sans-serif;
-      color: rgba(136, 136, 136, 0.6);
-      font-size: clamp(1rem, 3vw, 2rem);
+      color: rgba(18, 17, 17, 0.6);
+      font-size: clamp(2rem, 4vw, 3rem);
       margin-top: 1rem;
       letter-spacing: 0.05em;
     }
@@ -406,6 +406,7 @@
 
     .article-title a {
       transition: color 0.3s;
+      text-decoration: none;
     }
 
     .article-title a:hover {
@@ -475,11 +476,6 @@
     <!-- Animated Noise Canvas -->
     <canvas id="noise-canvas"></canvas>
 
-    <!-- Side Label -->
-    <div class="side-label">
-      <span>SIGNAL</span>
-    </div>
-
     <!-- Main Content -->
     <div class="hero-content">
       <!-- Split Flap Text -->
@@ -500,34 +496,28 @@
             <path d="m23 9-6 6"></path>
             <path d="m17 9 6 6"></path>
           </svg>
-          <span id="mute-text">Sound Off</span>
+          <span id="mute-text">Som desligado</span>
         </button>
       </div>
 
       <!-- Subtitle -->
-      <h2 class="subtitle">Studies in Controlled Environments</h2>
-
-      <!-- Description -->
-      <p class="description">
-        We design systems that behave, not just screens that display. Signals from the edge of what's shippable.
-      </p>
+      <h2 class="subtitle">TEXTINHO CÉLULAS DE ADOLES</h2>
 
       <!-- Buttons -->
       <div class="buttons">
         <a href="#work" class="btn-primary">
-          <span class="scramble-text" id="scramble-btn" data-text="View Experiments">View Experiments</span>
+          <span class="scramble-text" id="scramble-btn" data-text="View Experiments">DA UMA OLHADA AQUI!</span>
           <svg class="chevron" width="18" height="18" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.85715 3.85715H19.2857L23.0553 7.64066L17.5163 13.1595L22.8462 17.5055V23.1429H17.5055V13.1703L7.65696 22.9832L3.8874 19.2L13.9259 9.19781H3.85715V3.85715Z" fill="currentColor"/>
           </svg>
         </a>
-        <a href="#signals" class="btn-secondary">Latest Signals</a>
       </div>
     </div>
 
   </section>
 
   <!-- Articles Section -->
-  <section class="articles-section">
+  <section class="articles-section" id="work">
     <ul class="articles-grid">
       <li class="article-card">
         <a href="#" class="article-image-wrapper">
