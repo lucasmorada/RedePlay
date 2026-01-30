@@ -42,6 +42,163 @@
       color: var(--background);
     }
 
+    /* NAVBAR */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  padding: 20px 40px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  z-index: 1000;
+  transition: all 0.45s ease;
+  mix-blend-mode: difference;
+}
+
+.nav-center {
+  justify-self: center;
+}
+
+.navbar,
+.navbar a,
+.navbar i {
+  color: #fff;
+}
+
+/* DYNAMIC ISLAND MODE */
+.navbar.scrolled {
+  top: 15px;
+  width: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 28px;
+  background: rgba(47, 45, 45, 0.35);
+  backdrop-filter: blur(16px);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+.navbar.scrolled .nav-icons {
+  display: none;
+}
+
+.navbar.scrolled .logo img {
+  height: 26px;
+}
+
+nav.scrolled .logo {
+  margin-right: 24px;
+}
+
+/* LINKS */
+.nav-center {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-center a {
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 800;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+.nav-center a:hover {
+  transform: scale(1.12);
+  opacity: .85;
+}
+
+/* ICONS */
+.nav-icons i {
+  font-size: 24px;
+  margin-left: 16px;
+  cursor: pointer;
+}
+
+    .menu-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: hsl(var(--foreground));
+    }
+
+    .menu-button svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 300px;
+      max-width: 100vw;
+      background: hsl(var(--background));
+      padding: 2rem 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 100;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      z-index: 99;
+    }
+
+    .mobile-menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: hsl(var(--foreground));
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .mobile-nav-link {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: hsl(var(--foreground));
+      transition: color 0.2s;
+    }
+
+    .mobile-nav-link:hover {
+      color: hsl(var(--primary));
+    }
+
     /* Noise Canvas */
     #noise-canvas {
       position: absolute;
@@ -472,6 +629,58 @@
   </style>
 </head>
 <body>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="navbar">
+  <div class="logo">
+  <a href="index.html">
+    <img src="PLaybege.png" alt="Play logo">
+  </a>
+</div>
+
+  <div class="nav-center">
+    <a href="index.html">home</a>
+    <a href="adoles.html">adoles</a>
+    <a href="jvtd.html">JVTD</a>
+    <a href="teste.html">teste</a>
+  </div>
+
+  <div class="nav-icons">
+    <i class="fab fa-instagram"></i>
+    <i class="fab fa-tiktok"></i>
+  </div>
+
+  <div class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+</nav>
+
+      <!-- Mobile Menu Button -->
+      <button class="menu-button" onclick="openMenu()" aria-label="Open menu">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Close menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <nav class="mobile-nav">
+      <a href="index.html" class="mobile-nav-link">home</a>
+      <a href="adoles.html" class="mobile-nav-link">adoles</a>
+      <a href="jvtd.html" class="mobile-nav-link">JVTD</a>
+    </nav>
+  </div>
+
   <section class="hero">
     <!-- Animated Noise Canvas -->
     <canvas id="noise-canvas"></canvas>
@@ -922,6 +1131,32 @@
       card.style.animationPlayState = 'paused';
       observer.observe(card);
     });
+
+
+    const nav = document.getElementById('navbar')
+
+let lastScroll = window.scrollY
+let mode = 'full'
+const trigger = 80
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.scrollY
+  const diff = currentScroll - lastScroll
+
+  // DESCENDO → vira island
+  if (diff > 5 && currentScroll > trigger && mode !== 'island') {
+    nav.classList.add('scrolled')
+    mode = 'island'
+  }
+
+  // SUBINDO → volta normal
+  if (diff < -5 && mode !== 'full') {
+    nav.classList.remove('scrolled')
+    mode = 'full'
+  }
+
+  lastScroll = currentScroll
+})
 
   </script>
 </body>
